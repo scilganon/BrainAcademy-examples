@@ -35,3 +35,20 @@ switch(country){
 }
 console.log(capital + " is capital of " + country);
 // console.log("%s is capital of %s", capital, country);
+
+
+//loops
+var carlist = ["BMW", "Volvo", "Saab", "Mersedes", "Ferrari"];
+	profile = {
+		name: 'Bohdan Perepluyboloto',
+		age: 27
+	}
+
+console.log("list of cars:");
+for(let i=0; i<cars.length; i++){
+	console.log(carList[i]);
+}
+console.log("profile:");
+for(let prop in profile){
+	console.log("  "+prop+": "+profile[prop]);
+}
