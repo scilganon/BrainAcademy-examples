@@ -52,3 +52,13 @@ console.log("profile:");
 for(let prop in profile){
 	console.log("  "+prop+": "+profile[prop]);
 }
+
+while: {
+	var counter_while = 0,
+		max_while = 10;
+	while(counter_while < max_while){
+		console.log("Current value is %s", counter_while);
+		counter_while++;
+	}
+	console.log("Finished: %s", counter_while);
+}
