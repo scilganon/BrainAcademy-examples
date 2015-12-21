@@ -1,0 +1,19 @@
+$a: #00ff00;
+$b: #0000ff;
+
+td:before {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	content: ' ';
+}
+
+$count: 10;
+$i: $count;
+@while $i > 0 {
+  	td:nth-child(#{$i}) {
+		background-color: $a + ($b - $a) / $count * $i; //magic of math
+	}
+  	$i: $i - 1;
+}
+
