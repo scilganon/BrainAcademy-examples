@@ -1,0 +1,23 @@
+<!-- Choose any block, to change block-color  -->
+
+<style>
+	#id {
+		width: 20px;
+		height: 20px;
+	}
+
+	input:nth-child(1):checked ~ div >  #id {
+		background-color: red;
+	}
+
+	input:nth-child(2):checked ~ div >  #id {
+		background-color: blue;
+	}
+</style>
+
+<input type="radio" name="namme">
+<input type="radio" name="namme">
+
+<div>
+	<div id=id></div>
+</div>
