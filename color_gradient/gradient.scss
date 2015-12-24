@@ -3,7 +3,8 @@ td:before {
 	height: 30px;
 	display: inline-block;
 	content: ' ';
-}
+} 
+
 
 //colors, defined by user for gradient
 $start_color: #00ff00;
@@ -17,13 +18,14 @@ $total_count: 10;
  */
 
 $counter: $total_count;
-$diff: $end_color - $start_color;
-$step: $diff / $total_count;
+$length: $end_color - $start_color;
+$step: $length / $total_count;
 
-@while $counter > 0 {
+table.gradient {
+	@while $counter > 0 {
   	td:nth-child(#{$counter}) {
 		background-color: $start_color + $step  * $counter;
 	}
   	$counter: $counter - 1;
 }
-
+}

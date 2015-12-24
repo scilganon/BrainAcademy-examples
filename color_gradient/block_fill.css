@@ -1,0 +1,85 @@
+td:before {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  content: ' '; }
+
+table.block-filled td:nth-child(1) {
+  color: 1;
+  background-color: red; }
+
+table.block-filled td:nth-child(2) {
+  color: 2;
+  background-color: red; }
+
+table.block-filled td:nth-child(3) {
+  color: 3;
+  background-color: blue; }
+
+table.block-filled td:nth-child(4) {
+  color: 4;
+  background-color: blue; }
+
+table.block-filled td:nth-child(5) {
+  color: 5;
+  background-color: red; }
+
+table.block-filled td:nth-child(6) {
+  color: 6;
+  background-color: red; }
+
+table.block-filled td:nth-child(7) {
+  color: 7;
+  background-color: blue; }
+
+table.block-filled td:nth-child(8) {
+  color: 8;
+  background-color: blue; }
+
+table.block-filled td:nth-child(9) {
+  color: 9;
+  background-color: red; }
+
+table.block-filled td:nth-child(10) {
+  color: 10;
+  background-color: red; }
+
+table.block-filled td:nth-child(11) {
+  color: 11;
+  background-color: blue; }
+
+table.block-filled td:nth-child(12) {
+  color: 12;
+  background-color: blue; }
+
+table.block-filled td:nth-child(13) {
+  color: 13;
+  background-color: red; }
+
+table.block-filled td:nth-child(14) {
+  color: 14;
+  background-color: red; }
+
+table.block-filled td:nth-child(15) {
+  color: 15;
+  background-color: blue; }
+
+table.block-filled td:nth-child(16) {
+  color: 16;
+  background-color: blue; }
+
+table.block-filled td:nth-child(17) {
+  color: 17;
+  background-color: red; }
+
+table.block-filled td:nth-child(18) {
+  color: 18;
+  background-color: red; }
+
+table.block-filled td:nth-child(19) {
+  color: 19;
+  background-color: blue; }
+
+table.block-filled td:nth-child(20) {
+  color: 20;
+  background-color: blue; }

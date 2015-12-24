@@ -1,0 +1,38 @@
+td:before {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  content: ' '; }
+
+/*
+	logic for show gradient
+ */
+table.gradient td:nth-child(10) {
+  background-color: blue; }
+
+table.gradient td:nth-child(9) {
+  background-color: #001ae6; }
+
+table.gradient td:nth-child(8) {
+  background-color: #0033cc; }
+
+table.gradient td:nth-child(7) {
+  background-color: #004db3; }
+
+table.gradient td:nth-child(6) {
+  background-color: #006699; }
+
+table.gradient td:nth-child(5) {
+  background-color: teal; }
+
+table.gradient td:nth-child(4) {
+  background-color: #009966; }
+
+table.gradient td:nth-child(3) {
+  background-color: #00b34d; }
+
+table.gradient td:nth-child(2) {
+  background-color: #00cc33; }
+
+table.gradient td:nth-child(1) {
+  background-color: #00e61a; }
