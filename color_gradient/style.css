@@ -4,6 +4,9 @@ td:before {
   display: inline-block;
   content: ' '; }
 
+/*
+	logic for show gradient
+ */
 td:nth-child(10) {
   background-color: blue; }
 
