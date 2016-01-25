@@ -1,3 +1,11 @@
-/**
- * Created by maxim on 25.01.16.
- */
+var list = [
+    'max',
+    'alex',
+    'bob',
+    'anna'
+];
+
+delete list[0];
+
+
+list.unshift()
