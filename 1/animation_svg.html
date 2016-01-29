@@ -1,0 +1,46 @@
+<svg viewBox="0 0 150 150" version=1.1>
+	<style>
+		.duration {
+			animation-duration: 5s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		circle {
+			fill: red;
+
+			animation-name: circle;
+		}
+
+		@keyframes circle {
+			0% {
+				transform: translate(0,0);
+			}
+			20% {					
+				transform: translateX(40px);
+			}
+		}
+
+		#_1 {
+			stroke: #cccccc;
+			stroke-width: 1;
+
+			animation-name: path_1;
+		}
+
+		@keyframes path_1 {
+			0% {
+				x1
+			}
+		}
+	</style>
+
+	<path class=duration stroke="#000000" fill=none d="M10 10 L50 10">
+		<animate attributeType=XML attributeName=d from="M10 10 L10 10" to="M10 10 L50 10">
+	</path>
+	<path class=duration stroke="#000000" fill=none d="M50 10 L50 50"></path>
+	<path class=duration stroke="#000000" fill=none d="M50 50 L10 50"></path>
+	<path class=duration stroke="#000000" fill=none d="M10 50 L10 30"></path>
+	<path class=duration stroke="#000000" fill=none d="M10 30 L30 30"></path>
+	<circle class=duration cx="10" cy="10" r="5"></circle>
+</svg>

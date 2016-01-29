@@ -1,0 +1,41 @@
+td:before {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	content: ' ';
+} 
+
+$total_count: 10;
+$i: $total_count;
+$current: 0;
+
+@while $current < $total_count {
+	td:nth-child(#{$i}){
+		color: $i;
+
+		@if ($current / 2) == floor($current /2) {
+			background-color: red;
+		}
+
+		@if ($current / 2) > floor($current /2) {
+			background-color: blue;
+		}
+	}
+
+	$i: $i + 1;
+
+	td:nth-child(#{$i}){
+		color: $i;
+
+		@if ($current / 2) == floor($current /2) {
+			background-color: red;
+		}
+
+		@if ($current / 2) > floor($current /2) {
+			background-color: blue;
+		}
+	}
+	$i: $i + 1;
+
+	$current: $current +1 ;
+}

@@ -1,0 +1,58 @@
+/*
+	css
+ */
+
+div p {}
+
+div p b {}
+
+div p i s {}
+
+/*
+	scss
+ */
+
+div {
+	p {
+		i {}
+		b {}
+	}
+}
+
+
+/*
+	css
+ */
+a {
+	display: inline-block;
+	border: 1px solid black;
+	height: 40px;
+	font-size: 12em;
+}
+
+input {
+	display: inline-block;
+	border: 1px solid black;
+	height: 40px;
+	font-size: 12em;
+}
+
+/*
+	less
+ */
+
+.btn {
+	display: inline-block;
+	border: 1px solid black;
+	height: 40px;
+	font-size: 12em;
+}
+
+a {
+	.btn
+}
+
+input {
+	.btn
+	font-size: 1em;
+}
