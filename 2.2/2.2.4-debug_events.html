@@ -19,10 +19,14 @@
         var block = document.getElementById('result');
         var header = document.getElementsByTagName('footer');
 
-        header[0].addEventListener('click', function(event){
+        var logClick = function (event){
             block.innerHTML += "<p>You have clicked on doc!!</p>";
             console.log(1);
-        });
+
+            header[0].removeEventListener('click', logClick);
+        };
+
+        header[0].addEventListener('click', logClick);
 
         header[0].addEventListener('click', function(event){
             console.log(2);
@@ -32,8 +36,6 @@
         document.body.addEventListener('click', function(event){
             console.log(3);
             console.log('body')
-            event.stopPropagation();
-//            event.stopImmediatePropagation();
         }, true);
 
 
