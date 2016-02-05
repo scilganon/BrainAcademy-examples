@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="input">
+
+    <div id="result">
+
+    </div>
+
+    <footer>
+        asdfgasdhkfagsdjhdf
+    </footer>
+
+    <script>
+        var block = document.getElementById('result');
+        var header = document.getElementsByTagName('footer');
+
+        header[0].addEventListener('click', function(event){
+            block.innerHTML += "<p>You have clicked on doc!!</p>";
+            console.log(1);
+            event.stopPropagation();
+//            event.stopImmediatePropagation();
+        });
+
+        header[0].addEventListener('click', function(event){
+            console.log(2);
+            console.log('header')
+        });
+
+        document.body.addEventListener('click', function(event){
+            console.log(3);
+            console.log('body')
+        });
+
+
+    </script>
+</body>
+</html>
