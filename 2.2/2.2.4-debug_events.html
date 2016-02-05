@@ -22,8 +22,6 @@
         header[0].addEventListener('click', function(event){
             block.innerHTML += "<p>You have clicked on doc!!</p>";
             console.log(1);
-            event.stopPropagation();
-//            event.stopImmediatePropagation();
         });
 
         header[0].addEventListener('click', function(event){
@@ -34,7 +32,9 @@
         document.body.addEventListener('click', function(event){
             console.log(3);
             console.log('body')
-        });
+            event.stopPropagation();
+//            event.stopImmediatePropagation();
+        }, true);
 
 
     </script>
