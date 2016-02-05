@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+    <li><img src="#" alt=""></li>
+</ul>
+<input type="button" id="remove_selected" value="remove">
+<script>
+//    for(var i=0; i< document.images.length; i++){
+//        document.images.item(i).addEventListener('click', function(event){
+//            event.currentTarget.remove();
+//        })
+//    }
+
+    var items = [];
+
+    document.getElementById('list').addEventListener('click', function(event){
+        if(event.target.tagName === 'IMG'){
+//            event.target.remove();
+            items.push(event.target);
+        }
+    })
+
+    document.getElementById('remove_selected').addEventListener('click', function(event){
+        items.forEach(function(element){
+            element.remove();
+        });
+//        items = [];
+    });
+</script>
+</body>
+</html>
