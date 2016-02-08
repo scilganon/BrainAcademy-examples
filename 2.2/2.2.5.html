@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="display: none">
+        q35345234545r
+    </div>
+
+    <input type="range" id="_opacity" min="0" max="100" value="0">
+
+    <script>
+        var inputRange = document.getElementById('_opacity');
+        inputRange.addEventListener('change', function(event){
+            var form = document.getElementById('form_1');
+
+            form.style.opacity = +(event.currentTarget.value) / 100;
+        })
+    </script>
+
+   <div id="form-wrapper">
+       <form name="login" action="#" id="form_1">
+           <input type="email" name="login" placeholder="login" required>
+           <input type="password" name="pass" placeholder="pass" required minlength="4">
+           <button>Login</button>
+       </form>
+   </div>
+    <script>
+            function hide(elem){
+                elem.$old_display_state = elem.style.display;
+                elem.style.display = 'none';
+            }
+
+            function show(elem){
+                elem.style.display = elem.$old_display_state || '';
+            }
+
+            document.forms['login'].addEventListener('submit', function(event){
+                var form = event.currentTarget;
+                var loginInput = form.elements['pass'];
+
+                var matchAChars = loginInput.value.match(/a/gi) || [];
+                if(matchAChars.length < 2){
+                    alert("wtf?! you losted a-chars");
+                    event.preventDefault();
+                }
+            });
+
+    </script>
+</body>
+</html>
