@@ -1,0 +1,25 @@
+<form name="cryptex">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+
+    <button type="button" name="submit">Submit</button>
+</form>
+
+<script>
+    var button = document.forms['cryptex'].elements['submit'],
+        secret = [0,1,1,0];
+
+    button.addEventListener('click', function(event){
+        var listOfInputs = document.forms['cryptex'].getElementsByTagName('input');
+
+        for(var i=0; i<listOfInputs.length; i++){
+            if(listOfInputs[i].checked !== Boolean(secret[i])){
+                return alert('Error');
+            }
+        }
+
+        alert('OK');
+    });
+</script>
