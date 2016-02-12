@@ -1,0 +1,32 @@
+<form action="#">
+    <button type="button">1</button>
+    <button type="button">2</button>
+
+    <div class="result">
+
+    </div>
+</form>
+
+<script>
+    var btlList = document.forms[0].elements,
+        pageMap = [
+            '/BrainAcademy-examples/2.2/2.2.5.html',
+            '/BrainAcademy-examples/2.2/2.2.2.html'
+        ],
+        resultBlockElement = document.getElementsByClassName('result')[0];
+
+    for(var i=0; i< btlList.length; i++){
+        (function(number){
+            btlList[number].addEventListener('click', function(event){
+                var request = new XMLHttpRequest();
+                request.open('GET', pageMap[number]);
+                request.onreadystatechange = function(){
+                    if(this.readyState === 4){
+                        resultBlockElement.innerHTML = this.responseText;
+                    }
+                }
+                request.send();
+            })
+        })(i)
+    }
+</script>
