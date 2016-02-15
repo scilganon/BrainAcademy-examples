@@ -1,0 +1,52 @@
+<div id="results">
+
+</div>
+
+<script>
+
+    /**
+     * @param data
+     * @param {[]} data.books
+     **/
+    function processIncomingData(data){
+        render(data.books);
+    }
+
+    /**
+     * @param {[]} data
+     * */
+    function render(data){
+        var resultBlock = document.getElementById('results');
+
+        createList(data).forEach(function(item){
+            resultBlock.appendChild(item);
+        })
+    }
+
+    function createList(collection){
+        return collection.map(createItem);
+    }
+
+    /**
+     * @param item
+     * @param item.name
+     * @param item.author
+     */
+    function createItem(item){
+        var el = document.createElement('p');
+        el.innerHTML = item.author + ': ' + item.name;
+        return el;
+    }
+
+
+    var request = new XMLHttpRequest();
+    request.open('GET', '/BrainAcademy-examples/format_examples/config.json');
+    request.onreadystatechange = function(){
+        if(this.readyState === XMLHttpRequest.DONE){
+            console.log(this.responseText);
+            var parsedJSON = JSON.parse(this.responseText);
+            processIncomingData(parsedJSON);
+        }
+    };
+    request.send();
+</script>

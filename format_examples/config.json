@@ -1,0 +1,15 @@
+{
+  "users": {
+    "max_count": 10
+  },
+  "books": [
+    {
+      "name": "Azbuka: about me",
+      "author": "Spilberg S."
+    },
+    {
+      "name": "...",
+      "author": "King S."
+    }
+  ]
+}
