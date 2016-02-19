@@ -1,0 +1,23 @@
+{
+  "name": "tes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "requirejs": "^2.1.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scilganon/BrainAcademy-examples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scilganon/BrainAcademy-examples/issues"
+  },
+  "homepage": "https://github.com/scilganon/BrainAcademy-examples#readme"
+}
