@@ -1,15 +1,7 @@
-function chat(name, msg, align){
-    var tmp = `<p style='text-align: ${align}'> >${name}: ${msg}</p>`;
-    document.write(tmp)
-}
-
-function user(name, itsMe){
-    return {
-        name: name,
-        addMsg: function(msg){
-            var align = itsMe ? 'right' : 'left';
-
-            chat(this.name, msg, align);
-        }
-    }
-}
+require([
+    './chat_msgr/chat_bold',
+    './chat_msgr/user'
+], function(chat, user){
+    var a = user("Max");
+    a.addMsg("asdfasdfasf");
+});
