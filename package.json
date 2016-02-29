@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "grunt": "^0.4.5",
     "requirejs": "^2.1.22"
   },
   "devDependencies": {},
