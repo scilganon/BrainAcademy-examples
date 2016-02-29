@@ -1,21 +1,15 @@
 
 var chatInstance = new Chat();
 
-var msg1 = [
-    new Msg({
-        text: "hello",
-        chatContainer: chatInstance.getEl()
-    }),
-    new Msg({
-        text: "hi",
-        chatContainer: chatInstance.getEl()
-    }),
-    new Msg({
-        text: "how are you",
-        chatContainer: chatInstance.getEl()
-    }),
-    new Msg({
-        text: "norm",
-        chatContainer: chatInstance.getEl()
-    })
-];
+var historyInstance = new HistoryModel();
+
+historyInstance.fetch();
+
+historyInstance.on('change', function(list){
+    for(var key in list.attributes){
+        new Msg({
+            text: list.attributes[key],
+            chatContainer: chatInstance.getEl()
+        });
+    }
+});
