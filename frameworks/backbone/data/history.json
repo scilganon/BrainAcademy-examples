@@ -1,6 +1,18 @@
 [
-  "hello",
-  "hi",
-  "how are you",
-  "norm"
+  {
+    "author": "max",
+    "text": "hello"
+  },
+  {
+    "author": "gladis",
+    "text": "hi"
+  },
+  {
+    "author": "max",
+    "text": "how are you"
+  },
+  {
+    "author": "gladis",
+    "text": "norm"
+  }
 ]
