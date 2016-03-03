@@ -10,6 +10,6 @@ var Msg = Backbone.View.extend({
             text = model.get('text'),
             author = model.get('author');
 
-        return ">"+author + ": " + text;
+        return ">"+author + ": " + text + "<br />";
     }
 });
