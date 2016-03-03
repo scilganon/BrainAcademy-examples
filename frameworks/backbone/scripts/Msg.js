@@ -3,6 +3,18 @@ var Msg = Backbone.View.extend({
 
     initialize: function(options){
         this.options = options;
+
+        var model = this.model;
+
+        this.options.model.on('change', function(){
+            var el = document.getElementById(model.cid);
+
+            if(model.get('isSelected')){
+                el.style.backgroundColor = "red";
+            } else {
+                el.style.backgroundColor = '';
+            }
+        });
     },
 
     render: function(){
@@ -10,6 +22,6 @@ var Msg = Backbone.View.extend({
             text = model.get('text'),
             author = model.get('author');
 
-        return ">"+author + ": " + text + "<br />";
+        return "<p id='" + model.cid + "'>>"+author + ": " + text + "</p>";
     }
 });

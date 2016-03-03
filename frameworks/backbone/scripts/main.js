@@ -18,3 +18,20 @@ historyInstance.on('reset', function(list){
 historyInstance.fetch({
     reset: true
 });
+
+var searchInput = document.getElementById('search');
+searchInput.addEventListener('change', function(event){
+
+    var searchText = event.currentTarget.value;
+
+    historyInstance.forEach(function(model){
+        var text = model.get('text');
+
+        if(text.search(searchText) >= 0 && searchText){
+            model.set('isSelected', true);
+        } else {
+            model.set('isSelected', false);
+        }
+    });
+
+});
