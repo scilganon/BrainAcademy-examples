@@ -5,13 +5,14 @@ var historyInstance = new HistoryCollection();
 
 
 historyInstance.on('reset', function(list){
-    //for(var key in list.attributes){
-    //    new Msg({
-    //        text: list.attributes[key],
-    //        chatContainer: chatInstance.getEl()
-    //    });
-    //}
-    console.log(list);
+    list.forEach(function(model){
+        var msg = new Msg({
+                model: model
+            }),
+            container = chatInstance.getEl();
+
+        container.innerHTML += msg.render();
+    });
 });
 
 historyInstance.fetch({
