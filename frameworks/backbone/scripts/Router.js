@@ -8,12 +8,11 @@ define([
 
         routes: {
             '': 'index',
-            "test/:param": 'test'
+            "history/:username": 'history'
         },
 
-        test: function(param){
-            console.log();
-            console.log(param);
+        history: function(username){
+            Backbone.trigger('filter', username);
         },
 
         index: function(){

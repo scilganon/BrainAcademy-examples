@@ -11,17 +11,22 @@ require([
 
     var historyInstance = new HistoryCollection();
 
+    function printMsgs(list){
+        var container = chatInstance.getEl();
 
-    historyInstance.on('reset', function(list){
+        container.innerHTML = '';
+
         list.forEach(function(model){
             var msg = new Msg({
                     model: model
-                }),
-                container = chatInstance.getEl();
+                });
+
 
             container.innerHTML += msg.render();
         });
-    });
+    }
+
+    historyInstance.on('reset', printMsgs);
 
     historyInstance.fetch({
         reset: true
@@ -42,6 +47,14 @@ require([
             }
         });
 
+    });
+
+    Backbone.on('filter', function(username){
+        var filtered = historyInstance.filter(function(model){
+            return model.get('author') === username;
+        });
+
+        printMsgs(filtered);
     });
 
 });
