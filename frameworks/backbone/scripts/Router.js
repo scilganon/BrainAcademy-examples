@@ -12,6 +12,7 @@ define([
         },
 
         test: function(param){
+            console.log();
             console.log(param);
         },
 

@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "backbone": "*",
+    "jquery": "*",
+    "lodash": "*",
     "grunt": "^0.4.5",
     "requirejs": "^2.1.22"
   },
