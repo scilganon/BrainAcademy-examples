@@ -50,9 +50,15 @@ require([
     });
 
     Backbone.on('filter', function(username){
-        var filtered = historyInstance.filter(function(model){
-            return model.get('author') === username;
-        });
+        var filtered;
+
+        if(username){
+            filtered = historyInstance.filter(function(model){
+                return model.get('author') === username;
+            });
+        } else {
+            filtered = historyInstance.toArray();
+        }
 
         printMsgs(filtered);
     });

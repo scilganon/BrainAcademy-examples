@@ -16,7 +16,7 @@ define([
         },
 
         index: function(){
-            console.log('index.page');
+            Backbone.trigger('filter');
         }
     });
 });
