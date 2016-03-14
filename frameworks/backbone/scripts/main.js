@@ -1,8 +1,11 @@
 require([
     'scripts/Chat',
     'scripts/HistoryCollection',
-    'scripts/Msg'
-], function(Chat, HistoryCollection, Msg){
+    'scripts/Msg',
+    'scripts/Router'
+], function(Chat, HistoryCollection, Msg, Router){
+    new Router();
+    Backbone.history.start();
 
     var chatInstance = new Chat();
 
