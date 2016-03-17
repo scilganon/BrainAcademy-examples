@@ -1,19 +1,28 @@
 var http = require('http');
 
 function getMsg(url){
-    "use strict";
+    try{
+        "use strict";
 
-    //?msg="asdfasdfasf"
-    return decodeURI(url.split('?')[1].split('=')[1]);
+        //?msg="asdfasdfasf"
+        return decodeURI(url.split('?')[1].split('=')[1]);
+    } catch(error){
+        return '';
+    }
 }
+
+var store = [];
 
 http
     .createServer(function(req, res) {
         "use strict";
 
-        console.log(getMsg(req.url));
+        var msg = getMsg(req.url || "");
+        if(msg){
+            store.push(msg);
+        }
 
-        res.end();
+        res.end(store.join('\r\n'));
     })
     .listen(8080);
 
