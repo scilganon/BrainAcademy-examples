@@ -39,10 +39,16 @@ http
 
         var msg = getMsg(req.url || "");
         if(msg){
-            store.push(msg);
+            store.push({
+                timestamp: Date.now(),
+                text: msg,
+                author: 'max'
+            });
         }
 
-        res.end(store.join('\r\n'));
+        var data = JSON.stringify(store);
+        
+        res.end(data);
 
         saveToFile(pathToDiskStorage, store);
     })
