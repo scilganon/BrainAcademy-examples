@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var pathModule = require('path');
 
 function getMsg(url){
     try{
@@ -12,7 +13,25 @@ function getMsg(url){
     }
 }
 
-var store = require('./data/history.json');
+// ./data/history.json
+// /home/Proects/BrainAcademy-examples/frameworks/chat-server/data/history.json
+
+
+function saveToFile(path, store) {
+    "use strict";
+
+    var resource = fs.openSync(pathModule.resolve(path), 'w'),
+        data = JSON.stringify(store);
+
+    fs.writeSync(resource, data);
+    fs.closeSync(resource);
+}
+
+var pathToDiskStorage = './data/history.json';
+/**
+ * @var {[]} store
+ */
+var store = require(pathToDiskStorage);
 
 http
     .createServer(function(req, res) {
@@ -24,6 +43,8 @@ http
         }
 
         res.end(store.join('\r\n'));
+
+        saveToFile(pathToDiskStorage, store);
     })
     .listen(8080);
 
