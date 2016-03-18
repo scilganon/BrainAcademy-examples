@@ -47,7 +47,9 @@ http
         }
 
         var data = JSON.stringify(store);
-        
+
+        res.setHeader('Access-Control-Allow-Origin', '*');
+
         res.end(data);
 
         saveToFile(pathToDiskStorage, store);

@@ -3,7 +3,7 @@ define([
     'scripts/HistoryModel'
 ], function(Backbone, HistoryModel){
     return Backbone.Collection.extend({
-        url: './data/history.json',
+        url: 'http://localhost:8080',
 
         model: HistoryModel
     })
