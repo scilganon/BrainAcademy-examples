@@ -1,4 +1,5 @@
 var http = require('http');
+var fs = require('fs');
 
 function getMsg(url){
     try{
@@ -11,7 +12,7 @@ function getMsg(url){
     }
 }
 
-var store = [];
+var store = require('./data/history.json');
 
 http
     .createServer(function(req, res) {
