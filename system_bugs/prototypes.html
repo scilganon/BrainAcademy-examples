@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Human(weight, height, eyesCount){
+        this.weight = weight || 60;
+        this.height = height;
+        this.eyesCount = eyesCount;
+    }
+
+    var max = new Human(NaN, 178, 2);
+
+    var data = JSON.parse('{"weight": 60, "height": 40, "eyesCount": 2}');
+
+    var normalObj = {
+        weight: data.weight || 60,
+        height: data.height,
+        eyesCount: data.eyesCount
+    };
+
+    function showWeight(obj){
+        if(!(obj instanceof Human)){
+            return console.error("not expected type of object");
+        }
+
+        console.log(obj.weight);
+    }
+
+    showWeight(max);
+    showWeight({});
+    showWeight(normalObj);
+</script>
+</body>
+</html>
