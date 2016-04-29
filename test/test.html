@@ -18,15 +18,6 @@
 		left: 150px;
 	}
 
-	.field:hover .ball {
-		top: 120px;
-		left: 500px;
-
-		transition-property: top, left, transform; 
-		transition-duration: 1.5s;
-		transform: rotate(90deg);
-	}
-
 	.man {
 		height: 294px;
 		width: 150px;
@@ -69,7 +60,47 @@
 	.st._sXXL {
 		height: 132px;
 	}
+	
+	.UFO {
+		background-image: url("/home/maxim/Загрузки/football_animation/ufo.png");
+		background-size: 100% 100%;
+
+		width: 150px;
+		height: 150px;
+
+		position: absolute;
+		left: 455px;
+		top: 10px;
+
+		animation-name: weird_ball;
+		animation-duration: 6s;
+	}
+
+	@keyframes weird_ball {
+		0% {
+			left: 455px;
+			top: 10px;
+		}
+
+		48% {
+			top: 120px;
+			left: 500px;
+		}
+
+		64% {
+			top: 90px;
+		}
+
+		100% {
+			top: 4px;
+			left: 79px;
+		}
+	}
 </style>
+
+<div class="sky">
+	<div class="UFO"></div>
+</div>
 
 <div class="field">
 	<div class="man"></div>
