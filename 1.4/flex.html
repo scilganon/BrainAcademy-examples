@@ -1,0 +1,41 @@
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ._1 {
+        background-color: red;
+        flex: 1;
+
+    }
+
+    ._2 {
+        background-color: yellow;
+        flex: 1;
+
+    }
+
+
+    @media (max-width: 640px){
+        ._1{
+            background-color: #ccc;
+            order: 2;
+            flex: none;
+            width: 100%;
+
+        }
+
+        ._2{
+            background-color: #999;
+            order: 1;
+            flex: none;
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="_1">1</div>
+    <div class="_2">2</div>
+</div>

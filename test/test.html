@@ -33,9 +33,17 @@
 		background-position: 1470px;
 	}
 
-	.field:hover .ball {
+	/*.field:hover .ball {*/
+		/*animation-name: weird_ball;*/
+		/*animation-duration: 6s;*/
+		/*animation-timing-function: linear;*/
+	/*}*/
+
+	.field .ball {
 		animation-name: weird_ball;
 		animation-duration: 6s;
+		animation-timing-function: linear;
+		animation-delay: 3s;
 	}
 
 	.field:hover .bang {
@@ -80,8 +88,8 @@
 
 	@keyframes weird_ball {
 		0% {
-			left: 455px;
-			top: 10px;
+			top: 244px;
+			left: 150px;
 		}
 
 		48% {
@@ -89,8 +97,9 @@
 			left: 500px;
 		}
 
-		64% {
+		70% {
 			top: 90px;
+			left: 500px;
 		}
 
 		100% {
