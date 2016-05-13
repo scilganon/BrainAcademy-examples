@@ -1,15 +1,23 @@
 @max-width: 500px;
 @max-lvls: 3;
 
+@x: 10px;
+@y: 10px;
+
 div {
   border: 1px solid #000;
+  box-sizing: border-box;
 }
 
 //declaration
 .loop (@index: @max-lvls) when(@index > 0) {
   .l_@{index} {
-    color: red;
-    width: @max-width - 20 * (@index - 1);
+    width: @max-width - 20 * (@index );
+    height: @max-width - 20 * (@index - 1);
+
+    position: absolute;
+    left: @x - 1px;
+    top: @y - 1px;
   }
 
   .loop(@index - 1);
