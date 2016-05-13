@@ -1,16 +1,9 @@
-.mixin_list_properties () {
-  color: red;
-  font-size: 12px;
-}
-
-.mixin_rule() {
-  .red {
-    .mixin_list_properties()
+.loop(@counter, @color: red) when(@counter > 0){
+  p {
+    color: @counter;
   }
+
+  .loop(@counter - 2)
 }
 
-//--
-p {
-  .mixin_list_properties();
-  .mixin_rule();
-}
+.loop(5);
