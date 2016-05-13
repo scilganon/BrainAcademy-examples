@@ -1,41 +1,93 @@
-<style>
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+​<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
 
-    ._1 {
-        background-color: red;
-        flex: 1;
+        body {
+            font: 24px Helvetica;
+            background: #999999;
+        }
 
-    }
+        #main {
+            min-height: 800px;
+            margin: 0px;
+            padding: 0px;
+            display: -webkit-flex;
+            display:         flex;
+            -webkit-flex-flow: row;
+            flex-flow: row;
+        }
 
-    ._2 {
-        background-color: yellow;
-        flex: 1;
-
-    }
-
-
-    @media (max-width: 640px){
-        ._1{
-            background-color: #ccc;
+        #main > article {
+            border: 1px solid #cccc33;
+            border-radius: 7pt;
+            background: #dddd88;
+            flex: 1 2 60%;
+            -webkit-order: 2;
             order: 2;
-            flex: none;
-            width: 100%;
-
         }
 
-        ._2{
-            background-color: #999;
+        #main > nav {
+            border: 1px solid #8888bb;
+            border-radius: 7pt;
+            background: #ccccff;
+            -webkit-flex: 1 6 20%;
+            flex: 1 10 20%;
+            -webkit-order: 1;
             order: 1;
-            flex: none;
-            width: 100%;
         }
-    }
-</style>
 
-<div class="container">
-    <div class="_1">1</div>
-    <div class="_2">2</div>
+        #main > aside {
+            border: 1px solid #8888bb;
+            border-radius: 7pt;
+            background: #ccccff;
+            -webkit-flex: 1 6 20%;
+            flex: 1 10 20%;
+            -webkit-order: 3;
+            order: 3;
+        }
+
+        header, footer {
+            display: block;
+            margin: 4px;
+            padding: 5px;
+            min-height: 100px;
+            border: 1px solid #eebb55;
+            border-radius: 7pt;
+            background: #ffeebb;
+        }
+
+        /* Too narrow to support three columns */
+        @media all and (max-width: 640px) {
+
+            #main, #page {
+                -webkit-flex-flow: column;
+                flex-direction: column;
+            }
+
+            #main > article, #main > nav, #main > aside {
+                /* Return them to document order */
+                -webkit-order: 0;
+                order: 0;
+            }
+
+            #main > nav, #main > aside, header, footer {
+                min-height: 50px;
+                max-height: 50px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>header</header>
+<div id='main'>
+    <article>article</article>
+    <article>article</article>
+    <article>article</article>
+    <nav>nav</nav>
+    <aside>aside</aside>
 </div>
+<footer>footer</footer>
+</body>
+</html>

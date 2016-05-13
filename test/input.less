@@ -1,0 +1,19 @@
+@max-width: 500px;
+@max-lvls: 3;
+
+div {
+  border: 1px solid #000;
+}
+
+//declaration
+.loop (@index: @max-lvls) when(@index > 0) {
+  .l_@{index} {
+    color: red;
+    width: @max-width - 20 * (@index - 1);
+  }
+
+  .loop(@index - 1);
+}
+
+//execution
+.loop();
