@@ -1,0 +1,10 @@
+{
+  "direction": "right|bottom",
+  "dir": "./imgs",
+  "files": "*",
+  "sprite": "sprite.png",
+  "httpPath": "/images",
+  "spacing": 50,
+  "retina": true,
+  "less": "sprite.less"
+}
