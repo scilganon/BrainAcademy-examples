@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+
+    var availableNames = ['max', 'gui', 'john', 'wesley'];
+
+    var max = availableNames.length,
+        min = 1;
+
+    var amount = Math.ceil(Math.random()*(max - min) + min);
+    var listStudent = [];
+
+    for (var i = 0; i < amount; i++) {
+        listStudent[i] = {
+            nameS: availableNames[i],
+            marks: {
+                mathRating: Math.round(Math.random()*(5 - min) + min),
+                physRating: Math.round(Math.random()*(5 - min) + min),
+                chemRating: Math.round(Math.random()*(5 - min) + min),
+                itRating: Math.round(Math.random()*(5 - min) + min),
+                artRating: Math.round(Math.random()*(5 - min) + min)
+            }
+        };
+    }
+
+    var headerFieldMap = {
+        nameS: 'Name',
+        mathRating: 'Math',
+        physRating: 'Physics',
+        chemRating: 'Chemistry',
+        itRating: 'IT',
+        artRating: 'Art'
+    };
+
+    document.write('<table>');
+    document.write('<tr>');
+    document.write(`<th>${headerFieldMap['nameS']}</th>`);
+    for(let name in listStudent[0].marks){
+        document.write(`<th>${headerFieldMap[name]}</th>`);
+    }
+    document.write('</tr>');
+
+    for (i = 0; i < amount; i++) {
+        document.write('<tr>');
+
+        let student = listStudent[i];
+        document.write(`<td>${student.nameS}</td>`);
+
+        for(let name in student.marks){
+            document.write(`<td>${student.marks[name]}</td>`);
+        }
+
+        document.write('</tr>')
+    }
+
+    document.write('</table>');
+</script>
+
+</body>
+</html>
