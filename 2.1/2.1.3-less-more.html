@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+
+        var min = 1,
+            max = 2;
+
+        var savedNumber = Math.round(Math.random() * (max - min) + min);
+
+        let previousResult = '';
+        while(true){
+            let number = +prompt(`What is your number? ${previousResult}`);
+
+            if( number === savedNumber ){
+                break;
+            }
+
+            if(number > savedNumber){
+                previousResult ='too much';
+            } else {
+                previousResult = 'take more';
+            }
+        }
+
+        alert('You have won!!!');
+
+    </script>
+</body>
+</html>

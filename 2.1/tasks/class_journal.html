@@ -17,7 +17,7 @@
     var amount = Math.ceil(Math.random()*(max - min) + min);
     var listStudent = [];
 
-    for (var i = 0; i < amount; i++) {
+    for (let i = 0; i < amount; i++) {
         listStudent[i] = {
             nameS: availableNames[i],
             marks: {
@@ -40,14 +40,18 @@
     };
 
     document.write('<table>');
+
+    //insert column-headers
     document.write('<tr>');
     document.write(`<th>${headerFieldMap['nameS']}</th>`);
     for(let name in listStudent[0].marks){
-        document.write(`<th>${headerFieldMap[name]}</th>`);
+        document.write(`<th>${headerFieldMap[name] || name}</th>`);
     }
+
     document.write('</tr>');
 
-    for (i = 0; i < amount; i++) {
+    //insert all students
+    for (let i = 0; i < amount; i++) {
         document.write('<tr>');
 
         let student = listStudent[i];
