@@ -1,45 +1,102 @@
 //exceptions
-try{
-	var obj = {};
+//try
+//{
+//	var obj = {
+//		test: {
+//			rest: 3
+//		}
+//	};
+//
+//	console.log(obj.test.rest);
+//}
+//catch(e){
+//	console.error('trouble with getting property of nothing');
+//}
 
-	console.log(obj.test.rest);
-}catch(e){
-	e.message = 'trouble with getting property of nothing';
-	console.error(e);
+var input = "ASDASD";
+
+//try {
+//	if(!input.match(new RegExp('[a-z]'))){
+//		throw new Error('has no small chars');
+//	}
+//
+//	if(!input.match(new RegExp('[0-9]'))){
+//		throw new Error('has no numbers');
+//	}
+//} catch(e){
+//	try{
+//		throw new Error('');
+//	}catch(e){}
+//	console.error('wrong input', e.message);
+//}
+
+
+////diff types of exceptions
+//try {
+//	//throw {};
+//	 throw new Error();
+//	 throw new SyntaxError();
+//	 throw new TypeError();
+//} catch(e){
+//	switch(true){
+//		case e instanceof Error:
+//			console.log("simple error type");
+//			break;
+//		case e instanceof SyntaxError:
+//			console.log("simple error type");
+//			break;
+//		default:
+//			console.warn("unknown type of error");
+//	}
+//}
+//
+//// will show console-msg
+//try {
+//	throw new Error();
+//} catch(e) {
+//	throw {};
+//} finally {
+//	console.log('final result')
+//};
+//// will NOT show console-msg
+//try {
+//	throw new Error();
+//} catch(e) {
+//	throw {};
+//}
+//
+//console.log('final result');
+
+
+function test(){
+	throw new Error(1);
 }
 
-//diff types of exceptions
-try {
-	throw {};
-	// throw new Error();
-	// throw new SyntaxError();
-	// throw new TypeError();
-} catch(e){
-	switch(true){
-		case e instanceof Error:
-			console.log("simple error type");
-			break;
-		case e instanceof SyntaxError:
-			console.log("simple error type");
-			break;
-		default:
-			console.warn("unknown type of error");
+function test_1(){
+		try{
+			test()
+		}catch(e){
+			console.error(e.message);
+		}
+
+	console.log(2)
+
+	throw new Error(3);
+}
+
+function test_m(){
+	try{
+		test_1();
+	} catch(e){
+		console.error(e.message);
 	}
+
+	console.log(4);
 }
 
-// will show console-msg
-try {
-	throw new Error();
-} catch(e) {
-	throw {};
-} finally {
-	console.log('final result')
-};
-// will NOT show console-msg
-try {
-	throw new Error();
-} catch(e) {
-	throw {};
+function main(){
+	test_m();
+	console.log(5);
 }
 
-console.log('final result');
+main();
