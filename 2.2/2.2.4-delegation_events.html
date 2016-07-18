@@ -19,18 +19,19 @@
 </ul>
 <input type="button" id="remove_selected" value="remove">
 <script>
-//    for(var i=0; i< document.images.length; i++){
-//        document.images.item(i).addEventListener('click', function(event){
-//            event.currentTarget.remove();
-//        })
-//    }
+    for(var i=0; i< document.images.length; i++){
+        document.images[i].addEventListener('click', function(event){
+            console.log(1);
+        })
+    }
 
     var items = [];
 
     document.getElementById('list').addEventListener('click', function(event){
         if(event.target.tagName === 'IMG'){
 //            event.target.remove();
-            items.push(event.target);
+//            items.push(event.target);
+            console.log(2);
         }
     })
 

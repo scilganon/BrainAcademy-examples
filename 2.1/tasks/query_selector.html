@@ -1,0 +1,28 @@
+<p class="_1 red"></p>
+<p class="_2"></p>
+<p class="red _3"></p>
+
+<script>
+    var list = document.querySelectorAll('.red'); //[]
+
+
+    var filtered = [];
+    for(var i =0; i< list.length; i++){
+        var current = list[i];
+        var hasClass = false;
+
+        for(var j=0; j<current.classList.length; j++){
+//            hasClass = hasClass || current.classList[j] !== '_3';
+
+            if(current.classList[j] == '_3'){
+                hasClass = true;
+            }
+        }
+
+        if(!hasClass){
+            filtered.push(current);
+        }
+    }
+
+    console.log(filtered);
+</script>

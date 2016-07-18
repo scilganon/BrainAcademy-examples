@@ -1,0 +1,76 @@
+
+<p>asdjfasjfashdfb
+
+<button id="win_props" type="button">All window properties</button>
+
+<script>
+    var list = [
+        function(event){
+            //btn == event.target
+
+            for(var  property in window){
+                if(typeof window[property] !== 'function'){
+                    document.body.innerHTML += (`${property} <br>`);
+                }
+            }
+        },
+        function(){
+            alert('OK');
+        }
+    ];
+
+
+    (function(){
+        var btn = document.getElementById('win_props');
+
+        list.forEach(function(callback){
+            btn.addEventListener('click', callback);
+        });
+    })();
+
+</script>
+
+<button id="open_win">Open Google</button>
+
+<script>
+    var btn = document.getElementById('open_win');
+
+    btn.addEventListener('click', function(){
+        var win = window.open('http://localhost:63342/BrainAcademy-examples/2.2/2.2.1.html');
+
+        setTimeout(function(){
+            var el = win.document.getElementById('win_props');
+
+            el.innerText = 'Click me!';
+        }, 3000);
+
+    });
+</script>
+
+<script>
+    function urlArgs(){
+        var args = {};
+        var query = location.search.substring(1);
+        var pairs = query.split('&');
+
+        for (var i=0; i<pairs.length; i++){
+            var pos = pairs[i].indexOf('=');
+
+            if(pos === -1) continue;
+
+            var name = pairs[i].substring(0, pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+
+            args[name] = value;
+        }
+
+        return args;
+    }
+
+    if(!location.search){
+        location.href += '?name=123'
+    }
+
+    urlArgs()['name'];
+</script>

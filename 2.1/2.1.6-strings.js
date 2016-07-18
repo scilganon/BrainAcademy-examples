@@ -25,3 +25,8 @@ var str = "Mom is washing frame",
 
 console.log(mommyRegExp.test("Mom wash frame")); //true, try to find any words like mom/mam
 console.log("maad mad maaad".match(/m[a]{1,2}d/g)); //find substring with max 2 "a"-chars
+
+
+var test = {
+
+};

@@ -50,3 +50,67 @@
 
     //not accepted
 </script>
+
+<div>
+    <style>
+        #list_posts {
+            display: none;
+        }
+    </style>
+    <button id="list_posts"><- Back to list</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function fetch(method, path, params, callback){
+        callback = callback || function(){};
+
+        var req = new XMLHttpRequest;
+        req.open(method, `http://jsonplaceholder.typicode.com/${path}`, true);
+        req.onreadystatechange = function(){
+            if(this.readyState === 4){
+                callback(JSON.parse(this.responseText));
+            }
+        };
+        req.send();
+    }
+
+    function getAttrValueOfEl(el){
+        var attrs = el.attributes;
+
+        for(var i=0; i<attrs.length; i++){
+            if(attrs[i].name === 'href'){
+                return  attrs[i];
+            }
+        }
+    }
+
+    document.getElementById('result').addEventListener('click', function(event){
+        event.preventDefault();
+
+        document.getElementById('list_posts').style.display = 'inline';
+
+        var href = getAttrValueOfEl(event.target);
+
+        fetch('GET', href.nodeValue, false, function(res){
+            document.getElementById('result').innerHTML = `<h1>${res.title}</h1><p>${res.body}</p>`;
+        })
+    });
+
+   function refresh(){
+       fetch('GET', 'posts', false, function(array){
+           var listA = array.map(function(post){
+               return `<a href='posts/${post.id}'>${post.id}. ${post.title}</a><br />`;
+           });
+
+           document.getElementById('result').innerHTML = listA.join('');
+       });
+   }
+
+    document.getElementById('list_posts').addEventListener('click', function(event){
+        refresh();
+        event.currentTarget.style.display = 'none';
+    })
+
+    refresh();
+</script>

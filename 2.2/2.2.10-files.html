@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="input">
+<br>
+<input type="file" id="file">
+
+<script>
+    document.getElementById('input').addEventListener('change', function(event){
+        console.log(event)
+    })
+
+    document.getElementById('file').addEventListener('change', function(event){
+        console.log(event)
+    })
+</script>
+</body>
+</html>

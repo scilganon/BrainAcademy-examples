@@ -2,12 +2,12 @@
 //try
 //{
 //	var obj = {
-//		test: {
+//		handleClick: {
 //			rest: 3
 //		}
 //	};
 //
-//	console.log(obj.test.rest);
+//	console.log(obj.handleClick.rest);
 //}
 //catch(e){
 //	console.error('trouble with getting property of nothing');
@@ -68,35 +68,45 @@ var input = "ASDASD";
 //console.log('final result');
 
 
-function test(){
-	throw new Error(1);
+//function handleClick(){
+//
+//	if(left || right){
+//		throw new Error(1);
+//	}
+//
+//	speed++;
+//}
+//
+//function test_1(){
+//	handleClick();
+//	console.log(2)
+//}
+//
+//function test_m(){
+//	try{
+//		test_1();
+//	} catch(e){
+//		console.error(e.message);
+//	}
+//
+//	console.log(4);
+//}
+//
+//function main(){
+//	test_m();
+//	console.log(5);
+//}
+//
+//main();
+
+
+try{
+	throw new Error('error');
+}catch(e){
+	throw new Error('asdasdas')
+	console.log(e.message);
+} finally {
+	console.log('after all')
 }
 
-function test_1(){
-		try{
-			test()
-		}catch(e){
-			console.error(e.message);
-		}
 
-	console.log(2)
-
-	throw new Error(3);
-}
-
-function test_m(){
-	try{
-		test_1();
-	} catch(e){
-		console.error(e.message);
-	}
-
-	console.log(4);
-}
-
-function main(){
-	test_m();
-	console.log(5);
-}
-
-main();
