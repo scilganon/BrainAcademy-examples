@@ -1,1 +1,3 @@
-console.log(7);
+define([], function(){
+    return 'ktulhu_7';
+});

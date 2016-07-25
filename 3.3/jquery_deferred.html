@@ -1,0 +1,43 @@
+<script src="/BrainAcademy-examples/bower_components/jquery/dist/jquery.min.js"></script>
+
+<button>ok</button>
+<button>error</button>
+
+<script>
+    function init_promise(){
+        var promise = jQuery.Deferred();
+
+        setTimeout(function(){
+            if(state === 'ok'){
+                promise.resolve();
+            }
+
+            if(state === 'error'){
+                promise.reject();
+            }
+        }, 3000);
+
+        return promise;
+    }
+
+    var state = '';
+
+    $('button').on('click', function(event){
+        state = event.target.innerHTML;
+    });
+
+    init_promise()
+            .then(function(){
+                console.log('ok 1')
+            })
+            .then(function(){
+                console.log('ok 2')
+            })
+            .fail(function(){
+                console.log('error 1')
+            })
+            .fail(function(){
+                console.log('error 2')
+            })
+
+</script>

@@ -75,6 +75,16 @@
         req.send();
     }
 
+    function fetch_2(method, path, params, callbackSuccess, callbackError){
+        return $.ajax({
+            url: url,
+            method: method,
+            params: params,
+//            success: callbackSuccess,
+//            error: callbackError
+        });
+    }
+
     function getAttrValueOfEl(el){
         var attrs = el.attributes;
 

@@ -1,1 +1,2 @@
-console.log(6);
+define([], function(){
+});
