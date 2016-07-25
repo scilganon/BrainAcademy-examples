@@ -26,18 +26,24 @@
         state = event.target.innerHTML;
     });
 
-    init_promise()
-            .then(function(){
-                console.log('ok 1')
-            })
-            .then(function(){
-                console.log('ok 2')
-            })
-            .fail(function(){
-                console.log('error 1')
-            })
-            .fail(function(){
-                console.log('error 2')
-            })
+    function init(){
+        return init_promise()
+                .then(function(){
+                    console.log('ok 1')
+                })
+                .then(function(){
+                    console.log('ok 2')
+                })
+                .fail(function(){
+                    console.log('error 1')
+                })
+                .fail(function(){
+                    console.log('error 2')
+                })
+    }
+
+    init().always(function(){
+        console.log('text to console')
+    });
 
 </script>

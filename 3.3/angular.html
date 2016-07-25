@@ -1,0 +1,44 @@
+<script src="/BrainAcademy-examples/bower_components/angular/angular.min.js"></script>
+
+<script>
+    angular.module('test', [])
+            .controller('Custom', function($scope, $http){
+                $scope.list = [];
+
+                $http
+                        .get('http://jsonplaceholder.typicode.com/posts')
+                        .then(function(res){
+                            $scope.list = res.data;
+                        })
+            })
+            .controller('AddPost', function($scope, $http){
+                $scope.name = '';
+                $scope.text = '';
+
+                $scope.save = function(){
+                    $http.post('http://jsonplaceholder.typicode.com/posts', {
+                        title: $scope.name,
+                        body: $scope.text,
+                        userId: 1
+                    }).then(function(){
+                        console.info('new post has been created')
+                    })
+                }
+            })
+</script>
+
+<div ng-app="test">
+    <form ng-controller="AddPost" ng-submit="save()">
+        <input type="text" ng-model="name">
+        <textarea  cols="30" rows="10" ng-model="text"></textarea>
+        <button>Save</button>
+    </form>
+
+    <form ng-controller="Custom">
+        <ul>
+            <li ng-repeat="item in list">
+                {{item.title}}
+            </li>
+        </ul>
+    </form>
+</div>
