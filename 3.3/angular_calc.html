@@ -6,14 +6,37 @@
     "use strict";
 
     angular.module('calcModule', [])
-            .controller('MainCtrl', function($scope){
+            .controller('MainCtrl', function($scope,$timeout){
                 var buffer = '';
 
+                function isOperation(char){
+                    return ['+','-','*','/'].includes(char);
+                }
                 $scope.$on('calcModule.input', function(event, symbol){
-                    buffer += symbol;
+                    if(!buffer && (isOperation(symbol) || symbol === '=' )){
+                        throw new Error('can not start from operation-char');
+                    }
 
-                    console.log(symbol);
+                    if(buffer && isOperation(buffer[buffer.length -1]) && isOperation(symbol)){
+                        throw new Error('can not input few symbols in queue');
+                    }
+
+                    if(buffer && isOperation(buffer[buffer.length -1]) && symbol === '='){
+                        throw new Error('last char of expression can not be ');
+                    }
+
+                    if(symbol === '='){
+                        //calculation
+                        buffer = eval(buffer);
+                    } else {
+                        buffer += symbol;
+                    }
+
+                    $timeout(function(){
+                        $scope.$broadcast('calcModule.flush', buffer);
+                    });
                 });
+
             })
             .directive('calc', function(){
                return {
@@ -23,6 +46,10 @@
             })
             .controller('ResultCtrl', function($scope){
                 $scope.total = '0';
+
+                $scope.$on('calcModule.flush', function(event, buffer){
+                    $scope.total = buffer;
+                });
             })
             .directive('result', function(){
                 return {
@@ -75,6 +102,7 @@
                     <div class="row">-</div>
                     <div class="row">*</div>
                     <div class="row">/</div>
+                    <div class="row">=</div>
                 </div>
             </div>
     </script>
