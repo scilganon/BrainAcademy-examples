@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="/BrainAcademy-examples/bower_components/bootstrap/dist/css/bootstrap.css">
+<script src="/BrainAcademy-examples/bower_components/jquery/dist/jquery.js"></script>
+<script src="/BrainAcademy-examples/bower_components/angular/angular.min.js"></script>
+
+<script>
+    "use strict";
+
+    angular.module('calcModule', [])
+            .controller('MainCtrl', function($scope){
+                var buffer = '';
+
+                $scope.$on('calcModule.input', function(event, symbol){
+                    buffer += symbol;
+
+                    console.log(symbol);
+                });
+            })
+            .directive('calc', function(){
+               return {
+                   controller: 'MainCtrl',
+                   templateUrl: 'calc'
+               };
+            })
+            .controller('ResultCtrl', function($scope){
+                $scope.total = '0';
+            })
+            .directive('result', function(){
+                return {
+                    controller: 'ResultCtrl',
+                    templateUrl: 'result'
+                };
+            })
+            .controller('BoardCtrl', function($element, $scope){
+                $element.on('click', 'div', function(event){
+                    event.stopPropagation();
+
+                    if(!event.target.childElementCount){
+                        $scope.$emit('calcModule.input', event.target.innerHTML);
+                    }
+                })
+            })
+            .directive('board', function(){
+                return {
+                    templateUrl: 'board',
+                    controller: 'BoardCtrl'
+                };
+            })
+</script>
+
+<div ng-app="calcModule">
+    <script type="text/ng-template" id="board">
+            <div class="container-fluid">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-3">1</div>
+                        <div class="col-md-3">2</div>
+                        <div class="col-md-3">3</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">4</div>
+                        <div class="col-md-3">5</div>
+                        <div class="col-md-3">6</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">7</div>
+                        <div class="col-md-3">8</div>
+                        <div class="col-md-3">9</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-3">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">+</div>
+                    <div class="row">-</div>
+                    <div class="row">*</div>
+                    <div class="row">/</div>
+                </div>
+            </div>
+    </script>
+
+    <script type="text/ng-template" id="result">
+        <div class="container-fluid text-center">
+            {{ total }}
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="calc">
+       <result></result>
+       <board></board>
+    </script>
+
+    <calc></calc>
+</div>
