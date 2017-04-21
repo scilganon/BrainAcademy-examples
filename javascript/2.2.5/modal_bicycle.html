@@ -1,0 +1,116 @@
+<a href="#" class="modal-starter" data-modal="one">
+    click me
+</a>
+
+<script type="text/html" id="one">
+    <div class="modal-body">
+        <h1>
+            My modal!
+        </h1>
+
+        <p>sadfadsf</p>
+        <p>sadfadsf</p>
+        <p>sadfadsf</p>
+        <p>sadfadsf</p>
+    </div>
+</script>
+
+<a href="#" class="modal-starter" data-modal="two">
+    click me again
+</a>
+
+<script type="text/html" id="two">
+    <div class="modal-body">
+        <h1>
+            My custom modal!
+        </h1>
+
+        <p>sadfadsf</p>
+    </div>
+</script>
+
+<style>
+    #overlay {
+        background: gray;
+    }
+
+    .modal-body {
+        background: white;
+        padding: 15px;
+    }
+</style>
+
+<script>
+    function createOverlay(){
+        var el = document.createElement('div');
+        var styles = {
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            width: '100vw',
+            height: '100vh',
+        };
+
+        for(var prop in styles){
+            el.style[prop] = styles[prop];
+        }
+
+        el.id = 'overlay';
+
+        el.addEventListener('click', removeOverlay);
+
+        return el;
+    }
+
+    function createModal(content){
+        var el = document.createElement('div');
+
+        var size = {
+            w: 300,
+            h: 200
+        };
+
+        var styles = {
+            position: 'absolute',
+            left: (document.body.clientWidth - size.w) / 2,
+            top: (document.body.clientHeight - size.h) / 2,
+            width: size.w,
+            height: size.h
+        };
+
+        for(var prop in styles){
+            el.style[prop] = styles[prop];
+        }
+
+        el.innerHTML = content;
+
+        return el;
+    }
+
+    function removeOverlay() {
+        var overlayEl = document.querySelector('#overlay');
+        var mock = {
+            remove: function () {
+            }
+        };
+        (overlayEl || mock).remove();
+    }
+
+    function show(modal_id){
+        var modal_content = document.querySelector(`script[type="text/html"]#${modal_id}`).innerHTML;
+
+        removeOverlay();
+
+        var overlay = createOverlay();
+        var modal = createModal(modal_content);
+
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+    }
+
+    window.addEventListener('click', function(event){
+        if(event.target.classList.contains('modal-starter')){
+            show(event.target.dataset.modal)
+        }
+    });
+</script>

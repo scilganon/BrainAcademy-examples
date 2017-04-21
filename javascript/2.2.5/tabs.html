@@ -1,0 +1,90 @@
+<style>
+    input[type=radio] {
+        display: none;
+    }
+
+    input[type=radio]:checked + .content {
+        display: block;
+    }
+
+    .content {
+        background: red;
+
+        display: none;
+    }
+</style>
+
+<div>
+    <div class="tabs">
+        <label for="p1">Tab1</label>
+        <label for="p2">Tab2</label>
+    </div>
+    <div class="panel">
+        <input type="radio" id="p1" name="tabs" checked>
+        <div class="content">
+            sadfgdfgsdfgsfdgsdf
+        </div>
+        <input type="radio" id="p2" name="tabs">
+        <div class="content">
+            sdfgsdfgsdfgd
+        </div>
+    </div>
+</div>
+
+<div class="js-tabs" data-active="2">
+    <div class="tabs">
+        <span data-panel="1">Tab1</span>
+        <span data-panel="2">Tab2</span>
+    </div>
+    <div class="area">
+        <div class="panel" data-panel="1">
+            text for panel 1
+        </div>
+        <div class="panel" data-panel="2">
+            blah-blah-blah
+        </div>
+    </div>
+</div>
+
+<script>
+    function initTabs(el){
+        var tab_list = el.querySelectorAll('.tabs > *');
+        var panel_list = el.querySelectorAll('.area > .panel');
+
+        showPanelFromList(el.dataset.active);
+
+        function isTab(el){
+            for(var i=0; i< tab_list.length; i++){
+                if(tab_list[i] === el){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function getPanelVisibility(id, el_panel){
+            var current_id = el_panel.dataset.panel;
+
+            return id === current_id
+                    ? 'block'
+                    : 'none';
+        }
+
+        function showPanelFromList(panel_id){
+            for(var i=0; i<panel_list.length; i++){
+                panel_list[i].style.display = getPanelVisibility(panel_id, panel_list[i]);
+            }
+        }
+
+        el.addEventListener('click', function(event){
+            if(isTab(event.target)){
+                var panel_id = event.target.dataset.panel;
+
+                showPanelFromList(panel_id);
+            }
+        })
+    }
+
+    initTabs(document.querySelector('.js-tabs'));
+</script>

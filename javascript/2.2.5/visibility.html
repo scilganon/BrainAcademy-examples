@@ -1,0 +1,45 @@
+<form action="#">
+    <div class="license">
+        ashf aljsfgjlasdfgjadsg fjasdfg jhadsg fsdjfgsda sdsdsdfs jfghsdfjkfs dghsdfhgsdkfjhgsjkdfhg sdkjflhgsfdjkgh ksd  sdfg dfsg dfsg dfsg sdsdf gdf dfg g
+    </div>
+
+    <input type="checkbox" id="accept_license">
+    <label for="accept_license">Accept license</label>
+
+    <button>
+        Register
+    </button>
+
+    <img src="http://leader.pubs.asha.org/data/Journals/ASHANL/934378/NIB1_web.png"
+         alt="">
+
+    <input
+            type="range" id="opacity"
+            min="0" max="1" step="0.1" value="1">
+</form>
+
+<script>
+    document
+            .getElementById('opacity')
+            .addEventListener('change', function(event){
+                document
+                        .querySelector('img')
+                        .style
+                        .opacity = event.currentTarget.value;
+            });
+</script>
+
+<script>
+    function checkboxHandler(){
+        var btn = document.querySelector('button');
+        var checkbox = document.getElementById('accept_license');
+
+        btn.disabled = !checkbox.checked;
+    }
+
+    document
+            .getElementById('accept_license')
+            .addEventListener('change', checkboxHandler);
+
+    checkboxHandler();
+</script>

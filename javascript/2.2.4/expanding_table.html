@@ -1,0 +1,82 @@
+<div>
+
+</div>
+
+<script>
+    var general_data = [
+            [
+                    "Luftganza",
+                    120
+            ],
+            [
+                    "British Airlines",
+                    500
+            ]
+    ];
+
+    var extra_options = [
+        {
+            video_games: false,
+            meal: true,
+            boogi_woogi: false
+        },
+        {
+            video_games: true,
+            meal: true,
+            boogi_woogi: true
+        }
+    ];
+</script>
+
+<script>
+    var div = document.querySelector('div');
+
+    /**
+     * @type {HTMLTableElement}
+     */
+    var table = document.createElement('table');
+    table.border = 1;
+    general_data.forEach(function(data, i){
+        /**
+         * @type {HTMLTableRowElement}
+         */
+        var tr = table.insertRow(i);
+
+        data.forEach(function(col, i){
+            var td = tr.insertCell(i);
+
+            td.innerText = col;
+        });
+
+        var infoTd = tr.insertCell(tr.cells.length);
+        infoTd.innerText = 'details';
+    });
+
+    table.addEventListener('click', function(event){
+        var currentTr = event.path.find(function(el){
+            return el.tagName === 'TR';
+        });
+
+        if(!currentTr){
+            return;
+        }
+
+        /**
+         * @type {HTMLTableElement}
+         */
+        var newTable = document.createElement('table');
+        var newRow = newTable.insertRow(0);
+        var data = extra_options[currentTr.rowIndex];
+        Object.keys(data).forEach(function(key, i){
+            var td = newRow.insertCell(i);
+
+            td.innerText = `${key} : ${data[key]}`;
+        });
+
+        var lastTd = currentTr.cells[currentTr.cells.length-1];
+        lastTd.innerText = '';
+        lastTd.appendChild(newTable);
+    });
+
+    div.appendChild(table);
+</script>

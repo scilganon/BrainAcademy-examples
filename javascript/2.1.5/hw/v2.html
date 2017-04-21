@@ -1,0 +1,86 @@
+<script>
+    function getCitiesOrDefault(){
+
+        var cities = prompt ('Введите название городов чежез запятую или нажмите отмену!!!!');
+        if (!cities){
+            return [
+                'Запорожье',
+                'Киев',
+                'Донбас',
+                'Львов',
+                'Луганск',
+                'Бердянск'
+            ];
+        }
+        cities = cities.split(',');
+        return cities;
+    }
+
+    function getStringMask(size){
+        var newRand ;
+        var arr = [];
+        while ( arr.length < size){
+            newRand = Math.floor(Math.random()*size);
+            // проверим есть оно  у нас или нет
+            if (arr.indexOf(newRand) == -1) {
+                // записываем в массив т.к нету
+                arr.push(newRand);
+            }
+        }
+        return arr;
+    }
+
+    function encode(sourceCity){
+        var mask = getStringMask(sourceCity.length); // [1,2,3]
+
+        return mask.map(function(num){
+            return sourceCity.charAt(num);
+        });
+    }
+
+    function askAndCheck(city){
+
+        for(var i=0; i<3; i++){
+            var newStr = encode(city);
+            var result = prompt ( 'Соберите название города из букв - ' + newStr );
+            if (result ==  null) {
+                return undefined;
+            }
+
+            if(result === city){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function games(){
+        var cities = getCitiesOrDefault();
+
+        for ( var i = 0; i < cities.length; i++ ){
+
+            var city = cities[i];
+            var isMatched = askAndCheck (city);
+
+            if(isMatched === undefined){
+                continue;
+            }
+
+            if (isMatched){
+                alert ( 'Выугадали!!!!');
+                var hasNextCity = i+1 < cities.length;
+                if( hasNextCity ){
+                    var game = confirm('Хотите продолжить игру ?');
+                    if (game != true){
+                        break;
+                    }
+                }
+            }
+
+        }
+    }
+
+    games();
+
+</script>

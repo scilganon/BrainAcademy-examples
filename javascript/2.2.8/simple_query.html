@@ -1,0 +1,19 @@
+<script>
+    var query = new XMLHttpRequest();
+
+    //query.readyState === 0
+
+    query.onreadystatechange = function(){
+        if(query.readyState === XMLHttpRequest.DONE){
+            console.log(query.responseText);
+        }
+    };
+
+    query.open('GET', 'http://stackoverflow.com/');
+
+    //query.readyState === 1
+
+    query.send();
+
+    //query.readyState === 2
+</script>

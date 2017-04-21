@@ -1,0 +1,85 @@
+<script>
+    var listFunction = {
+        'plus'  : function ( number ){ return number + 5;},
+        'minus' : function ( number ){ return number - 3;},
+        'up': function(number){return number * 2}
+    };
+
+    function checData(){
+        do{
+            var num = + prompt ('Введите любое число');
+
+            if(num == 0){
+                return num;
+            }
+        }while(!num);
+
+        return num;
+    }
+
+    function countForAvailableNames(list, availableFunctions){
+        var zeroOrOne = list.map(function(item){
+            var foundIndex = availableFunctions.indexOf(item);
+
+            return foundIndex >= 0 ? 1 : 0;
+        });
+
+        var sum = 0;
+        for(var i=0; i<list.length; i++){
+            sum += zeroOrOne[i];
+        }
+
+        return sum;
+    }
+
+    function askForFunctions(){
+        var count = 3;
+        var availableFunctions = Object.keys(listFunction); //array
+
+        do {
+            var str_f =  prompt('Введите ' + count + ' функции через запятую - ' + availableFunctions.join(','));
+            var list_f = str_f.split(','); // array
+
+            var isSameCount = list_f.length === count;
+
+            if(!isSameCount){
+                console.error('не правильное кол-во введеных ф-ций')
+            } else {
+                var areRightNames = countForAvailableNames(list_f, availableFunctions)  === count;
+
+                if(!areRightNames){
+                    console.error('не правильно введеные названия ф-ций');
+                }
+            }
+        } while(!isSameCount || !areRightNames);
+
+        return list_f;
+    }
+
+    function settData(){
+        return [
+            checData(),
+            askForFunctions()
+        ];
+    }
+
+    function getRezault () {
+
+        var data = settData();
+
+        var num = data[0];
+        var list = data[1];
+
+        for(var i=0; i<list.length; i++){
+            var current_function_name = list[i];
+            var current_function = listFunction[current_function_name];
+            num = current_function(num);
+        }
+
+        return num;
+    }
+
+    var rezault = getRezault();
+
+    console.log( rezault);
+</script>

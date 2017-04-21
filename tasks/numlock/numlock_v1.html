@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Home Work</title>
+    <style>
+
+
+
+        .general_div{
+            box-sizing: border-box;
+            width: 300px;
+            height: 400px;
+            margin-left: 100px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+
+        .high_div{
+            width: 300px;
+            height: 100px;
+            background-color: lightgray;
+
+        }
+
+
+        .high_div_bottom{
+            margin-left: 100px;
+            width: 150px;
+            height: 100px;
+            font-size: 30px;
+            float: left;
+
+        }
+
+
+        .high_div_c{
+            width: 150px;
+            height: 100px;
+            font-size: 30px;
+            float: left;
+
+        }
+
+
+
+
+        .button_div_float {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+
+        .input_button{
+            width: 100px;
+            height: 100px;
+            font-size: 30px;
+        }
+
+
+        .input_riht_butoon{
+            width: 280px;
+            height: 80px;
+            font-size: 30px;
+            margin-top: 9px;
+            border: 0px;
+        }
+
+        .open
+        {
+            display: none;
+            width: 300px;
+            height: 300px;
+        }
+
+        .close
+        {
+            width: 300px;
+            height: 300px;
+        }
+
+
+        .animat{
+            width: 300px;
+            height: 300px;
+            margin-left: 550px;
+            margin-top: -350px
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="general_div">
+    <div class="high_div">
+        <input class = "input_riht_butoon" type="text" value=""  id="input_vivod">
+
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="1" id="but1" >
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="2" id="but2">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="3" id="but3">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="4" id="but4">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="5" id="but5">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="6" id="but6">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="7" id="but7">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="8" id="but8">
+    </div>
+
+    <div class="button_div_float">
+        <input class="input_button" type="button" value="9" id="but9">
+    </div>
+
+
+</div>
+<div>
+    <input class ="high_div_bottom" type="button" value="C" id ="C">
+</div>
+<div>
+    <input class="high_div_c" type="button" value="ENTER" id="enter">
+</div>
+
+<div class="animat" >
+    <img id="open" class="open"   src="https://demiart.ru/forum/uploads6/post-425908-1290344070.jpg">
+    <img id="close" class="close"  src="http://golovikhin.ru/logo/stop.jpg">
+</div>
+
+
+<script>
+
+    var secretKey = "545545";
+    var generalInputValue = document.getElementById('input_vivod');
+    //-------------------------------------------------------------------//
+
+    var button1= but1.onclick = function () {
+        input_vivod.value +='1';
+    };
+
+    var button2= but2.onclick = function () {
+        input_vivod.value +='2';
+    };
+
+    var button3= but3.onclick = function () {
+        input_vivod.value +='3';
+    };
+
+    var button4= but4.onclick = function () {
+        input_vivod.value +='4';
+    };
+
+    var button5= but5.onclick = function () {
+        input_vivod.value +='5';
+    };
+
+    var button6= but6.onclick = function () {
+        input_vivod.value +='6';
+    };
+
+    var button7= but7.onclick = function () {
+        input_vivod.value +='7';
+    };
+
+    var button8= but8.onclick = function () {
+        input_vivod.value +='8';
+    };
+
+    var button9= but9.onclick = function () {
+        input_vivod.value +='9';
+    };
+
+    var cDelete = C.onclick = function () {
+        deleteInput();
+    };
+    //------------------------------------------------------------------//
+
+    function openImg() {
+        document.getElementById('open').style.display = 'block';
+    }
+
+    function closeImg() {
+        document.getElementById('close').style.display = 'none';
+    }
+
+    function  deleteInput() {
+        return generalInputValue.value = input_vivod.value.slice(0, -1);
+    }
+
+
+    // ------------------------ Функция перебора по щелчку мышки -------------------//
+    var tryCount = 2;
+    enter.onclick = function () {
+
+        if (tryCount >= 0) {
+            if (generalInputValue.value === secretKey) {
+                alert("Доступ разрешен");
+                setTimeout(openImg, 1500);
+                setTimeout(closeImg, 1500);
+                // setTimeout(setElement, 3000);
+                return true;
+            }
+            if (generalInputValue.value !== secretKey) {
+                alert("Доступ запрещен, осталось попыток " + tryCount);
+            }
+
+            tryCount--;
+        }
+        else {
+            alert("Происходит обновление страницы");
+            window.location.reload(false);
+        }
+    };
+
+
+    // ------------------------ Функция перебора по нажатию Enter / Backspace -------------------//
+    document.onkeyup = function (ev) {
+
+        if (ev.keyCode === 13) {
+
+            if (tryCount >= 0) {
+                if (generalInputValue.value === secretKey) {
+                    alert("Доступ разрешен");
+                    setTimeout(openImg, 1500);
+                    setTimeout(closeImg, 1500);
+                    //setTimeout(setElement, 3000);
+                    return true;
+                }
+                if (generalInputValue.value !== secretKey) {
+                    alert("Доступ запрещен, осталось попыток " + tryCount);
+                }
+                tryCount--;
+            }
+            else {
+                alert("Происходит обновление страницы");
+                window.location.reload(false);
+            }
+        }
+        if(ev.keyCode === 8){
+            deleteInput();
+        }
+        return false;
+    };
+
+    //----------------------------------------------------------------//
+    document.body.onmouseover = document.body.onmouseout = mouse;
+
+    function mouse(position) {
+
+        if (position.type == 'mouseover') {
+            position.target.style.fontSize = '40px'
+        }
+        if (position.type == 'mouseout') {
+            position.target.style.fontSize = '30px'
+        }
+    }
+
+
+    /*
+     var dd = document.getElementById('but9');
+     var setElement = function setButton () {
+     dd.value = "2";
+
+     };
+
+     */
+
+</script>
+
+</body>
+</html>

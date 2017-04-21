@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+    </style>
+</head>
+
+<body>
+
+
+
+
+<script>
+    var generalDiv = document.createElement('div');
+    generalDiv.style.cssText = "width:500px; position: relative; height:500px; border:1px solid black; margin-left:100px; background:#F0F0F0; overflow:hidden; position-relative";
+    generalDiv.id = 'general';
+    document.body.appendChild(generalDiv);
+
+
+    var downDiv = document.createElement('div');
+    downDiv.style.cssText = "width:500px; height:10px; margin-top:400px;";
+    generalDiv.appendChild(downDiv);
+
+
+    var SizeRandom = 40;
+    var maxSnow= 30;
+    var height=500;
+    var width=500;
+    var sneginka=[];
+    var sinMove=[];
+    var argSin=[];
+    var moveLeftRight=[];
+    var Speed =0.9;
+
+    function random(arg){
+        return Math.floor(Math.random()*arg);
+    }
+
+
+    function getRandomInt(min, max)
+    {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+    for (var i=0;i <=maxSnow;i++) {  // Создание падающих снежинок
+        var sneginka = document.createElement('img');
+        sneginka.style.cssText = "width:20px; height:20px; position:absolute;";
+        sneginka.src = "sneg.png";
+        sneginka.id = 's' + i;
+        generalDiv.appendChild(sneginka);
+        console.log(i);
+    }
+
+    function initsneginka() {  // параметры падающих снежинок
+        for (var i=0;i<=maxSnow;i++) {
+            argSin[i] = 0;
+            moveLeftRight[i] = Math.random()*15;
+            sinMove[i] = 0.03 + Math.random()/10;
+            sneginka[i]=document.getElementById("s"+i);
+            sneginka[i].size=random(SizeRandom);   // переменная для рендома
+            sneginka[i].style.width = sneginka[i].size + 'px';
+            sneginka[i].style.height = sneginka[i].size+ 'px';
+            sneginka[i].sneginkaSpeed=Speed*sneginka[i].size/5;
+            sneginka[i].posX=random(width-sneginka[i].size);
+            sneginka[i].posY=random(height-sneginka[i].size);
+            sneginka[i].style.left=sneginka[i].posX;
+            sneginka[i].style.top=sneginka[i].posY;
+        }
+        movesneginka();
+
+    }
+
+    function movesneginka() {  // падение падающих снежинок
+        for (var i=0;i<=maxSnow;i++) {
+            argSin[i] +=sinMove[i];
+            sneginka[i].posY+=sneginka[i].sneginkaSpeed;
+            sneginka[i].style.left=sneginka[i].posX+moveLeftRight[i]*Math.sin(argSin[i])+'px';
+            sneginka[i].style.top=sneginka[i].posY+'px';
+            if (sneginka[i].posY>=height-2*sneginka[i].size || parseInt(sneginka[i].style.left)>(width-3*moveLeftRight[i])) {  // обнуление
+                sneginka[i].posX=random(width-sneginka[i].size) ;
+                sneginka[i].posY=0;
+            }
+        }
+        setTimeout("movesneginka()",50);
+    }
+    initsneginka();
+
+
+    setInterval(function createDownSnow(){
+        for(var j=0;j<2; j++){
+            var downImg = document.createElement('img');
+            downImg.src = 'sneg.png';
+            downImg.style.cssText = "width:20px; height:20px; position:absolute;";
+            downDiv.appendChild(downImg);
+            downImg.style.marginLeft = getRandomInt(0, 500) + 'px';
+            downImg.style.marginTop = getRandomInt(0,80) + 'px';
+            downImg.sizedown = getRandomInt(10,30);
+            downImg.style.width = downImg.sizedown + 'px';
+            downImg.style.height = downImg.sizedown + 'px';
+        }
+    },1000);
+
+    downDiv.innerHTML = `
+        <svg>
+            <circle cx="150" cy="120" r="40" fill="rgb(24, 104, 133)" display="none" stroke-width = "1" stroke="rgb()0,0,0"/>
+        </svg>
+    `;
+    var svg1 = document.getElementsByTagName('circle');
+
+    function snowBall() {
+        setTimeout( function () {
+            var start = Date.now();
+            var timer = setInterval(function() {
+                var timePassed = Date.now() - start;
+                if(timePassed <0 || timePassed>1300){
+                    svg1[0].style.display = "block";
+                    svg1[0].r.baseVal.value = timePassed / 15;
+
+                    svg1[0].cy.baseVal.value = timePassed / 12;}
+                if (timePassed > 2400) clearInterval(timer);
+            }, 24);
+        },15000)
+    }
+
+    snowBall()
+</script>
+</body>
+
+</html>

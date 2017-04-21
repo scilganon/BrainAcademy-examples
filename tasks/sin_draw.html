@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sinus drawing</title>
+</head>
+<body>
+<div style="width: 100%; height: 400px; position: relative">
+
+</div>
+
+<script>
+    var div = document.querySelector('div');
+
+
+    for(var i=0;i<100; i++){
+        div.innerHTML += `<div style="position: absolute; left: ${i*10}px; top: ${Math.sin(i)*10    }px; width: 5px; height: 5px; display: inline-block;">+</div>`;
+    }
+</script>
+</body>
+</html>

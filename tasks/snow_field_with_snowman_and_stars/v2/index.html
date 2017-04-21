@@ -1,0 +1,293 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+
+        body {
+            background-color:black;
+        }
+        #snow_bg {
+            position: absolute;
+            z-index: 0;
+            opacity:1;
+            width: 800px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        #snow{
+            position: absolute;
+            z-index: 2;
+        }
+        #snowman{
+            position: absolute;
+            z-index: 1;
+
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<canvas id= "snow_bg"></canvas>
+<canvas id= "snow" width="800" height="500"></canvas>
+
+<svg id="snowman" width="800" height="500">
+    <radialGradient id="grad1" cx="50%" cy="50%" r="60%" fx="30%" fy="50%">
+        <stop offset="0%" style="stop-color:rgb(255,255,255); stop-opacity:1" />
+        <stop offset="100%" style="stop-color:rgb(137,181,240);stop-opacity:1" />
+    </radialGradient>
+    <ellipse cx="900" cy="435" rx="65" ry="65" fill="url(#grad1)" id="ball_1"/>
+    <ellipse cx="255" cy="355" rx="50" ry="50" fill="url(#grad1)" id="ball_2" opacity="0"/>
+    <ellipse cx="255" cy="290" rx="40" ry="40" fill="url(#grad1)" id="ball_3" opacity="0"/>
+
+</svg>
+
+<div id ="snowflakes"></div>
+
+<script>
+
+    "use strict";
+
+    (function(){
+        var width = snow_bg.width;
+        var height = snow_bg.height;
+        var ctx = snow_bg.getContext('2d');
+
+
+        var  total = width;
+        var speed = 0.01;
+
+
+        var lineWidth = 0.2;
+        var spaceBetween = 10;
+        var repaintColor = 'rgba(255, 255, 255, 0.9)';
+        var colors = [];
+        var  dots = [];
+        var  dotsVel = [];
+
+
+
+        for(var i = 0; i < total; ++i){
+            var rand = 185 + Math.random()* (231 + 1 - 185);
+            colors[i] = Math.floor(rand);
+
+            dots[i] = height;
+            dotsVel[i] = 5;
+        }
+
+        function anim(){
+            window.requestAnimationFrame(anim);
+
+            ctx.fillStyle = repaintColor;
+            ctx.fillRect(0, 0, width, height);
+
+            for(var i = 0; i < total; ++i){
+                var currentY = dots[i] - 1;
+                dots[i] += dotsVel[i] += speed;
+
+                ctx.fillStyle = 'hsl('+ colors[i] + ', 100%, 50%)';
+                ctx.fillRect(spaceBetween * i, currentY, lineWidth, dotsVel[i] + 0.5);
+
+                if(dots[i] > height && Math.random() < .01){
+                    dots[i] = dotsVel[i] = 0;
+                }
+
+
+            }
+
+        }
+
+        anim();
+
+    }());
+
+
+
+
+    var canvas = document.getElementById('snow');
+    var snow = canvas.getContext("2d");
+
+    function grow(beginX, beginY, endX, endY, posX, posYLast, timer, speed) {
+        setTimeout(function() {
+            var posY = 520;
+            var id = setInterval(frame, speed);
+            function frame(){
+                if (posY == posYLast){
+                    clearInterval(id);
+                }
+                posY--;
+                /* var gradient = snow.createLinearGradient(200,50,0,0);
+                 gradient.addColorStop(0,"white");
+                 gradient.addColorStop(1,"#3A5FCD");*/
+                snow.fillStyle= "#B0C4DE"//gradient;
+                snow.strokeStyle="#99AFCB"
+                snow.lineWidth = 8;
+                snow.beginPath();
+                snow.moveTo(beginX, beginY);
+                snow.quadraticCurveTo(posX, posY ,endX, endY);
+                snow.fill();
+                snow.stroke();
+            }
+        }, timer);
+    }
+
+    grow(-30, 520, 300, 520, 150, 450, 1000, 30);
+    grow(500, 520, 850, 520, 600, 400, 500, 50);
+    grow(200, 520, 700, 520, 400, 380, 2000, 60);
+
+
+
+    function moveBall(){
+        setTimeout(function() {
+            var ballFirst = document.getElementById('ball_1');
+            var pos = ballFirst.style.cx = "900";
+            var id = setInterval(frame, 7);
+
+            function frame() {
+                if (pos == 250) {
+                    clearInterval(id);
+                } else {
+                    pos--;
+                    ballFirst.style.cx = pos + 'px';
+
+                }
+            }
+
+        }, 5000);
+
+    }
+    moveBall();
+
+
+    function showBall(setTime, ballid){
+        setTimeout(function() {
+            var ball = document.getElementById(ballid);
+            ball.style.opacity = "1";
+        }, setTime);
+    }
+    showBall(11000, 'ball_2');
+    showBall(11000, 'ball_2');
+    showBall(13000, 'ball_3');
+
+
+
+    function face(setTime){
+        setTimeout(function() {
+            snow.fillStyle= "rgba(0,0,0,0.6)"
+            snow.beginPath();
+            snow.arc(240,290,5,0,2*Math.PI);
+            snow.fill();
+
+            snow.beginPath();
+            snow.arc(270,290,5,0,2*Math.PI);
+            snow.fill();
+
+            snow.fillStyle= "rgb(255, 149, 79)"
+            snow.beginPath();
+            snow.moveTo(260, 300);
+            snow.lineTo(280, 310);
+            snow.quadraticCurveTo(270, 315, 250, 305);
+            snow.quadraticCurveTo(255, 300, 260, 300);
+            snow.fill();
+        }, setTime);
+
+
+    }
+    face(14000);
+
+
+
+
+
+</script>
+<script>
+    "use strict";
+
+
+    var windiwSnowfall = document.createElement('div');
+    windiwSnowfall.style.cssText = "width:800px; position: absolute; z-index: 3; height:500px; overflow:hidden;"
+    windiwSnowfall.id = 'general';
+    document.body.appendChild(windiwSnowfall);
+    var newDiv = document.getElementById('general');
+
+
+    var text='*';
+    var fontFamily=["Adobe Naskh Medium", "Chaparral Pro"];
+    var maxFontSize = 35;
+    var minFontSize = 20;
+    var color = ['#87CEFA','#4682B4','#B0C4DE','#87CEFF','#B0E2FF','#6CA6CD'];
+    var maxSnowCount = 25;
+
+
+    var height=500;
+    var width=800;
+    var snowFlake=[];
+
+
+    var sinMove=[];
+    var argSin=[];
+    var moveLeftRight=[];
+
+
+
+
+    function random(arg){
+        return Math.floor(Math.random()*arg);
+
+    }
+
+
+    for (let i=0;i <=maxSnowCount;i++) {
+        newDiv.innerHTML+="<span id='s"+i+"' style='position: absolute;top:-"+maxFontSize+"'>"+text+"</span>";
+    }
+
+    function snowFall() {
+
+        for (let i=0;i <= maxSnowCount; i++) {
+            argSin[i] = 0;
+            moveLeftRight[i] = Math.random()*15;
+            sinMove[i] = 0.03 + Math.random()/7;
+
+            snowFlake[i]=document.getElementById("s"+i);
+            snowFlake[i].style.fontFamily=fontFamily[random(fontFamily.length)];
+            snowFlake[i].style.fontSize=random(maxFontSize)+minFontSize + 'px';
+            snowFlake[i].style.color=color[random(color.length)];
+            snowFlake[i].size=random(maxFontSize)+minFontSize;
+
+            snowFlake[i].snowSpeed = snowFlake[i].size/25;
+            snowFlake[i].posX=random(width-snowFlake[i].size);
+            snowFlake[i].posY=random(height-snowFlake[i].size);
+            snowFlake[i].style.left=snowFlake[i].posX;
+            snowFlake[i].style.top=snowFlake[i].posY;
+        }
+        movesnow();
+    }
+
+
+    function movesnow() {
+        for (let i=0;i<=maxSnowCount;i++) {
+
+            argSin[i] +=sinMove[i];
+            snowFlake[i].posY+=snowFlake[i].snowSpeed;
+
+            snowFlake[i].style.left=snowFlake[i].posX+moveLeftRight[i]*Math.sin(argSin[i])+'px';
+            snowFlake[i].style.top=snowFlake[i].posY+'px';
+            if (snowFlake[i].posY>=height-2*snowFlake[i].size || parseInt(snowFlake[i].style.left)>(width-3*moveLeftRight[i])) {
+                snowFlake[i].posX=random(width-snowFlake[i].size) ;
+                snowFlake[i].posY=0;
+            }
+        }
+        setTimeout(movesnow,50);
+    }
+
+    snowFall();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        RegExp: parse logs
+    </title>
+</head>
+    <body>
+        <pre>
+            127.0.0.1 - - [31/Aug/2016:12:19:49 +0300] /1.1 499 0 Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+            127.0.0.1 - - [29/Aug/2016:12:19:49 +0300] GET / HTTP/1.1 200 3010  Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+            127.0.0.1 - - [30/Aug/2016:12:19:50 +0300]components/AdminLTE/dist/css/AdminLTE.css HTTP/1.1http://usdbank.local/Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+            127.0.0.1 - - [28/Aug/2016:12:19:50 +0300] GET /css/app.css HTTP/1.1304 0 http://usdbank.local/Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+            127.0.0.1 - - [13/Aug/2016:12:19:50 +0300] GET /components/ionicons/css/ionicons.css HTTP/1.1 404 596 http://usdbank.local/Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+        </pre>
+
+        <script>
+            /**
+             * @param {String} stDiv
+             * @returns {String[]}
+             */
+            function search (stDiv) {
+
+                var ip = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/g;
+                var date = /\d{2}\/\w{2,5}\/\d{4}:\d{2}:\d{2}:\d{2}/g;
+
+
+                var answIP =  stDiv.match(ip);
+                var answDate = stDiv.match(date);
+                var answer= [];
+
+                for(var i = 0; i < answIP.length; i++ ){
+                    answer.push(answIP[i] +  " - " + answDate[i]);
+                }
+
+                return answer;
+            }
+
+            search(document.querySelector('pre').innerText).forEach(function(item){
+                console.log(item)
+            })
+        </script>
+    </body>
+</html>

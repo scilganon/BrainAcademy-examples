@@ -1,0 +1,21 @@
+<script>
+
+    function test(name){
+        console.log('test' + name);
+    }
+
+    var test_2 = function(name){
+        console.log('test_2' + name);
+    };
+
+    function takeTestAndRun(test_3, name){
+        console.log(test_3)
+        test_3(name);
+    }
+
+    takeTestAndRun(test_2, "name");
+    takeTestAndRun(test, "name");
+
+   var a = [].map().map()
+
+</script>

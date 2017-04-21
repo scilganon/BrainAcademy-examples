@@ -1,0 +1,98 @@
+<title>
+    Cats & Dogs
+</title>
+
+<form action="http://www.google.com">
+    <input type="search" tabindex="6" name="q" required />
+
+    <input type="search" name="breed" tabindex="3" required list="breeds"/>
+
+    <datalist id="breeds">
+        <option value="p1">p1</option>
+        <option value="p2">p2</option>
+    </datalist>
+
+    <div>
+        <h4>Are you robot?</h4>
+
+        <select name="s1" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <select name="s2" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <select name="s3" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+    </div>
+    <button tabindex="1">
+        submit
+    </button>
+</form>
+
+<a href="mailto:maxfuninjob@gmail.com">send msg</a>
+
+<script>
+    var breeds = [
+            'p1',
+            'p2'
+    ];
+
+    document
+            .querySelector('input[name=q]')
+            .addEventListener('keypress', function(event){
+                var val = event.currentTarget.value;
+
+                if(val.slice(-3).toLowerCase() === 'aaa'){
+                    event.preventDefault();
+                }
+            });
+
+    document
+            .querySelector('input[name=breed]')
+            .addEventListener('change', function(event){
+                var breed = event.currentTarget.value;
+                if(breeds.indexOf(breed) === -1){
+                    alert('maybe you wrote wrong breed-name');
+                }
+            });
+
+    document
+            .querySelector('form')
+            .addEventListener('submit', function(event){
+                var form = event.currentTarget;
+
+                var is1right = form.elements.s1.value === '3';
+                var is2right = form.elements.s2.value === '4';
+                var is3right = form.elements.s3.value === '5';
+
+                if(!(is1right && is2right && is3right)){
+                    alert('we know, that you are Robot!');
+                    event.preventDefault();
+                }
+            })
+</script>

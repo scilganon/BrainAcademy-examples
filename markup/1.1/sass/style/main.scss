@@ -1,0 +1,8 @@
+$a: red;
+$b: green;
+
+@for $i from 0 through 100 {
+  span {
+    color: mix($a, $b, $i);
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shtirlitz XXL</title>
+    <style>
+        .custom {
+            font-weight: bold;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <p class="custom" id="uniq">
+        asddsaf
+        <input type="password" value="" id="question">
+        <input type="text" value="" >
+    </p>
+    <p class="custom">
+        dhsdghsghdfh
+        <input type = "button" value="Загадать" id="qbutton">
+    </p>
+</form>
+
+<script>
+    var elementById = document.getElementById("qbutton");
+
+    function onClickHandler () {
+        var textQ = document.getElementById("question").value;
+        //alert(textQuestion);
+        var textQuestion = shaker(textQ);
+        alert(textQuestion);
+        var textAnswer = "";
+
+        for(var i = 0; i < textQuestion.length; i++){
+            textAnswer = prompt("Введите ответ");
+            if(textAnswer == textQ){
+                alert("Угадал");
+                break;
+            }else{
+                var mytry = textQ.length - i;
+                //alert("Осталось попыток:" + mytry);
+                alert("Не Угадал");
+            }
+        }
+    }
+
+    function shuffle(arr){
+        for(var i = 0; i <= arr.length - 1; i++){
+
+            var shakeIndex = Math.floor(Math.random()*(i+1));
+            var itemArr = arr[shakeIndex];
+
+            arr[shakeIndex] = arr[i];
+            arr[i] = itemArr;
+        }
+        return arr;
+    }
+
+    function shaker(str){
+        var shakerArr = [];
+        shakerArr = str.split("");
+        var arr = shuffle(shakerArr);
+        // alert(arr);
+        var result =arr.join("");
+        return result;
+    }
+
+    elementById.addEventListener('click', function(){
+        var list = document.getElementsByClassName('custom');
+        var count = list.length;
+
+        for(var i=0; i<count; i++){
+            var a = list[0];
+            console.log(list.length);
+
+            a.classList.remove("custom");
+            a.classList.add("red");
+        }
+    });
+
+    elementById.addEventListener('click', function(){
+        elementById.value = "red";
+    })
+
+    elementById.addEventListener('click', function(){
+        document.getElementById('uniq').style.fontSize = "150px";
+    });
+
+
+</script>
+</body>
+</html>

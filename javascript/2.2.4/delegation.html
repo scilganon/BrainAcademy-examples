@@ -1,0 +1,26 @@
+<table border="1">
+    <tr>
+        <td>asdasd</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+    </tr>
+    <tr>
+        <td>asdasd</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+    </tr>
+</table>
+
+<script>
+    document
+            .querySelector('table')
+            .addEventListener('click', function(event){
+                if(event.target.tagName === 'TD'){
+                    console.log("asdasdasd");
+                }
+            });
+
+    setTimeout(function(){
+        document.querySelector('tr').innerHTML += '<td>123123</td>'
+    }, 1000);
+</script>

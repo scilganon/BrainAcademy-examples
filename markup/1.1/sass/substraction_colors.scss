@@ -1,0 +1,11 @@
+
+$max: 10;
+@for $i from 1 through $max - 1 {
+  td:nth-child(#{$i}){
+    background: mix($c1, $c2, ($max + 1 ) * ($i - 1));
+  }
+}
+
+td:nth-child(#{$max}){
+  background: mix($c1, $c2, 100);
+}

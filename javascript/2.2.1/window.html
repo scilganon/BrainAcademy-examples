@@ -1,0 +1,32 @@
+<button>1</button>
+<button>2</button>
+<button>3</button>
+<button>4</button>
+<button>5</button>
+<button>6</button>
+<button>7</button>
+<button>8</button>
+<button>9</button>
+
+<script>
+    var list = document.getElementsByTagName('button');
+
+    var methods = {
+        printProperties: function(){
+            console.log(Object.keys(window));
+        }
+    };
+
+    list[0].addEventListener('click', methods.printProperties);
+</script>
+
+<script>
+    var a = {
+        1: true,
+        2: true
+    };
+
+    a.test = [].forEach;
+
+    a.test();
+</script>

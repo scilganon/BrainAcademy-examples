@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+    </style>
+</head>
+
+<body>
+
+
+
+
+<script>
+    "use strict";
+
+    var generalDiv = document.createElement('div');
+    generalDiv.style.cssText = "width:500px; position: relative; height:500px; border:1px solid black; margin-left:100px; background:#F0F0F0; overflow:hidden;"
+    generalDiv.id = 'general';
+    document.body.appendChild(generalDiv);
+    var newDiv = document.getElementById('general');
+
+
+    var text='*';
+    var fontFamily=['Times New Roman','arial','verdana',"Arial Black","Arial Narrow","Times","Comic Sans MS"];
+    var maxFontSize=40;
+    var minFontSize=8;
+    var color= ['#5E7AAD','#6690DE','#1664F5','#41E852','#E88741','#122E82'];
+    var maxSnow= 99;
+
+
+    var height=500;
+    var width=500;
+    var snow=[];
+    var timer;
+
+    var sinMove=[];
+    var argSin=[];
+    var moveLeftRight=[];
+    var Speed =0.6;
+
+
+
+    function random(arg){
+        return Math.floor(Math.random()*arg);
+
+    }
+    for (let i=0;i <=maxSnow;i++) {
+        newDiv.innerHTML+="<span id='s"+i+"' style='position:absolute;top:-"+maxFontSize+"'>"+text+"</span>";
+        console.log(i);
+    }
+
+    function initsnow() {
+
+
+        for (let i=0;i<=maxSnow;i++) {
+            argSin[i] = 0;
+            moveLeftRight[i] = Math.random()*15;
+            sinMove[i] = 0.03 + Math.random()/10;
+
+            snow[i]=document.getElementById("s"+i);
+            snow[i].style.fontFamily=fontFamily[random(fontFamily.length)];
+
+            snow[i].size=random(maxFontSize)+minFontSize; // промежуточная переменная для размера снежинки
+            snow[i].style.fontSize=snow[i].size;
+
+            snow[i].style.color=color[random(color.length)];
+            snow[i].snowSpeed=Speed*snow[i].size/5;
+            snow[i].posX=random(width-snow[i].size);
+            snow[i].posY=random(height-snow[i].size);
+            snow[i].style.left=snow[i].posX;
+            snow[i].style.top=snow[i].posY;
+        }
+        movesnow();
+    }
+
+
+    function movesnow() {
+        for (let i=0;i<=maxSnow;i++) {
+            argSin[i] +=sinMove[i];
+            snow[i].posY+=snow[i].snowSpeed;
+
+            snow[i].style.left=snow[i].posX+moveLeftRight[i]*Math.sin(argSin[i])+'px';
+            snow[i].style.top=snow[i].posY+'px';
+            if (snow[i].posY>=height-2*snow[i].size || parseInt(snow[i].style.left)>(width-3*moveLeftRight[i])) {
+                snow[i].posX=random(width-snow[i].size) ;
+                snow[i].posY=0;
+            }
+        }
+        var timer=setTimeout("movesnow()",50);
+    }
+
+
+
+
+    initsnow();
+</script>
+</body>
+
+</html>

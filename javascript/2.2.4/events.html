@@ -1,0 +1,100 @@
+<a href="#">Click me!</a>
+<a href="#" onclick="clickHandler(); clickHandler2()">Click me, but caution!</a>
+
+<script>
+    function clickHandler(event){
+        console.log('hello, world!');
+    }
+
+    function clickHandler2(event){
+        console.log('hello, world!2');
+    }
+
+    document
+            .querySelector('a')
+            .addEventListener('click', clickHandler)
+
+    document
+            .querySelector('a')
+            .addEventListener('click', clickHandler2)
+
+    document
+            .querySelector('a')
+            .removeEventListener('click', clickHandler)
+</script>
+
+<input type="text">
+
+<script>
+    document.querySelector('input').addEventListener('change', function(event){
+        console.log(event.currentTarget.value);
+    });
+</script>
+
+<br>
+
+<div style="height: 250px; background-color: red">
+    <span style="margin-top: 100px;">
+        <a href="#">
+            start chain
+        </a>
+    </span>
+</div>
+
+<script>
+    var div = document.querySelector('div');
+    var span = div.querySelector('span');
+    var a = span.querySelector('a');
+
+    /*
+           \/
+     */
+    div.addEventListener('click', function(){
+        console.log(1);
+    }, true);
+    span.addEventListener('click', function(){
+        console.log(2);
+    }, true);
+    a.addEventListener('click', function(event){
+        console.log(3);
+
+        var sec = event.timeStamp / 1000;
+
+        if(parseInt(sec) % 2 === 0){
+            event.stopImmediatePropagation();
+//            event.stopPropagation();
+        }
+    }, true);
+
+    /*
+        /\
+     */
+    a.addEventListener('click', function(){
+        console.log(4);
+    });
+    span.addEventListener('click', function(){
+        console.log(5);
+    });
+    div.addEventListener('click', function(){
+        console.log(6);
+    });
+</script>
+
+
+<a href="#" id="once">
+    Work only once!
+</a>
+
+<script>
+    document
+            .getElementById('once')
+            .addEventListener('click', function handler(event){
+                console.log(`won't run again`);
+
+                event
+                        .currentTarget
+                        .removeEventListener('click', handler);
+            });
+
+
+</script>

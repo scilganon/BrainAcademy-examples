@@ -1,0 +1,30 @@
+<script>
+    try{
+        var date = new Date();
+        addalert("asfasdf")
+    }catch(e){
+        console.log(e)
+    }
+
+</script>
+
+<script>
+
+    function sum(a,b){
+        if(typeof a !== 'number'){
+//            throw new Error('wrong type of 1st argument')
+            console.error('wrong type of 1st argument')
+        }
+
+        if(typeof b !== 'number'){
+//            throw new Error('wrong type of 2st argument')
+            console.log('wrong type of 2st argument');
+        }
+
+        return a+b;
+    }
+
+    console.log(sum(1,2));
+    console.log(sum(1,'m'));
+
+</script>

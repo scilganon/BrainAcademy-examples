@@ -1,0 +1,122 @@
+<style>
+    tr {
+        display: none;
+    }
+
+    tr.header, tr.active, tr tr {
+        display: table-row;
+    }
+
+</style>
+
+<table border="1" style="width: 100%; height: 600px">
+    <tr class="header">
+        <td colspan="2">
+            <label for="#posts">Posts</label>
+            <label for="#albums">Albums</label>
+        </td>
+    </tr>
+
+    <tr id="posts" class="active">
+        <td class="content">1</td>
+        <td></td>
+    </tr>
+    
+    <tr id="albums">
+        <td class="content">2</td>
+        <td></td>
+    </tr>
+</table>
+
+<script>
+    var labels = document.getElementsByTagName('label');
+
+    for(var i=0; i< labels.length; i++){
+        labels[i].addEventListener('click', function(event){
+            document
+                    .querySelector('tr.active')
+                    .classList.remove('active');
+
+            var el = event.target;
+            var forVal = el.attributes.for.value;
+
+            document
+                    .querySelector(forVal)
+                    .classList.add('active');
+        })
+    }
+</script>
+
+<script>
+    /**
+     * @typedef {Object} Post
+     * @property userId
+     * @property id
+     * @property title
+     * @property body
+     **/
+
+    /**
+     * @param {Post[]} data
+     * @param {Function} cbItemRender
+     */
+    function createList(data, cbItemRender){
+        var table = '<table>';
+
+        data.forEach(function(item){
+            table += `
+                <tr>
+                    <td>${cbItemRender(item)}</td>
+                </tr>
+            `;
+        });
+
+        table += '</table>';
+
+        return table;
+    }
+
+    /**
+     * @param {Post} data
+     */
+    function createPostTableItem(data){
+        return `
+            <table>
+                <tr>
+                    <td>
+                        <h1>${data.title}</h1>
+                        <p>${data.body}</p>
+                    </td>
+                    <td>
+                        <div><button>Comments</button></div>
+                        <div><button>User</button></div>
+                    </td>
+                </tr>
+            </table>
+        `;
+    }
+
+    function createAlbumTableItem(data){
+        return `
+            <h1>${data.title}</h1>
+        `;
+    }
+
+    function fetchPosts(renderCb){
+        var query = new XMLHttpRequest();
+
+        query.onreadystatechange = function(){
+            if(query.readyState === XMLHttpRequest.DONE){
+                renderCb(query.responseText);
+            }
+        }
+
+        query.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+
+        query.send();
+    }
+
+    fetchPosts(function(data){
+        createList(data, createPostTableItem);
+    });
+</script>

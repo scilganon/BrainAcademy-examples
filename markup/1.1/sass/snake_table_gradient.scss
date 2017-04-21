@@ -1,0 +1,71 @@
+$rows: 5;
+$cols: 5;
+
+$c1: white;
+$c2: black;
+
+$x: $cols;
+$y: 1;
+
+$start_x: $x;
+$start_y: $y;
+
+$x_min: 1;
+$y_min: 1;
+
+$total: $rows * $cols;
+
+$way: 2;
+
+@for $i from 1 through $total {
+  table tr:nth-child(#{$y}) td:nth-child(#{$x}) {
+    background: $c1 +  ($c2 - $c1) / ($total - 1) * ($i - 1);
+  }
+
+  @if($way == 2) {
+    @if($x == $x_min){
+      $way: 3;
+    } @else {
+      $x: $x - 1;
+    }
+  }
+
+  @if($way == 3){
+    @if($y == $rows){
+      $way: 4;
+    } @else {
+      $y: $y + 1;
+    }
+  }
+
+  @if($way == 4){
+    @if($x == $cols){
+      $way: 1;
+    } @else {
+      $x: $x + 1;
+    }
+  }
+
+  @if($way == 1){
+    @if($y == $y_min){
+      $way: 2;
+    } @else {
+      $y: $y - 1;
+    }
+  }
+
+  @if($start_x == $x and $start_y == $y){
+    $x: $x - 1;
+    $y: $y + 1;
+
+    $start_x: $x;
+    $start_y: $y;
+
+    $cols: $cols - 1;
+    $rows: $rows - 1;
+    $x_min: $x_min + 1;
+    $y_min: $y_min + 1;
+
+    $way: 2;
+  }
+}

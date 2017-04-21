@@ -1,0 +1,17 @@
+<script>
+    function pow(base, d){
+        if(d == 1){
+            return base;
+        }
+
+        return pow(base, d-1) * base;
+    }
+
+    console.log(pow(6,3))
+
+    setTimeout(function(){
+        console.log(1)
+
+        setTimeout(arguments.callee, 100);
+    }, 100);
+</script>
