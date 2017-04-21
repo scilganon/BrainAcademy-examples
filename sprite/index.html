@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="./styles.css">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .castle {
+        background: grey;
+        width: 100%;
+
+        position: absolute;
+        top: calc(50% - 100px);
+        left: 0
+    }
+
+    .castle > div {
+        margin: 0;
+        display: inline-block;
+        width: 49.5%;
+        height: 100px;
+        box-sizing: border-box;
+        overflow: hidden;
+        border: 1px solid black;
+
+        position: relative;
+    }
+
+    .mutant {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .zero {
+        position: absolute;
+        top: calc(50% - 37px);
+        left: calc(50% - 42px);
+        /*top: 50%;*/
+        /*left: 50%;*/
+    }
+</style>
+
+<div class="castle">
+    <div>
+        <div class="eq boots"></div>
+        <div class="hero mutant"></div>
+        <div class="hero mage"></div>
+    </div>
+    <div>
+        <div class="hero zero"></div>
+    </div>
+    <div></div>
+    <div></div>
+</div>

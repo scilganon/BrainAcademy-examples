@@ -1,0 +1,170 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+         text-align: right;
+         padding-top: 10px;
+         padding-bottom: 10px;
+         padding-right: 30px;
+     }
+
+    .header .login {
+        display: inline-block;
+        background-color: rgb(70, 131, 234);
+        color: #fff; /* =#ffffff */
+        border: 1px solid #4285f4;
+        padding-left: 12px;
+        padding-right: 12px;
+        border-radius: 2px;
+    }
+
+    .header * {
+        line-height: 28px;
+        margin-left: 15px;
+        text-decoration: none;
+        cursor: default;
+    }
+
+    .google-logo {
+        text-align: center;
+    }
+
+    .google-logo div {
+        font-size: 77px;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+
+    .google-logo > span {
+        position: relative;
+        top: -17px;
+        left: 112px;
+    }
+
+    .google-logo div span:first-child {
+        text-transform: uppercase;
+    }
+
+    body > div {
+        min-width: 980px;
+    }
+
+    .search {
+        text-align: center;
+    }
+
+    .search div {
+        border-color: grey;
+        border-width: 1px;
+        border-style: solid;
+        padding: 5px 15px;
+        min-width: 388px;
+        display: inline-block;
+    }
+
+    .search input {
+        border: none;
+        width: 363px;
+        height: 34px;
+        font-size: 16px;
+    }
+
+    .actions {
+        text-align: center
+    }
+
+    .lang {
+        text-align: center;
+    }
+
+    .footer {
+        min-width: 980px;
+        position: fixed;
+        bottom: 0;
+        background: #f2f2f2;
+        height: 40px;
+        width: 100%;
+    }
+
+    .footer td:last-child {
+        text-align: right;
+    }
+
+</style>
+
+<body lang="en">
+    <div class="header">
+        <a href="">Mail</a>
+        <a href="">Image</a>
+        <button>Menu</button>
+        <a href="" class="login">Login</a>
+    </div>
+    <div>
+        <div class="google-logo">
+            <div>
+                <span>g</span>
+                <span>o</span>
+                <span>o</span>
+                <span>g</span>
+                <span>l</span>
+                <span>e</span>
+            </div>
+
+            <span>Украина</span>
+        </div>
+        <form action="#">
+            <fieldset>
+                <div>
+                    for adult: <input type="checkbox" name="is_adult" checked>
+                </div>
+                <div>
+                    UA: <input type="radio" value="us" name="country">
+                    <br>
+                    RU: <input type="radio" value="ru" name="country">
+                    <br>
+                    US: <input type="radio" value="us" name="country">
+                </div>
+                <div>
+                    <select name="country_m" multiple>
+                        <option value="ua">UA</option>
+                        <option value="us">US</option>
+                        <option value="ru">RU</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <div class="search">
+                <div>
+                    <input type="text" name="q">
+                    <a href="#">k</a>
+                    <a href="#">m</a>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit">Search in Google</button>
+                <button disabled>Lucky time!</button>
+            </div>
+        </form>
+        <div class="lang">
+            <span>
+                Google.com.ua предлагается на:
+            </span>
+            <a href="#">
+                українська
+            </a>
+        </div>
+    </div>
+    <table class="footer">
+        <tr>
+            <td>
+                <a href="">1</a><a href="">2</a><a href="">3</a>
+            </td>
+            <td>
+                <a href="">1</a><a href="">2</a><a href="">3</a>
+            </td>
+        </tr>
+    </table>
+</body>

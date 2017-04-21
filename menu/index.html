@@ -1,0 +1,209 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    body > table {
+        width: 100%;
+        height: 100%;
+    }
+
+    table td.menu {
+        background-color: black;
+        color: grey;
+        width: 30%;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .logo {
+        font-size: 30px;
+        color: red;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        margin: 30px auto;
+    }
+
+    .avatar {
+        text-align: center;
+    }
+
+    .avatar > div {
+        display: inline-block;
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .actions {
+        margin: 30px auto;
+    }
+
+    div.menu {
+        width: 100%;
+    }
+
+    div.menu > div {
+        text-align: left;
+        border-left: 1px solid black;
+    }
+
+    div.menu .separator {
+        height: 1px;
+        background-color: white;
+    }
+
+    div.menu > div a {
+        display: block;
+        padding-left: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    div.menu > div:hover,
+    div.menu > div.active {
+        color: white;
+        border-left-color: orange;
+    }
+
+    div.menu > div i {
+        position: relative;
+        left: -10px;
+        top: 1px;
+    }
+
+    table.list caption {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    table.list {
+        border-spacing: 0;
+    }
+
+    table.list tr td{
+        border: 1px solid grey;
+        border-left: none;
+        border-right: none;
+    }
+
+    table.list tr td:last-child {
+        color: grey
+    }
+
+    table.list span.interpret {
+        color: orange
+    }
+
+    table.list.list-theme-orange tr td:first-child {
+        color: orange
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .pointer {
+        border: 10px solid transparent;
+        border-top-color: black;
+        width: 0;
+    }
+</style>
+
+<table>
+    <tr>
+        <td class="menu">
+            <div class="logo">
+                tdw
+            </div>
+            <div class="avatar">
+                <div></div>
+            </div>
+            <div class="actions">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </div>
+            <div class="menu">
+                <div>
+                    <a href="#">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <a href="#">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="active">
+                    <a href="#">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <table class="list">
+                <caption>
+                    Personal
+                </caption>
+                <tr>
+                    <td>Name</td>
+                    <td>Asif Aleem</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>10.10.1991 <span class="interpret">(25)</span></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>Asif Aleem</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>Asif Aleem</td>
+                </tr>
+            </table>
+
+            <br><br><br><br><br>
+
+            <table class="list list-theme-orange">
+                <caption>
+                    Awards
+                </caption>
+                <tr>
+                    <td>Special Performance</td>
+                    <td>i2c inc 2011</td>
+                </tr>
+                <tr>
+                    <td>Special Performance</td>
+                    <td>i2c inc 2011</td>
+                </tr>
+                <tr>
+                    <td>Special Performance</td>
+                    <td>i2c inc 2011</td>
+                </tr>
+                <tr>
+                    <td>Special Performance</td>
+                    <td>i2c inc 2011</td>
+                </tr>
+            </table>
+
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+
+            <br><br><br>
+
+            <div class="pointer"></div>
+        </td>
+    </tr>
+</table>

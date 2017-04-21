@@ -1,0 +1,13 @@
+fieldset {
+    background-image: url('./bg.jpg');
+}
+
+body {
+    background-image: url('./bg.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+form fieldset div#name {
+    color: red !important;
+}

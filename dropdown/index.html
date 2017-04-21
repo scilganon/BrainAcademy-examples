@@ -1,0 +1,30 @@
+<style>
+    .menu {
+        width: 100px;
+        height: 30px;
+        text-align: center;
+    }
+
+    .menu div {
+        height: 0;
+        overflow: hidden;
+
+        transition-property: all;
+        transition-duration: 2s;
+    }
+
+    .menu:hover div {
+        height: 150px;
+    }
+</style>
+
+<div class="menu">
+    <span>menu</span>
+    <div>
+        <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+    </div>
+</div>

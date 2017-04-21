@@ -1,0 +1,80 @@
+<style>
+    div.gallery {
+        width: 100%;
+    }
+
+    div.gallery .slides > div {
+        width: 30%;
+        display: inline-block;
+    }
+
+    div.gallery .slides > div img {
+        width: 100%;
+    }
+
+    div.gallery .slides > div {
+        transition-duration: 2s;
+        transition-property: all;
+
+        top: 0;
+        left: 0;
+    }
+
+    div.gallery .slides > div:first-child {
+        transform: skewY(30deg);
+        opacity: 1;
+    }
+
+    div.gallery .slides > div:last-child {
+        transform: skewY(-30deg);
+    }
+
+    div.gallery .slides > div:first-child,
+    div.gallery .slides > div:last-child {
+        position: relative;
+
+        width: 25%;
+        top: -40px;
+    }
+
+    div.gallery:hover .slides div:nth-child(1){
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    div.gallery:hover .slides div:nth-child(2) {
+        position: relative;
+
+        transform: skewY(30deg);
+        width: 25%;
+        top: -40px;
+        left: -25%;
+    }
+
+    div.gallery:hover .slides div:nth-child(3) {
+        position: relative;
+
+        transform: none;
+        width: 30%;
+        left: -25%;
+        top: 0;
+    }
+</style>
+
+
+<div class="gallery">
+    <div class="slides">
+        <div>
+            <img src="http://4.bp.blogspot.com/-gPIeJwByK8U/UdPw25QdePI/AAAAAAAAADY/-cB_D-pa9GU/s489/a_oracle_database_file_system_dbfs_architecture.jpg"
+                 alt="">
+        </div>
+        <div>
+            <img src="http://4.bp.blogspot.com/-gPIeJwByK8U/UdPw25QdePI/AAAAAAAAADY/-cB_D-pa9GU/s489/a_oracle_database_file_system_dbfs_architecture.jpg"
+                 alt="">
+        </div>
+        <div>
+            <img src="http://4.bp.blogspot.com/-gPIeJwByK8U/UdPw25QdePI/AAAAAAAAADY/-cB_D-pa9GU/s489/a_oracle_database_file_system_dbfs_architecture.jpg"
+                 alt="">
+        </div>
+    </div>
+</div>
