@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#">
+        <input type="text" name="login" placeholder="Телефон или email">
+        <br>
+        <input type="password" name="pass" placeholder="Пароль">
+        <br>
+        <input type="submit" value="Login">
+        <input type="reset">
+        <a href="#">Забыли пароль?</a>
+    </form>
+    <form action="#">
+        <fieldset>
+            <legend>ФИО</legend>
+            <input type="text" placeholder="name">
+            <input type="text" placeholder="2nd name">
+            <input type="text" placeholder="surname">
+        </fieldset>
+        <fieldset>
+            <legend>Адрес</legend>
+            <input type="text" placeholder="country">
+            <input type="text" placeholder="city">
+            <input type="text" placeholder="address">
+        </fieldset>
+        <fieldset>
+            <legend>Other</legend>
+
+            <select name="role">
+                <option value="1">Manager</option>
+                <option value="2">User</option>
+                <option value="3">Admin</option>
+            </select>
+
+            <select name="availability" multiple>
+                <option value="1">January</option>
+                <option value="1">December</option>
+            </select>
+
+            <br>
+
+            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+
+            <br>
+
+            <input type="radio" name="lvl"> High
+            <br>
+            <input type="radio" name="lvl"> Medium
+            <br>
+            <input type="radio" name="lvl"> Low
+
+
+        </fieldset>
+        <button>Регистрация</button>
+        <button type="reset">Очистить</button>
+
+    </form>
+</body>
+</html>
