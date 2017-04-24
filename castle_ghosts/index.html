@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #castle {
+        width: 500px;
+        height: 200px;
+
+        border: 10px solid #000;
+
+        position: relative;
+    }
+
+    #castle .player, #castle .ghost {
+        width: 50%;
+        height: 50%;
+    }
+
+    #castle > div {
+        width: 33.333333%;
+        height: 100%;
+
+        float: left;
+
+        box-sizing: border-box;
+        border-right: 3px solid grey;
+    }
+
+    #castle .c1_c2 {
+        height: 50%;
+        width: 6px;
+        background-color: #fff;
+        border: none;
+
+        position: absolute;
+        top: 0;
+        left: 32%;
+    }
+
+
+    #castle .c2_c3 {
+        height: 50%;
+        width: 4px;
+        background-color: #fff;
+        border: none;
+
+        position: absolute;
+        top: 50%;
+        right: 34%;
+    }
+
+    #castle > div:last-child {
+        border: none;
+    }
+</style>
+
+    <div id="castle">
+        <div class="c1">
+            <img class="player" src="http://www.caspergaming.com/FJKB/Images/fancy_pixelated_human.png" alt="">
+        </div>
+        <div class="c1_c2"></div>
+        <div class="c2"></div>
+        <div class="c2_c3"></div>
+        <div class="c3">
+            <img class="ghost" src="https://68.media.tumblr.com/11fa430b485c23efb8f77fd4f0913de4/tumblr_o3carlAR0K1u9rrtbo1_500.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
