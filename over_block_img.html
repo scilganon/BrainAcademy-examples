@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <style>
+        .photo-over {
+            width: 150px;
+            height: 112px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-over img {
+            width: 100%;
+        }
+
+        .photo-over div {
+            height: 30px;
+            background-color: greenyellow;
+            color: red;
+
+            position: absolute;
+            bottom: -30px;
+            left:0;
+
+            width: 100%;
+
+            transition-duration: 1.5s;
+            transition-property: bottom;
+        }
+
+        .photo-over:hover div {
+            bottom: 0;
+        }
+
+    </style>
+
+    <div class="photo-over">
+        <img src="http://www.moronface.com/make-pictures/funny-pictures/ugly-photos-14337/asdfasf1.jpg" alt="">
+        <div>
+            text
+        </div>
+    </div>
+</body>
+</html>
