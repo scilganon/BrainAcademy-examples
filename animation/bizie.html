@@ -1,0 +1,57 @@
+<canvas id="c" width="500" height="500">
+
+</canvas>
+
+<script>
+    "use strict";
+
+    /**
+     *
+     * @type {HTMLCanvasElement}
+     */
+    var el = document.getElementById('c'),
+            /**
+             *
+             * @type {CanvasRenderingContext2D}
+             */
+        ctx = el.getContext('2d');
+
+    let minX = 0,
+        maxX = 300,
+        minY = 0,
+        maxY = 300;
+
+    let cX = maxX * 0.1;
+
+    for(let i=minX; i<maxX; i++){
+        setTimeout(() => {
+            ctx.clearRect(0,0, el.width, el.height);
+
+            ctx.beginPath();
+            ctx.moveTo(minX,maxY);
+            ctx.lineTo(cX, minY);
+            ctx.lineTo(maxX,maxY);
+            ctx.stroke();
+            ctx.closePath();
+
+            let bX = i * (cX/maxX),
+                bY = maxY - i,
+                eX = cX+(maxX-cX)/maxX*i,
+                eY = i;
+
+            let bcX = bX +(eX-bX)/maxX*i,
+                bcY = bY +(eY-bY)/maxY*i;
+
+            ctx.beginPath();
+            ctx.arc(bcX, bcY, 2,0,2*Math.PI, false);
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(bX, bY);
+            ctx.lineTo(eX,eY);
+            ctx.stroke();
+            ctx.closePath();
+        }, (2000 / maxX) * i);
+    }
+</script>
