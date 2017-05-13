@@ -1,0 +1,101 @@
+<style>
+    .flex-container {
+        display: flex;
+    }
+
+    .row {
+        height: 50px;
+
+        align-items: flex-end;
+
+        position: relative;
+    }
+
+    .main-area {
+        height: 150px;
+    }
+
+    .ground {
+        background-color: black;
+
+        width: 45%;
+        height: 100%;
+    }
+
+    .offset-ground {
+        margin-left: 10%;
+    }
+
+    .sky {
+        background-color: skyblue;
+    }
+
+    img {
+        height: 50px;
+    }
+
+    .obstacle {
+        width: 40px;
+        height: 25px;
+
+        background-color: grey;
+    }
+
+    .b1 {
+        position: absolute;
+        bottom: 0;
+        right: 30px;
+    }
+</style>
+
+<style>
+    .obstacle-box {
+        width: 20px;
+
+        position: absolute;
+    }
+
+    .o1 {
+        left: calc(45% - 20px);
+        transform: rotateY(180deg);
+    }
+
+    .o2 {
+        left: calc(45% + 10%)
+    }
+
+    .bo {
+        background-color: orange;
+        height: calc(50px /4);
+        width: 10px;
+    }
+</style>
+
+<div class="sky">
+    <div class="row main-area flex-container">
+        <img src="https://s-media-cache-ak0.pinimg.com/236x/ca/4b/e6/ca4be661e18ebe39451b1dc68091a605.jpg" alt="">
+        <div class="obstacle b1"></div>
+        <div class="obstacle-box o1">
+            <div class="flex-container">
+                <div class="bo"></div>
+            </div>
+            <div class="flex-container">
+                <div class="bo"></div>
+                <div class="bo"></div>
+            </div>
+        </div>
+        <div class="obstacle-box o2">
+            <div class="flex-container">
+                <div class="bo"></div>
+            </div>
+            <div class="flex-container">
+                <div class="bo"></div>
+                <div class="bo"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row flex-container">
+        <div class="ground"></div>
+        <div class="ground offset-ground"></div>
+    </div>
+</div>
