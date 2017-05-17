@@ -11,6 +11,7 @@ $w_height: 150px;
   border: 1px solid black;
 
   position: relative;
+  overflow: hidden;
 
   .worm {
     width: $w_width;
@@ -48,19 +49,43 @@ $w_height: 150px;
     width: $w_width;
   }
 
+  37.5% {
+    width: $w_width;
+    height: $w_height;
+  }
+
   50% {
     left: $width - $w_width;
-    top: $height - $w_height;
+    top: $height - $w_width;
+
+    height: $w_width;
+    width: $w_width;
+  }
+
+  62.5% {
+    width: $w_height;
+    height: $w_width;
   }
 
   75% {
     left: 0;
-    top: $height - $w_height;
+    top: $height - $w_width;
+
+    height: $w_width;
+    width: $w_width;
+  }
+
+  87.5% {
+    width: $w_width;
+    height: $w_height;
   }
 
   100%{
     left: 0;
     top: 0;
+
+    height: $w_width;
+    width: $w_width;
   }
 
 }
