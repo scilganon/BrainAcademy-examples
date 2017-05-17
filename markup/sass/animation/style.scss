@@ -1,14 +1,66 @@
+$width: 400px;
+$height: 400px;
+
+$w_width: 50px;
+$w_height: 150px;
+
 .container {
-  width: 400px;
-  height: 400px;
+  width: $width;
+  height: $height;
 
   border: 1px solid black;
 
+  position: relative;
+
   .worm {
-    width: 50px;
-    height: 150px;
+    width: $w_width;
+    height: $w_height;
 
     background: black;
+
+    position: absolute;
+
+    animation-duration: 8s;
+    animation-name: work_movement;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes work_movement {
+  0% {
+    left:0;
+    top:0;
+
+    height: $w_width;
+    width: $w_width;
+  }
+
+  12.5% {
+    width: $w_height;
+    height: $w_width;
+  }
+
+  25% {
+    top: 0;
+    left: $width - $w_width;
+
+    height: $w_width;
+    width: $w_width;
+  }
+
+  50% {
+    left: $width - $w_width;
+    top: $height - $w_height;
+  }
+
+  75% {
+    left: 0;
+    top: $height - $w_height;
+  }
+
+  100%{
+    left: 0;
+    top: 0;
   }
 
 }
