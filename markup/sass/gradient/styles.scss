@@ -1,0 +1,19 @@
+$count: 6;
+
+div {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+div:nth-child(1) {
+  background-color: white;
+}
+
+@for $i from 2 through $count {
+  $color_num: 255 - 255 / $count * $i;;
+
+  div:nth-child(#{$i}) {
+    background-color: rgb($color_num, $color_num, $color_num)
+  }
+}
