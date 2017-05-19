@@ -1,0 +1,25 @@
+$size: 400px;
+
+div {
+  position: absolute;
+
+  width: $size;
+  height: $size;
+
+  background-color: rgba(0,0,0,.15);
+}
+
+$count: 6;
+
+@for $i from 1 through $count {
+
+  div:nth-child(#{$i}){
+    left: 10px * $i;
+    top: 10px * $i;
+
+    width: $size - 20px *$i;
+    height: $size - 20px *$i;
+  }
+
+
+}
