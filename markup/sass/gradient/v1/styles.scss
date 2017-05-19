@@ -11,9 +11,10 @@ div:nth-child(1) {
 }
 
 @for $i from 2 through $count {
-  $color_num: 255 - 255 / $count * $i;;
+  $color_num: 255 - 255 / $count * $i;
 
   div:nth-child(#{$i}) {
     background-color: rgb($color_num, $color_num, $color_num)
   }
 }
+

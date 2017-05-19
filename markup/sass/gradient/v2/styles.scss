@@ -1,0 +1,33 @@
+div {
+  width: 50px;
+  height: 50px;
+
+  float: left;
+}
+
+$color_1: purple;
+$color_2: yellow;
+
+$count: 6;
+
+.math {
+  @for $i from 1 through $count {
+    $diff: ($color_2 - $color_1);
+
+    $red: red($color_1) + red($diff)/ $count * $i;
+    $green: green($color_1) + green($diff) / $count * $i;
+    $blue: blue($color_1) + blue($diff) / $count * $i;
+
+    div:nth-child(#{$i}) {
+      background-color: rgb($red, $green, $blue);
+    }
+  }
+}
+
+.mix {
+  @for $j from 1 through ($count -1) {
+    div:nth-child(#{$j}) {
+      background-color: mix($color_1, $color_2, 100 / $count * $j);
+    }
+  }
+}
