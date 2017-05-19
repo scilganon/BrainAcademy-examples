@@ -1,0 +1,52 @@
+@import "mixin";
+
+@keyframes work_movement {
+  0% {
+    @include mode_square;
+  }
+
+  12.5% {
+    width: $w_height;
+    height: $w_width;
+  }
+
+  25% {
+    transform: translate($width - $w_width, 0);
+
+    @include mode_square;
+  }
+
+  37.5% {
+    width: $w_width;
+    height: $w_height;
+  }
+
+  50% {
+    transform: translate($width - $w_width, $height - $w_width);
+
+    @include mode_square;
+  }
+
+  62.5% {
+    width: $w_height;
+    height: $w_width;
+  }
+
+  75% {
+    transform: translate(0, $height - $w_width);
+
+    @include mode_square;
+  }
+
+  87.5% {
+    width: $w_width;
+    height: $w_height;
+  }
+
+  100%{
+    transform: translate(0,0);
+
+    @include mode_square;
+  }
+
+}

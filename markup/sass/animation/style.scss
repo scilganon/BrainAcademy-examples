@@ -1,8 +1,4 @@
-$width: 400px;
-$height: 400px;
-
-$w_width: 50px;
-$w_height: 150px;
+@import "vars";
 
 .container {
   width: $width;
@@ -11,7 +7,7 @@ $w_height: 150px;
   border: 1px solid black;
 
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
 
   .worm {
     width: $w_width;
@@ -24,68 +20,8 @@ $w_height: 150px;
     animation-duration: 8s;
     animation-name: work_movement;
     animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 }
 
-@keyframes work_movement {
-  0% {
-    left:0;
-    top:0;
-
-    height: $w_width;
-    width: $w_width;
-  }
-
-  12.5% {
-    width: $w_height;
-    height: $w_width;
-  }
-
-  25% {
-    top: 0;
-    left: $width - $w_width;
-
-    height: $w_width;
-    width: $w_width;
-  }
-
-  37.5% {
-    width: $w_width;
-    height: $w_height;
-  }
-
-  50% {
-    left: $width - $w_width;
-    top: $height - $w_width;
-
-    height: $w_width;
-    width: $w_width;
-  }
-
-  62.5% {
-    width: $w_height;
-    height: $w_width;
-  }
-
-  75% {
-    left: 0;
-    top: $height - $w_width;
-
-    height: $w_width;
-    width: $w_width;
-  }
-
-  87.5% {
-    width: $w_width;
-    height: $w_height;
-  }
-
-  100%{
-    left: 0;
-    top: 0;
-
-    height: $w_width;
-    width: $w_width;
-  }
-
-}
+@import "animation";
