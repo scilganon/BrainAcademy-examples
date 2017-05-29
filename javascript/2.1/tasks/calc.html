@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a, b, operator;
+
+    while(isNaN(a)){
+        a = prompt('число');
+    }
+
+    while(!(operator == '-' || operator == '+')){
+        operator = prompt('оператор');
+    }
+
+    while(isNaN(b)){
+        b = prompt('число');
+    }
+
+    switch(operator){
+        case '-':
+            alert('a-b=' + (+a - +b));
+            break;
+        case '+':
+            alert('a+b=' + (+a + +b));
+            break;
+        default:
+            alert('something went wrong');
+    }
+</script>
+</body>
+</html>
