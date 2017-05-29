@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num = parseInt(Math.random()*1000);
+    var input, i;
+
+    var result = 'LOOSE';
+
+    for(i=0; i<10; i++){
+        input = +prompt('your num');
+
+        if(input === num){
+            result = 'WIN';
+            break;
+        }
+
+        if(input > num){
+            alert('more')
+        } else {
+            alert('less')
+        }
+    }
+
+    alert(result);
+</script>
+</body>
+</html>
