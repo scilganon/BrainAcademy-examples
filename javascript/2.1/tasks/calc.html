@@ -8,7 +8,7 @@
 <script>
     var a, b, operator;
 
-    while(isNaN(a)){
+    while(isNaN(a) || a === ''){
         a = prompt('число');
     }
 
@@ -16,7 +16,7 @@
         operator = prompt('оператор');
     }
 
-    while(isNaN(b)){
+    while(isNaN(b) || b === ''){
         b = prompt('число');
     }
 
