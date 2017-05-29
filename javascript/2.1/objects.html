@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var command = {
+        'goalKeeper': 'Pyatov',
+        'bombardir': 'Ibraimovich',
+        'defender': 'Shevchuk'
+    };
+
+    //defender
+//    console.log(command['defender']);
+//    console.log(command.defender);
+
+    for(var role in command){
+        console.log(role + '=>' + command[role]);
+    }
+</script>
+</body>
+</html>

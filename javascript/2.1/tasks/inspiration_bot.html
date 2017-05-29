@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function random(min, max){
+        return min + Math.random()*(max+1-min);
+    }
+
+    var bot = {
+        messages: [
+            'asdfasdf',
+            'a232232sdfasdf',
+            'hello'
+        ],
+
+        add: function(value){
+            bot.messages[bot.messages.length] = value;
+        },
+
+        inspire: function (){
+            var index = parseInt(random(0, bot.messages.length-1));
+
+            return bot.messages[index];
+        }
+    };
+
+    console.log(bot.inspire())
+
+</script>
+</body>
+</html>
