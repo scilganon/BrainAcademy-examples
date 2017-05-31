@@ -1,0 +1,22 @@
+<script>
+    var max = 100;
+    var min = 0;
+
+    for(var i=min, sum=0; i<=max; i++){
+        sum += i;
+    }
+
+    console.log(sum);
+
+    function sum_recusrion(min, max){
+        console.log(min, max);
+
+        if(max === min){
+            return min;
+        }
+
+        return max + sum_recusrion(min, max-1);
+    }
+
+    console.log(sum_recusrion(5, 10));
+</script>

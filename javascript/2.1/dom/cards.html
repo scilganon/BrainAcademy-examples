@@ -1,0 +1,30 @@
+<style>
+    div#cards {
+        color: white;
+    }
+
+    ._10b, ._Qb {
+        background-color: black;
+    }
+
+    ._10r{
+        background-color: red;
+    }
+</style>
+
+<div id="cards">
+
+</div>
+
+<script>
+    function createCard(card){
+        return "<div class='_"+card+"'>"+card+"</div>";
+    }
+
+    var container = document.getElementById('cards');
+    var cards = ['10b', '10r', 'Qb'];
+
+    for(var i=0; i<cards.length; i++){
+        container.innerHTML += createCard(cards[i]);
+    }
+</script>

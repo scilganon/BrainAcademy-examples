@@ -1,0 +1,15 @@
+<script>
+    function test(){
+        var a =1;
+        var b = 2;
+
+        return function(){
+            console.log(a,b)
+        }
+    }
+
+    var cb = test();
+    cb();
+    console.log(a,b)
+
+</script>

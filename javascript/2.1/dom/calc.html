@@ -1,0 +1,22 @@
+<input id="num_1" type="number" value="0">
+<input id="num_2" type="number" value="10">
+
+<script>
+    setTimeout(function(){
+        var list = document.body.getElementsByTagName('input');
+        var sum = 0;
+
+        for(var i=0; i< list.length; i++){
+            var input = list[i];
+
+            sum += +input.value;
+        }
+
+        console.log(sum)
+
+        var input_1 = document.getElementById('num_1'),
+            input_2 = document.getElementById('num_2');
+
+        console.log(+input_1.value + +input_2.value);
+    }, 5000);
+</script>

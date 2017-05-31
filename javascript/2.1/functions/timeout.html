@@ -1,0 +1,17 @@
+<script>
+
+
+    setTimeout(function(){
+        console.log('hello')
+
+        setTimeout(function(){
+            console.log('delayed console')
+        }, 2*1000)
+    }, 2*1000);
+
+    console.log('1st notice');
+
+    setInterval(function(){
+        console.log('are you here?')
+    }, 5*1000)
+</script>

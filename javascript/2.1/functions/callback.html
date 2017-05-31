@@ -1,0 +1,25 @@
+<script>
+    var greeting = function(){
+        return 'Hello';
+    }
+
+    var greet2 = function(){
+        return "How are you?"
+    }
+
+    function say(cb){
+        console.log(cb())
+    }
+
+    say(greeting);
+    say(greet2);
+
+    function getCbDate(){
+        return function(){
+            console.log(new Date())
+        }
+    }
+
+    getCbDate()();
+
+</script>

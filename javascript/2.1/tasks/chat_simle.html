@@ -1,0 +1,20 @@
+<script>
+    function wrapWithName(name, msg){
+        return name + ": " + msg;
+    }
+
+    function createUser(name){
+        return function(msg){
+            console.log(wrapWithName(name, msg));
+        }
+    }
+
+    var user_1 = createUser('max');
+    var user_2 = createUser('roma');
+
+    user_1("hello");
+    user_2('hi');
+    user_1("how do you do?");
+    user_2("alright");
+
+</script>
