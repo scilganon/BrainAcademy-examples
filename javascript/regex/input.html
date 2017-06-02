@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#">
+    <label>
+        Full Name <input type="text" required maxlength="2" value="as">
+    </label>
+
+    <label>
+       Email <input type="email" required >
+    </label>
+
+    <label>
+        Age <input type="number" min="0" step="1" required max="150" value="0">
+    </label>
+
+    <label>
+        Phone number <input type="tel" pattern="\+[\d]+" required value="+123123123">
+    </label>
+
+    <label>
+        IP <input type="tel" pattern="\d{1,3}(\.\d{1,3}){3}" required>
+    </label>
+
+    <fieldset>
+        <legend>
+            Authors
+        </legend>
+
+        <label>Dostoevskiy</label>
+        <input id="dost" type="checkbox">
+
+        <br>
+
+        <label for="tolst">Tolstoi</label>
+        <input id="tolst" type="checkbox">
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Genre
+        </legend>
+        <label>
+            Si-Fi <input type="radio" name="genre">
+        </label>
+        <label>
+            Historical <input type="radio" name="genre">
+        </label>
+        <label>
+            Math <input type="radio" name="genre">
+        </label>
+    </fieldset>
+
+    <button>Register</button>
+</form>
+</body>
+</html>

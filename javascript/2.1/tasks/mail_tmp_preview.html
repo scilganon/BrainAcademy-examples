@@ -1,0 +1,69 @@
+<script id="template" type="text/html">
+    Hello, #user#.
+
+    You are the best player of our #mmo#, we sent you a few #thing#.
+
+    With best regards, #company#
+</script>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body > div {
+        height: 95vh;
+    }
+
+    div, form {
+        box-sizing: border-box;
+        display: flex;
+    }
+
+    #editor, #preview {
+        width: 50%;
+        height: 100%;
+
+    }
+
+    #editor {
+        border-right: 1px solid red;
+    }
+
+    input {
+        width: 100%;
+        height: 30px;
+    }
+</style>
+
+<div>
+    <form id="editor" onsubmit="changeText(event)">
+
+    </form>
+    <pre id="preview"></pre>
+</div>
+
+<script>
+    var tpl = document.getElementById('template');
+    var editor = document.getElementById('editor');
+    var preview = document.getElementById('preview');
+
+    var text = tpl.innerHTML;
+
+    preview.innerHTML = text;
+
+    var inputs = text
+            .match(/#[\w\d]+#/g)
+            .map(function(name){
+                name = name.slice(1, name.length - 1) ;
+
+                return "<input name='" + name + "' placeholder='" +name+"'>";
+            });
+
+    editor.innerHTML = inputs.join('<br>');
+
+    function changeText(event){
+        preview.innerHTML = text.replace("#"+name+"#", event.target.value);
+    }
+</script>

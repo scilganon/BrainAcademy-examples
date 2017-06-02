@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+
 <style>
     div#cards {
         color: white;
@@ -27,4 +29,8 @@
     for(var i=0; i<cards.length; i++){
         container.innerHTML += createCard(cards[i]);
     }
+
+    _.forEach(cards, function(i){
+        console.log(i)
+    });
 </script>
