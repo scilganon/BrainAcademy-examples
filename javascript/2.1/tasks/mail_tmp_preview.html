@@ -13,16 +13,16 @@
     }
 
     body > div {
+        display: flex;
         height: 95vh;
     }
 
     div, form {
         box-sizing: border-box;
-        display: flex;
     }
 
     #editor, #preview {
-        width: 50%;
+        width: 50vw;
         height: 100%;
 
     }
@@ -38,32 +38,48 @@
 </style>
 
 <div>
-    <form id="editor" onsubmit="changeText(event)">
-
+    <form id="editor">
+        <div class="fields">
+            <!--fields-->
+        </div>
+        <button>Preview</button>
     </form>
     <pre id="preview"></pre>
 </div>
 
 <script>
     var tpl = document.getElementById('template');
-    var editor = document.getElementById('editor');
+    var editor = document.querySelector('#editor .fields');
     var preview = document.getElementById('preview');
 
     var text = tpl.innerHTML;
 
     preview.innerHTML = text;
 
-    var inputs = text
+    var inputListNames = text
             .match(/#[\w\d]+#/g)
             .map(function(name){
-                name = name.slice(1, name.length - 1) ;
-
-                return "<input name='" + name + "' placeholder='" +name+"'>";
+                return  name.slice(1, name.length - 1) ;
             });
 
-    editor.innerHTML = inputs.join('<br>');
+    editor.innerHTML = inputListNames
+            .map(function(name){
+                return "<input name='" + name + "' placeholder='" +name+"'>";
+            })
 
-    function changeText(event){
-        preview.innerHTML = text.replace("#"+name+"#", event.target.value);
+            .join('<br />');
+
+    document.getElementById('editor').onsubmit = function submit(event){
+        event.preventDefault();
+
+        var text = tpl.innerHTML;
+
+        inputListNames.forEach(function(name){
+            var input = document.querySelector('input[name=' + name +']');
+
+            text = text.replace('#'+name+'#', input.value);
+        });
+
+        preview.innerHTML = text;
     }
 </script>
