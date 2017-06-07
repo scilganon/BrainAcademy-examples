@@ -1,0 +1,114 @@
+<style>
+    table td {
+        border: 1px solid black;
+    }
+</style>
+
+<div id="preview">
+    <!--table-->
+</div>
+<form id="editor">
+    <input name="mark" type="number" min="1" step="1" max="5" value="3">
+    <button>Add</button>
+</form>
+
+<script>
+    var students = {
+        'Mark' : [5,5,5,3,1],
+        'Oleg' : [5,5,5,3,1],
+        'Mihail' : [5,2,2],
+        'Moisha' : [5,5,5,3,1],
+        'Io' : [5,5,5,3,1],
+        'Max' : [2,2,2,3]
+    };
+
+    var subjects = ['math','physics','chemistry','history','english'];
+
+    function refresh(){
+        function createHeader(subjects){
+            var markup = subjects.map(function(subject){
+                return "<td>" + subject + "</td>";
+            });
+
+            return "<tr>"+"<td>names</td>" +markup.join('')+ "</tr>";
+        }
+
+        function average(list){
+            var sum = 0;
+            for(var i=0; i<list.length; i++){
+                sum += list[i];
+            }
+            return sum / list.length;
+        }
+
+        function getListForEmptySubsjects(etalon, fact){
+            var marks = [];
+            for(var i=0; i< etalon-fact; i++){
+                marks.push(0);
+            }
+
+            return marks;
+        }
+
+        function createRowForStudent(name, marks, subjectCount){
+            var emptyCells = getListForEmptySubsjects(subjectCount, marks.length);
+
+            var marksMarkup = marks
+                    .concat(emptyCells)
+                    .map(function(mark){
+                        return "<td contenteditable='true'>" + mark + "</td>";
+                    });
+
+            var nameMarkup = "<td>" + name + "</td>";
+            var lastAverageCell = "<td>" + average(marks) + "</td>";
+
+            return "<tr>" + nameMarkup + marksMarkup.join('') + lastAverageCell +"</tr>";
+        }
+
+        function totalAverage(students){
+            var total = [];
+
+            for(var name in students){
+                var marks = students[name];
+                total.push(average(marks));
+            }
+
+            return average(total);
+        }
+
+        function createAverageFooter(subjects, students){
+            var emptyCell = "<td colspan='" + (subjects.length + 1)+"'></td>";
+            var averageCell = "<td>" + totalAverage(students) + "</td>";
+
+            return "<tr>" + emptyCell + averageCell +"</tr>";
+        }
+
+        function tableWithStudents(students, subjects){
+            var markup = '';
+
+            for(var name in students){
+                markup += createRowForStudent(name, students[name], subjects.length);
+            }
+
+            var header = createHeader(subjects);
+            var footer = createAverageFooter(subjects, students);
+
+            return "<table>" + header + markup + footer + "</table>";
+        }
+
+        document.getElementById('preview').innerHTML = tableWithStudents(students, subjects);
+    }
+
+    refresh();
+</script>
+
+<script>
+    document.getElementById('editor').onsubmit = function(event){
+        event.preventDefault();
+
+        var mark = +document.querySelector('input[name=mark]').value;
+
+        students['Max'].push(mark);
+        refresh();
+    }
+</script>
