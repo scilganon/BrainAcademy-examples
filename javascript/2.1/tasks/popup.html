@@ -1,0 +1,105 @@
+<style>
+    .background-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        width: 100%;
+        height: 100%;
+
+        opacity: .5;
+        background-color: #000;
+
+        display: none;
+    }
+
+    .modal {
+        position: fixed;
+        z-index: 2;
+
+        width: 50vw;
+        height: 50vh;
+
+        top: 25vh;
+        left: 25vw;
+
+        background-color: white;
+        border: 3px solid black;
+        border-radius: 5px;
+
+        padding: 10px;
+
+        display: none;
+    }
+
+    body.modal-opened .background-popup {
+        display: block;
+    }
+
+    body.modal-opened .modal {
+        display: block;
+    }
+</style>
+
+<table border="1">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>
+            <button>open popup</button>
+        </td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>
+            <button>open popup</button>
+        </td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>
+            <button>open popup</button>
+        </td>
+    </tr>
+</table>
+
+<div class="background-popup"></div>
+
+<div class="modal">
+    <header>
+        <button>Close</button>
+    </header>
+
+    <h1>it's a modal popup</h1>
+</div>
+
+<script>
+    var btns = document.getElementsByTagName('button');
+    var cls = 'modal-opened';
+
+    var openPopup = function (){
+        document.body.classList.add(cls);
+    };
+
+    for(var i=0; i<btns.length; i++){
+        var btn = btns[i];
+
+        btn.onclick = openPopup;
+    }
+
+    document.querySelector('.modal button').onclick = function(){
+        document.body.classList.remove(cls);
+    }
+</script>

@@ -50,6 +50,12 @@
             return marks;
         }
 
+        /**
+         * @param {String} name
+         * @param {Number[]} marks
+         * @param {Number} subjectCount
+         * @returns {string}
+         */
         function createRowForStudent(name, marks, subjectCount){
             var emptyCells = getListForEmptySubsjects(subjectCount, marks.length);
 
