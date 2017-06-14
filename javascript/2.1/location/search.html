@@ -1,0 +1,27 @@
+<script>
+    function getSearchParam(param){
+        var rawString = location.search;
+
+        var clearString = rawString.substring(1);
+
+        var rawPairs = clearString.split('&');
+
+        var pairKeyValue = rawPairs.map(function(pair){return pair.split('=')});
+
+        var found =  pairKeyValue.find(function(pairArray){
+            if (pairArray[0] === param){
+                return true;
+            }
+
+            return false;
+        });
+
+        if(!found){
+            return '';
+        }
+
+        return found[1];
+    }
+
+    console.log(getSearchParam('_ijt'));
+</script>

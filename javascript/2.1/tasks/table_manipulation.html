@@ -1,0 +1,112 @@
+<meta charset="utf-8">
+
+<input type="search" name="sub" placeholder="search">
+<button>search</button>
+<div class="preview"></div>
+<style>
+    table td {
+        border: 1px solid black;
+    }
+
+    th {
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    var states = [
+            ["запорожская", 1],
+            ["киевская", 4],
+            ["волынская", 0.5],
+            ["харьковская", 1.5],
+            ["закарпатская", 0.25]
+    ];
+
+    var headers = ["#", 'название', "население"];
+
+
+    function createRow(id, data){
+        return `
+            <tr>
+                <td>${id}</td>
+                <td>${data[0]}</td>
+                <td>${data[1]}</td>
+            </tr>
+        `;
+    }
+
+    function createTableHeader(headers){
+        return `
+            <tr>
+                ${headers.map(function(column){
+                    return `<th>${column}</th>`;
+                }).join('')}
+            </tr>
+        `;
+    }
+
+    function createTable(list, headers){
+        var content = list.map(function(name, id){
+            return createRow(id, name);
+        });
+
+        return `
+            <table>
+                ${createTableHeader(headers)}
+                ${content.join('')}
+            </table>
+        `;
+    }
+
+    document.querySelector('.preview').innerHTML = createTable(states, headers);
+
+    document.querySelector('button').onclick = function(event){
+        var fieldValue = document.querySelector('input[name=sub]').value;
+
+        var data = states;
+
+        if(fieldValue){
+            data  = data.filter(function(state){
+                var regex = new RegExp('^' + fieldValue, 'i');
+
+                return regex.test(state);
+            });
+        }
+
+        document.querySelector('.preview').innerHTML = createTable(data, headers);
+    }
+
+    var sortByColumn = function(event){
+        var colNum = event.target.cellIndex;
+
+        var tmp = {};
+        var keys = [];
+        for(var i=0; i<states.length; i++){
+            keys.push(states[i][0]);
+            tmp[states[i][0]] = states[i];
+        }
+
+        keys.sort();
+
+        var result = [];
+        for(var j=0; j<keys.length; j++){
+            result.push(tmp[keys[j]]);
+        }
+
+        console.log(result);
+
+
+        switch(colNum){
+            case 0:
+                break;
+            case 1: break;
+            case 2: break;
+            default:
+                console.warn("don't know how to sort by this column");
+        }
+    }
+    var thList = document.getElementsByTagName('th');
+    for(var i=0; i<thList.length; i++) {
+        thList[i].onclick = sortByColumn;
+    }
+</script>

@@ -1,0 +1,25 @@
+<input type="text" name="tmp">
+
+<script>
+    function getNumber(selector){
+        var rawValue =  document.querySelector(selector).value;
+
+        if(isNaN(+rawValue)){
+            throw 'not a number in field';
+        }
+
+        return +rawValue;
+    }
+</script>
+
+<script>
+    var selector = 'input';
+
+    document.querySelector(selector).onkeyup = function(){
+        try{
+            console.log(getNumber(selector));
+        }catch(e){
+            alert(e)
+        }
+    }
+</script>
