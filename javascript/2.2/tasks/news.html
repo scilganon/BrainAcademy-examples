@@ -1,0 +1,88 @@
+<style>
+    body {
+        display: flex;
+    }
+
+    aside {
+        flex: 1;
+    }
+
+    figure {
+        flex: 3;
+    }
+
+    img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+</style>
+
+<aside>
+    <nav>
+        <ul>
+
+        </ul>
+    </nav>
+</aside>
+
+<figure>
+    <figcaption>
+
+    </figcaption>
+    <img src="#">
+</figure>
+
+<script>
+    var data = [
+        {
+            img: 'https://media0.giphy.com/media/5D6kjdPsBRYUo/giphy.gif',
+            text: 'pricol'
+
+        },
+        {
+            img: 'http://www.sportfishingmag.com/sites/sportfishingmag.com/files/styles/large_1x_/public/footwear-sperrys.jpg?itok=6bYvVluo&fc=50,50',
+            text: 'kedy'
+        }
+    ];
+</script>
+
+<script>
+    var img_text = document.querySelector('figcaption');
+    var img = document.querySelector('img');
+    var list = document.querySelector('ul');
+
+    function show(num){
+        img.src = data[num].img;
+        img_text.innerText = data[num].text;
+    }
+
+    function addToHistory(num){
+        var title = 'Speacial Img';
+        var url = location.href.replace(/\&img=\d+/g, '') + '&img=' + num;
+
+        history.pushState({
+            num: num
+        }, title, url);
+    }
+
+    function handleClick(num){
+        show(num);
+        addToHistory(num);
+    }
+</script>
+
+<script>
+    list.innerHTML = data.map(function(item, i){
+        return `<li onclick="handleClick(${i})">${item.text}</li>`;
+    }).join('');
+
+    var num = (new URLSearchParams(location.search)).get('img') || 0;
+
+    show(num);
+
+    window.onpopstate = function(){
+        show(history.state.num)
+    }
+</script>
+
+

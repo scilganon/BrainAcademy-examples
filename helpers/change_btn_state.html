@@ -1,0 +1,33 @@
+<button>start</button>
+
+<script>
+    var btn = document.querySelector('button');
+
+    var colors = ['red', 'yellow', 'green'];
+    var text = ['start', 'end'];
+
+    function changeBg(color){
+        document.body.style.background = color;
+    }
+
+    function changeText(text){
+        btn.innerText = text;
+    }
+
+    btn.onclick = function(){
+        btn.$$state = !btn.$$state;
+
+        var isLast = btn.$$color === (colors.length -1);
+        var isEmpty = btn.$$color === undefined;
+
+        if(isLast || isEmpty){
+            btn.$$color = 0;
+        } else {
+            btn.$$color++;
+        }
+
+
+        changeText(text[+btn.$$state]);
+        changeBg(colors[+btn.$$color]);
+    };
+</script>

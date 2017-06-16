@@ -1,0 +1,51 @@
+<button>click me</button>
+
+<script>
+    var i = 0;
+    function counter_v1_i(){
+        return i++;
+    }
+
+    var j = 0;
+    function counter_v1_j(){
+        return j++;
+    }
+</script>
+
+<script>
+    //memory leaks
+    function makeCounter(i){
+        return function counter(){
+            return i++;
+        }
+    }
+
+    var counter_v2 = makeCounter(0);
+    var counter_v2_1 = makeCounter(0);
+</script>
+
+<script>
+    function makeCounter(i){
+        var cb = function counter(){
+            return i++;
+        };
+
+        cb.reset = function(){
+            i = undefined;
+        };
+
+        return cb;
+    }
+
+    var counter_v3 = makeCounter(0);
+
+    counter_v3.reset();
+</script>
+
+<script>
+
+    document.querySelector('button').onclick = function(e){
+//        e.target.innerText = counter_v1();
+        e.target.innerText = counter_v2();
+    };
+</script>
