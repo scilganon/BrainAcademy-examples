@@ -1,0 +1,100 @@
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    body > div {
+        display: flex;
+    }
+
+    .preview,
+    .console {
+        width: 50%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .console {
+        background: gray;
+    }
+
+    .console ul {
+        margin-top: 100px;
+        height: 90%
+    }
+
+    .console input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 49vw;
+        height: 100px;
+    }
+
+</style>
+
+<div>
+    <div class="console">
+        <ul></ul>
+        <input type="text" list="commands" name="command">
+
+        <datalist id="commands"></datalist>
+    </div>
+    <pre class="preview">
+
+    </pre>
+</div>
+
+<script>
+    var commands = {
+        '/help': function(){
+            document.querySelector('.preview').innerHTML = `
+GNU AFFERO GENERAL PUBLIC LICENSE
+   Version 3, 19 November 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+`;
+        },
+        '/color': function(color){
+            document.body.style.backgroundColor = color[0];
+        },
+        '/clear': function(){
+            document.querySelector('.preview').innerHTML = '';
+        }
+    };
+
+    var history_list = [];
+
+    for(var command in commands){
+        document.getElementById('commands').innerHTML += `<option value="${command}">`;
+    }
+
+    document.querySelector('input').addEventListener('keypress', function(event){
+        var record = event.currentTarget.value;
+
+        if(event.keyCode === 13){
+            event.currentTarget.value = '';
+
+            history_list.push(record);
+
+
+            document.querySelector('.console ul').innerHTML = createHistory(history_list);
+
+            var args = record.split(' ');
+            var command = args.shift();
+            var cb = commands[command];
+            if(cb){
+                cb(args);
+            }
+        }
+    });
+
+    function createHistory(list){
+        return list.map(function(record){
+            return `<li>${record}</li>`;
+        }).join('');
+    }
+</script>
