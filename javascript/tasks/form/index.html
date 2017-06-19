@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <iframe id="progress" src="./components/progress_bar.html" frameborder="0"></iframe>
+
+    <div>
+        <iframe id="step" frameborder="0"></iframe>
+        <button></button>
+    </div>
+
+    <script>
+        var steps = [
+            "./steps/1.html",
+            "./steps/2.html"
+        ];
+
+        var btn = document.querySelector('button');
+        var stepFrame = document.querySelector('#step');
+        var progress = document.querySelector('#progress');
+
+        var currentStep = 0;
+
+        function getBtnText(step){
+            return step === (steps.length -1)
+                ? 'finish'
+                : 'next';
+        }
+
+        function renderStep(step){
+            stepFrame.src = steps[step];
+            btn.innerText = getBtnText(step);
+        }
+
+        btn.addEventListener('click', function(){
+            if(currentStep === (steps.length -1)){
+                return console.log('finish');
+            }
+
+            currentStep++;
+
+            renderStep(currentStep);
+            progress.contentWindow.runStep(currentStep);
+        });
+
+    </script>
+
+    <script>
+        progress.addEventListener('load', function(){
+            progress.contentWindow.init(steps.length, currentStep, function(step){
+                renderStep(step-1);
+            });
+        })
+
+        renderStep(currentStep);
+    </script>
+</body>
+</html>

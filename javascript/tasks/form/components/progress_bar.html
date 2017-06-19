@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .container {
+        display: flex;
+    }
+
+    .container .step {
+        width: 30px;
+        height: 30px;
+        background: red;
+
+        border:  1px solid black;
+
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        opacity: 0.4;
+    }
+
+    .container .step.active {
+        background-color: yellow;
+        opacity: 1;
+    }
+
+    .container .filled {
+        opacity: 1;
+    }
+</style>
+
+    <div class="container"></div>
+
+<script>
+    function handler(target){
+        //reset state
+        document.querySelector('.container .active').classList.remove('active');
+        Array.from(document.querySelectorAll('.container .filled')).forEach(function(el){
+            el.classList.remove('filled');
+        });
+
+
+        //set current state
+        target.classList.add('active');
+        var el = target.previousElementSibling;
+
+        while(el){
+            el.classList.add('filled');
+
+            el = el.previousElementSibling;
+        }
+    }
+
+    function runStep(num){
+        var elOfActiveStep = document.querySelector(`.container .step:nth-child(${num + 1})`);
+
+        handler(elOfActiveStep);
+    }
+
+    function init(stepCount, active, cb) {
+        //render circles
+        for (var i = 0; i < stepCount; i++) {
+            var cls = i==active ? 'active' : '';
+
+            document.querySelector('.container').innerHTML += `<div class="step ${cls}">${i + 1}</div>`
+        }
+
+        //
+        document.querySelector('.container').addEventListener('click', function(event){
+            console.log(event.target.innerText);
+
+            cb(+event.target.innerText);
+        })
+    }
+
+    document.querySelector('.container').addEventListener('click', function(event){
+        handler(event.target);
+    })
+
+
+
+//    init(3,1);
+</script>
+</body>
+</html>
