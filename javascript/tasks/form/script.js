@@ -4,13 +4,13 @@ function getBtnText(step){
         : 'next';
 }
 
-function renderStep(step){
-    document.querySelector('#step').src = steps[step];
-    document.querySelector('button').innerText = getBtnText(step);
-}
-
 function form_init(steps){
     var currentStep = 0;
+
+    function renderStep(step){
+        document.querySelector('#step').src = steps[step];
+        document.querySelector('button').innerText = getBtnText(step);
+    }
 
     document.querySelector('button').addEventListener('click', function(){
         if(currentStep === (steps.length -1)){
@@ -23,4 +23,11 @@ function form_init(steps){
     });
 
     renderStep(currentStep);
+
+    return {
+        setStep: renderStep,
+        getCurrent(){
+            return currentStep;
+        }
+    };
 }
