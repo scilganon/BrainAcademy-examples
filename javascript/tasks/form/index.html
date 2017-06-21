@@ -30,15 +30,19 @@
     <script>
         var form = form_init(steps);
         var progress =  progress_init(progressEl, {
-            count: steps.length,
-            cb: function(step){
-                form.setStep(step)
-            }
+            count: steps.length
         });
+
+        progress.onChange = function(step){
+            form.setStep(step)
+        };
 
         form.onChange = function(step){
             progress.setStep(step);
-        }
+        };
+
+        progress.render();
+        form.render();
     </script>
 
     <script>

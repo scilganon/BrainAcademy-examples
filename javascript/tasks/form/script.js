@@ -12,28 +12,27 @@ function form_init(steps){
         document.querySelector('button').innerText = getBtnText(step);
     }
 
-    document.querySelector('button').addEventListener('click', function(){
-        if(currentStep === (steps.length -1)){
-            return console.log('finish');
-        }
-
-        currentStep++;
-
-        renderStep(currentStep);
-    });
-
-    renderStep(currentStep);
-
-
-    var result = {
+    return  {
         //for replacement
         onChange: function(){},
 
         setStep: function(num){
             renderStep(num);
-            result.onChange(num);
+            this.onChange(num);
         },
-    };
 
-    return result;
+        render: function(){
+            document.querySelector('button').addEventListener('click', function(){
+                if(currentStep === (steps.length -1)){
+                    return console.log('finish');
+                }
+
+                currentStep++;
+
+                renderStep(currentStep);
+            });
+
+            renderStep(currentStep);
+        }
+    };
 }

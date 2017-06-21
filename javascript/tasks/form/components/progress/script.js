@@ -54,13 +54,14 @@ function progress_init(parent, options){
         options.active = 0;
     }
 
-    if(!options.cb){
-        options.cb = function(){}
-    }
-
-    render(options.count, options.active, options.cb);
-
     return {
-        setStep: runStep
+        //for replacement
+        onChange: function(){},
+
+        setStep: runStep,
+
+        render: function(){
+            render(options.count, options.active, this.onChange);
+        }
     };
 }
