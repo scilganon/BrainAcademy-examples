@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+}
+
+.container .step {
+  width: 30px;
+  height: 30px;
+  background: red;
+
+  border:  1px solid black;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.container .step.active {
+  background-color: yellow;
+  opacity: 1;
+}
+
+.container .filled {
+  opacity: 1;
+}
