@@ -35,7 +35,7 @@ function render(stepCount, active, cb) {
     document.querySelector('.container').addEventListener('click', function(event){
         console.log(event.target.innerText);
 
-        cb(+event.target.innerText);
+        cb(+event.target.innerText-1);
     })
 
     document.querySelector('.container').addEventListener('click', function(event){
@@ -59,4 +59,8 @@ function progress_init(parent, options){
     }
 
     render(options.count, options.active, options.cb);
+
+    return {
+        setStep: runStep
+    };
 }

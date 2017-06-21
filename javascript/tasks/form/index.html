@@ -24,19 +24,21 @@
             "./steps/1.html",
             "./steps/2.html"
         ];
+        var progressEl = document.querySelector('.progress');
     </script>
 
     <script>
         var form = form_init(steps);
-
-        var progress = document.querySelector('.progress');
-
-        progress_init(progress, {
+        var progress =  progress_init(progressEl, {
             count: steps.length,
             cb: function(step){
-                form.setStep(step-1)
+                form.setStep(step)
             }
         });
+
+        form.onChange = function(step){
+            progress.setStep(step);
+        }
     </script>
 
     <script>

@@ -24,10 +24,16 @@ function form_init(steps){
 
     renderStep(currentStep);
 
-    return {
-        setStep: renderStep,
-        getCurrent(){
-            return currentStep;
-        }
+
+    var result = {
+        //for replacement
+        onChange: function(){},
+
+        setStep: function(num){
+            renderStep(num);
+            result.onChange(num);
+        },
     };
+
+    return result;
 }
