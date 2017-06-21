@@ -22,6 +22,8 @@ function form_init(steps){
         },
 
         render: function(){
+            var that = this;
+
             document.querySelector('button').addEventListener('click', function(){
                 if(currentStep === (steps.length -1)){
                     return console.log('finish');
@@ -30,6 +32,7 @@ function form_init(steps){
                 currentStep++;
 
                 renderStep(currentStep);
+                that.onChange(currentStep);
             });
 
             renderStep(currentStep);
