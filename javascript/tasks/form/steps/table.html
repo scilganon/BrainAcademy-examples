@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>table page</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			background: #ccc;
+			font-family: Arial;
+		}
+
+		.container {
+			padding: 15px;
+			width: 70vw;
+			background: #fff;
+			border: 4px solid #000;
+			margin: 10vh auto;
+			text-align: center;
+		}
+		
+		input {
+			padding: 10px;
+
+		}
+
+		button {
+			margin: 15px;
+			padding: 10px;
+			cursor: pointer;
+		}
+		
+		h4 {
+			margin-top: 30px;
+		}
+		
+		.hidden {
+			display: none;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		h2, h4 {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="table-block">
+		<h2>Информация о достижениях</h2>
+			<table align="center" border="2" bordercolor="#000" id="table">
+				<tr>
+					<td>Название соревнования</td>
+					<td>Место проведения</td>
+					<td>Призовое место</td>
+				</tr>
+				<tr>
+					<td><input type='text'></td>
+					<td><input type='text'></td>
+					<td><input type='number'></td>
+				</tr>
+			</table>
+			<button>Добавить еще одну строку</button>
+		</div>
+		<hr>
+		<div class="info-block">
+			<h2>Опрос</h2>
+			<form action="#">
+				<h4>Ваше спортивное звание</h4>
+				<select name="rank" id="rank">
+					<option value="#">IIІ разряд</option>
+					<option value="#">IІ разряд</option>
+					<option value="#">I разряд</option>
+					<option value="#">Кандидат в мастера спорта Украины (КМСУ)</option>
+					<option value="#">Мастер Спорта Украины (МСУ)</option>
+					<option value="#">Мастер спорта Украины международного класса (МСУМК)</option>
+					<option value="#">Заслуженный мастер спорта (ЗМСУ)</option>
+					<option value="own" id="own">Свой вариант</option>
+				</select>
+				<div class="hidden">
+					<p>Введите свой вариант</p>
+					<input type="text">
+				</div>
+				<h4>Сколько лет вы занимаетесь плаванием профессионально?</h4>
+				<input type="number">
+				<hr>
+				<button type="submit">Подтвердить</button>
+			</form>
+		</div>
+	</div>
+<script>
+	var button = document.querySelector('button');
+
+	button.addEventListener('click' , function() {
+		var newTr = document.createElement('tr');
+		newTr.innerHTML = "<td><input type='text'></td><td><input type='text'></td><td><input type='number'></td>";
+
+		table.appendChild(newTr);
+	});
+
+
+	/////////////////////////////////////
+
+
+	var selectVar = document.getElementsByTagName('select')[0];
+	var hiddenBlock = document.getElementsByClassName('hidden')[0];
+
+	selectVar.onchange = function(event) {
+		var target = event.target;
+
+		if (target.options[target.selectedIndex].value == "own") {
+			hiddenBlock.style.display = "block";
+		} else {
+		 	hiddenBlock.style.display = "none";
+		}
+	}
+</script>
+</body>
+</html>
