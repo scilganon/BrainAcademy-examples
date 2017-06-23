@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+  	form {
+    margin: 0 auto;
+    max-width: 95%;
+    padding: 30px 30px 6px 30px;
+    border: 1px solid rgba(0,0,0,.2);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    overflow: hidden; 
+}
+/* Поле сообщения */
+textarea{
+    background: rgba(255, 255, 255, 0.4); 
+    width: 100%;
+    height: 110px;
+    border: 1px solid rgba(255,255,255,.6);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; 
+    display:block;
+    font-family: 'Open Sans', sans-serif;
+    font-size:18px;
+    font-weight: 300;
+    color:#fff;
+    padding-left:25px;
+    padding-right:20px;
+    padding-top:12px;
+    margin-bottom:20px;
+    overflow:hidden;
+}
+/* Поля ввода */
+input {
+    width: 90%;
+    height: 48px;
+    border: 1px solid rgba(255,255,255,.4);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; 
+    display:block;
+    font-family: 'Open Sans', sans-serif;
+    font-size:18px;
+    font-weight: 300;    
+    color:black;
+    padding-left:20px;
+    padding-right:20px;
+    margin-bottom:20px;
+}
+
+  </style>
+ </head>
+ <body>
+<form name=form1 action="#">
+    <div>
+        <label>
+            Имя: <input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+            Фамилия: <input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+            Ваша страна:
+            <select>
+                <option value="German">Германия</option>
+                <option value="Italy">Италия</option>
+                <option value="Poland">Польша</option>
+                <option value="Ukrain">Украина</option>
+                <option value="France">Франция</option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <label>
+            Ваш город:<input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+
+            Дата рождения: <input id="birthDate" type="date" min="1960-01-01" max="2000-01-01"> 
+            <input id="age" type="text" name="age" readonly>
+        </label>
+    </div>
+    <div>
+        <label>
+           Предпочтительные стили плаванья<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="rab_down" />Кроль на груди<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="rab_up" />Кроль на спине<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="bruss" />Брасс<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="butterfly" />Баттерфляй<br /> 
+        </label>
+    </div>
+    <div>
+        <label>
+           Предпочтительные дистанции<br /> 
+ 			<input type="checkbox" name="length" value="50м" />50 метров<br /> 
+ 			<input type="checkbox" name="length" value="100м" />100 метров<br /> 
+ 			<input type="checkbox" name="length" value="200м" />200 метров<br /> 
+ 			<input type="checkbox" name="length" value="400м" />400 метров<br /> 
+        </label>
+    </div>
+    <div>
+        <label>
+             Ваш пол?<br /> 
+  	<input name="sex" type="radio"  value="male">Мужской<br>
+  	<input name="sex" type="radio"  value="female">Женский<br>
+
+            
+        </label>
+    </div>
+</form>
+
+<script>
+
+  
+  	var datebirth = document.getElementById('birthDate');
+
+
+	datebirth.onchange = function(event){
+	console.log(event)
+    var age = document.getElementById('age');
+	var datebirth1 = event.target.valueAsDate;
+	var nowdate= new Date();
+    var years = nowdate.getFullYear() - datebirth1.getFullYear();
+	
+	datebirth1.setFullYear(nowdate.getFullYear());
+
+    if (nowdate < datebirth1)
+{
+    years--;
+}
+  age.value = ("Вам " + years + " лет.");;
+}
+
+	// if(datebirth1.getDay()<=nowdate.getDay()&&datebirth1.getDay()<=nowdate.getDay()){
+	// 	age=nowdate.getYear()-datebirth1.getYear();
+	// }else{age=nowdate.getYear()-datebirth1.getYear()-1;}
+	// console.log(age);
+	// document.form1.age.value=age;
+	// } 	
+	
+
+
+  </script>
+</body>
+</html>
