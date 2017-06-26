@@ -10,23 +10,52 @@
         height: 100vh;
     }
 
-    body > div > ul {
+    aside {
         flex: 1
     }
 
-    body > div > .preview {
+    article {
         flex: 3
     }
 </style>
 
 <div>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+    <aside>
+        menu
+        <ul></ul>
+    </aside>
 
-    <div class="preview">
+    <article class="preview">
         empty
-    </div>
+    </article>
 </div>
+
+<script>
+    var dataFromServer = [
+        {
+            title: '12313',
+            body: 'asfsfasdf'
+        },
+        {
+            title: '9w34hqw9f hqw9uf',
+            body: '293hg29-38g9-23b29-3bv98-ubvu8054byu     '
+        }
+    ];
+
+    function updateMenu(data){
+        for(var index=0; index < data.length;index++){
+            var item = data[index];
+
+            document.querySelector('aside ul').innerHTML += `<li order="${index}">${item.title}</li>`
+        }
+    }
+
+    updateMenu(dataFromServer);
+
+    document.querySelector('aside ul').addEventListener('click', function(event){
+        var li = event.target;
+        var order = li.getAttribute('order');
+
+        document.querySelector('article').innerHTML = dataFromServer[+order].body;
+    });
+</script>
