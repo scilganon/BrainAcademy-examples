@@ -1,0 +1,29 @@
+<div></div>
+
+<script>
+    function query(url){
+        var query = new XMLHttpRequest();
+
+        query.addEventListener('load', function(event){
+            if(event.currentTarget.status !== 200){
+                console.warn('nothing could be inserted')
+                return;
+            }
+
+            document.querySelector('div').innerText = event.currentTarget.response;
+        });
+
+        query.open('GET', url);
+        query.send();
+
+        return query;
+    }
+</script>
+
+<script>
+    query('https://jsonplaceholder.typicode.com/posts/1').addEventListener('load', function(){
+        setTimeout(function(){
+            query('https://jsonplaceholder.typicode.com/ipuashfjagsjasgjf');
+        }, 2000);
+    });
+</script>
