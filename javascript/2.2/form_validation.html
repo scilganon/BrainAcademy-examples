@@ -1,0 +1,82 @@
+<style>
+    input.error {
+        border: 3px solid red;
+    }
+</style>
+
+<input type="text" name="ip">
+
+<script>
+    var input = document.querySelector('input[name=ip]');
+
+    input.addEventListener('change', function(event){
+        var value = event.target.value;
+
+        event.target.classList.remove('error');
+
+        var parts = value.split('.');
+
+        if(parts.length !== 4){
+            console.warn('bad format for IPv4');
+            event.target.classList.add('error');
+        }
+
+        parts.forEach(function(part){
+            var num = +part;
+
+            if(isNaN(num)){
+                console.warn(part + " is not a number")
+                event.target.classList.add('error');
+            }
+
+            if(num < 0 || num > 255){
+                console.warn(num + ' is not in range of [0, 255]');
+                event.target.classList.add('error');
+            }
+        });
+    });
+</script>
+
+<script type="text">
+    var input = document.querySelector('input[name=ip]');
+
+    var validation_list = [
+            function (parts){
+                if(parts.length !== 4){
+                    console.warn('bad format for IPv4');
+                    return true;
+                }
+            },
+            function(parts){
+                parts.forEach(function(part){
+                    var num = +part;
+
+                    if(isNaN(num)){
+                        console.warn(part + " is not a number")
+                        return true
+                    }
+
+                    if(num < 0 || num > 255){
+                        console.warn(num + ' is not in range of [0, 255]');
+                        return true
+                    }
+                });
+            }
+    ];
+
+    input.addEventListener('change', function(event){
+        var parts = event.target.value.split('.');
+
+        var hasError = validation_list
+                .map(function(validationCb){
+                    return validationCb(parts);
+                })
+                .find(function(result){
+                    return result == true;
+                });
+
+        if(hasError){
+            event.target.classList.add('error');
+        }
+    });
+</script>
