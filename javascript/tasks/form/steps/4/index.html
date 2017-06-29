@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="container-avatar">
+            <img src="img/loading.svg" alt="avatar">
+        </div>
+
+        <!--BLOCK LOAD AVATAR-->
+        <div class="load">
+            load file <input type="file">
+        </div>
+
+        <!--BLOCK GENERATE AVATAR-->
+        <div class="generate">
+            <form class="gen-form" method="post">
+               <p>Sex</p>
+                <label>
+                    <input type="radio" name="sex"> male
+                </label>
+                <label>
+                    <input type="radio" name="sex"> female
+                </label>
+
+                <p>Age</p>
+                <label>
+                <input type="radio" name="age">... - 25 years
+                </label>
+                <br>
+                <label>
+                <input type="radio" name="age">26 - 40 years
+                </label>
+                <br>
+                <label>
+                <input type="radio" name="age">41 - ... years
+                </label>
+            </form>
+
+            <button>generate</button>
+        </div>
+
+    </div>
+
+    <script src="script-data.js"></script>
+    <script src="script-handler.js"></script>
+</body>
+</html>
