@@ -28,7 +28,11 @@
     </aside>
 
     <article class="preview">
-        empty
+        <div>
+            empty
+        </div>
+
+        <ul class="comments"></ul>
     </article>
 </div>
 
@@ -49,6 +53,26 @@
             document.querySelector('aside ul').innerHTML += `<li order="${index}">${item.title}</li>`
         }
     }
+
+    function updateComments(data){
+        var markup = '';
+
+        for(var index=0; index < data.length;index++){
+            var item = data[index];
+
+            markup += `<li order="${index}">${item.body}</li>`
+        }
+
+        document.querySelector('ul.comments').innerHTML = markup;
+    }
+
+    function loadCommentsForPost(id){
+        query('https://jsonplaceholder.typicode.com/posts/'+id+'/comments').addEventListener('load', function(event){
+            var json  = JSON.parse(event.target.response);
+
+            updateComments(json);
+        })
+    }
 </script>
 
 <script>
@@ -58,7 +82,10 @@
         var li = event.target;
         var order = li.getAttribute('order');
 
-        document.querySelector('article').innerHTML = dataFromServer[+order].body;
+        var post = dataFromServer[+order];
+
+        loadCommentsForPost(post.id);
+        document.querySelector('article div').innerHTML = post.body;
     });
 
     query('https://jsonplaceholder.typicode.com/posts').addEventListener('load', function(event){
