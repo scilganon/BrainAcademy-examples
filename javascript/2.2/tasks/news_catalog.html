@@ -11,7 +11,9 @@
     }
 
     aside {
-        flex: 1
+        flex: 1;
+        overflow-y: scroll;
+        height: 100vh;
     }
 
     article {
@@ -31,16 +33,14 @@
 </div>
 
 <script>
-    var dataFromServer = [
-        {
-            title: '12313',
-            body: 'asfsfasdf'
-        },
-        {
-            title: '9w34hqw9f hqw9uf',
-            body: '293hg29-38g9-23b29-3bv98-ubvu8054byu     '
-        }
-    ];
+    function query(url){
+        var query = new XMLHttpRequest();
+
+        query.open('GET', url);
+        query.send();
+
+        return query;
+    }
 
     function updateMenu(data){
         for(var index=0; index < data.length;index++){
@@ -49,8 +49,10 @@
             document.querySelector('aside ul').innerHTML += `<li order="${index}">${item.title}</li>`
         }
     }
+</script>
 
-    updateMenu(dataFromServer);
+<script>
+    var dataFromServer = [];
 
     document.querySelector('aside ul').addEventListener('click', function(event){
         var li = event.target;
@@ -58,4 +60,11 @@
 
         document.querySelector('article').innerHTML = dataFromServer[+order].body;
     });
+
+    query('https://jsonplaceholder.typicode.com/posts').addEventListener('load', function(event){
+        var json  = JSON.parse(event.target.response);
+
+        dataFromServer = json;
+        updateMenu(json);
+    })
 </script>
