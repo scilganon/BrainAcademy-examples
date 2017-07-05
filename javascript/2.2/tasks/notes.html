@@ -11,34 +11,41 @@
     var form = document.querySelector('form');
     var list = document.querySelector('ul');
 
-    var store = {
-        items: [],
-        add: function(note){
-            this.items.push(note);
+    function createStore(){
+        return {
+            items: [],
+            add: function(note){
+                this.items.push(note);
 
-            this.save();
-        },
-        remove: function(index){
-            this.items.splice(index, 1);
+                this.save();
+            },
+            remove: function(index){
+                this.items.splice(index, 1);
 
-            this.save();
-        },
-        save: function(){
-            var data = JSON.stringify(this.items);
+                this.save();
+            },
+            save: function(){
+                var data = JSON.stringify(this.items);
 
-            localStorage.setItem('notes', data);
-        },
-        load: function(){
-            var stored = localStorage.getItem('notes');
-            var data = JSON.parse(stored);
+                localStorage.setItem('notes', data);
+            },
+            load: function(){
+                var stored = localStorage.getItem('notes');
+                var data = JSON.parse(stored);
 
-            if(data === null){
-                data = [];
+                if(data === null){
+                    data = [];
+                }
+
+                this.items = data;
             }
+        };
 
-            this.items = data;
-        }
-    };
+    }
+
+    var store = createStore();
+//    var store_2 = createStore();
+        
 
     form.addEventListener('submit', function(event){
         event.preventDefault();
