@@ -5,12 +5,7 @@
 </form>
 
 <h2>Notes</h2>
-<ul>
-    <li>
-        asdssdf
-        <button>X</button>
-    </li>
-</ul>
+<ul></ul>
 
 <script>
     var form = document.querySelector('form');
@@ -20,9 +15,24 @@
         items: [],
         add: function(note){
             store.items.push(note);
+
+            store.save();
         },
         remove: function(index){
             store.items.splice(index, 1);
+
+            store.save();
+        },
+        save: function(){
+            var data = JSON.stringify(store.items);
+
+            localStorage.setItem('notes', data);
+        },
+        load: function(){
+            var stored = localStorage.getItem('notes');
+            var data = JSON.parse(stored);
+
+            store.items = data;
         }
     };
 
