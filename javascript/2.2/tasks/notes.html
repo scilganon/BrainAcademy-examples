@@ -32,6 +32,10 @@
             var stored = localStorage.getItem('notes');
             var data = JSON.parse(stored);
 
+            if(data === null){
+                data = [];
+            }
+
             store.items = data;
         }
     };
@@ -69,4 +73,9 @@
             list.innerHTML += `<li>${note}<button order="${i}">X</button></li>`
         });
     }
+</script>
+
+<script>
+    store.load();
+    renderNotes(store.items);
 </script>
