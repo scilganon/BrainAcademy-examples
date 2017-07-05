@@ -33,11 +33,22 @@
         renderNotes(store);
     });
 
+    list.addEventListener('click', function(event){
+        var el = event.target;
+
+        if(el.tagName === 'BUTTON'){
+            var order = +el.getAttribute('order');
+
+            store.splice(order, 1);
+            renderNotes(store);
+        }
+    });
+
     function renderNotes(data){
         list.innerHTML = '';
 
-        data.forEach(function(note){
-            list.innerHTML += `<li>${note}</li>`
+        data.forEach(function(note, i){
+            list.innerHTML += `<li>${note}<button order="${i}">X</button></li>`
         });
     }
 </script>
