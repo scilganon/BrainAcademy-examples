@@ -14,17 +14,17 @@
     var store = {
         items: [],
         add: function(note){
-            store.items.push(note);
+            this.items.push(note);
 
-            store.save();
+            this.save();
         },
         remove: function(index){
-            store.items.splice(index, 1);
+            this.items.splice(index, 1);
 
-            store.save();
+            this.save();
         },
         save: function(){
-            var data = JSON.stringify(store.items);
+            var data = JSON.stringify(this.items);
 
             localStorage.setItem('notes', data);
         },
@@ -36,7 +36,7 @@
                 data = [];
             }
 
-            store.items = data;
+            this.items = data;
         }
     };
 

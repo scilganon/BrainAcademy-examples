@@ -1,0 +1,24 @@
+<script>
+    var obj = {
+        test: 'max',
+        hi: function(){
+            console.log(this.test)
+        }
+    };
+
+    obj.hi();
+</script>
+
+<script>
+    var obj_2  = {
+        test: "max",
+        sub: {
+            test: "henrih",
+            hi: function(){
+                console.log(this.test);
+            }
+        }
+    };
+
+    obj_2.sub.hi();
+</script>
