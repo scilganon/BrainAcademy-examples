@@ -16,7 +16,15 @@
     var form = document.querySelector('form');
     var list = document.querySelector('ul');
 
-    var store = [];
+    var store = {
+        items: [],
+        add: function(note){
+            store.items.push(note);
+        },
+        remove: function(index){
+            store.items.splice(index, 1);
+        }
+    };
 
     form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -25,12 +33,12 @@
         var area = form.elements.name;
         var note = area.value;
 
-        store.push(note);
+        store.add(note);
         form.reset();
     });
 
     form.addEventListener('submit', function(){
-        renderNotes(store);
+        renderNotes(store.items);
     });
 
     list.addEventListener('click', function(event){
@@ -39,8 +47,8 @@
         if(el.tagName === 'BUTTON'){
             var order = +el.getAttribute('order');
 
-            store.splice(order, 1);
-            renderNotes(store);
+            store.remove(order);
+            renderNotes(store.items);
         }
     });
 
