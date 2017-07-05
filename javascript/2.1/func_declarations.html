@@ -1,0 +1,23 @@
+<script>
+    test();
+
+    function test(){
+        console.log(1);
+    }
+
+    myFunc();
+
+    var myFunc = test;
+
+</script>
+
+<script>
+    function test(a){
+        console.log(a);
+    }
+
+    var myFunc = test;
+
+    myFunc(1);
+
+</script>
