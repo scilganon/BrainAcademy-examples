@@ -29,6 +29,10 @@
         form.reset();
     });
 
+    form.addEventListener('submit', function(){
+        renderNotes(store);
+    });
+
     function renderNotes(data){
         list.innerHTML = '';
 
