@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<form action="#">
+    <textarea name="name" id="" cols="30" rows="10"></textarea>
+    <br>
+    <button>ADD     +</button>
+</form>
+
+<h2>Notes</h2>
+<ul>
+    <li>
+        asdssdf
+        <button>X</button>
+    </li>
+</ul>
+
+<script>
+    var form = document.querySelector('form');
+    var list = document.querySelector('ul');
+
+    var store = [];
+
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+
+        var form = event.target;
+        var area = form.elements.name;
+        var note = area.value;
+
+        store.push(note);
+        form.reset();
+    });
+
+    function renderNotes(data){
+        list.innerHTML = '';
+
+        data.forEach(function(note){
+            list.innerHTML += `<li>${note}</li>`
+        });
+    }
+</script>
