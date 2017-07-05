@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.js"></script>
+</head>
+<body>
+<script>
+    var name = Cookies.has('name');
+
+    if(name){
+        alert(name);
+    } else {
+        //set expiration in a year
+        var expire_at = new Date();
+        expire_at.setFullYear(expire_at.getFullYear() + 1);
+
+        Cookies.set('name', prompt('What is your name?'), {
+            expires: expire_at
+        });
+    }
+</script>
+</body>
+</html>
