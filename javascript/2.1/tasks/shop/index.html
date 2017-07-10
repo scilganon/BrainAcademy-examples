@@ -1,0 +1,41 @@
+<script src="./entities.js"></script>
+<script src="./TableService.js"></script>
+<script src="./StatisticService.js"></script>
+<script src="tests/entityRelationTest.js"></script>
+<script src="tests/totalEarnTest.js"></script>
+<script src="tests/uniqueProductsPerCheck.js"></script>
+
+<script>
+    var seller = Seller('max', 3);
+    var check = Check(seller);
+
+    check.add(Product('asdasda', 10));
+    check.add(Product('asdasda', 10));
+    check.add(Product('asdasda', 10));
+    check.add(Product('asdasda', 10));
+
+    console.table(TableService.getEarnPerCheck([check]));
+</script>
+
+<script>
+  var seller_1 = Seller('max', 3);
+  var check_1 = Check(seller_1);
+
+  check_1.add(Product('asdasda', 10));
+  check_1.add(Product('asdasda', 10));
+  check_1.add(Product('asdasda', 10));
+  check_1.add(Product('asdasda', 10));
+
+  var seller_2 = Seller('upyachka', 3);
+  var check_2 = Check(seller_2);
+
+  check_2.add(Product('asdasda', 10));
+  check_2.add(Product('asdasda', 10));
+  check_2.add(Product('asdasda', 10));
+  check_2.add(Product('asdasda', 10));
+
+  console.table(TableService.getTotalSoldProductsBySeller([
+    check_1,
+    check_2
+  ]));
+</script>
