@@ -1,0 +1,1 @@
+plz, add new steps with separated files of js/css/html

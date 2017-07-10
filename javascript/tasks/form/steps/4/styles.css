@@ -1,0 +1,75 @@
+.container {
+    margin: 30px;
+    padding: 30px;
+    border: 3px solid #90EE90;
+    border-radius: 2px;
+    width: 300px;
+    text-align: center;
+}
+
+.container-avatar {
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.container-avatar img {
+    width: 250px;
+    height: 250px;
+}
+
+.load {
+    margin: 40px auto 0 auto;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #90EE90;
+    border-radius: 2px;
+    background-color: #98FB98;
+    color: #006400;
+    text-align: center;
+    line-height: 2.1;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.load input {
+    position: absolute;
+    left: 0;
+    width: 150px;
+    height: 40px;
+    opacity: 0;
+}
+.generate button {
+    margin-top: 40px;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #90EE90;
+    border-radius: 2px;
+    background-color: #98FB98;
+    color: #006400;
+    outline: none;
+}
+
+.load:active,
+.generate button:active {
+    transform: scale(.8);
+}
+
+.gen-form {
+    display: none;
+}
+
+.gen-form p {
+    border: 2px solid #90EE90;
+    border-radius: 2px;
+    background-color: #98FB98;
+    color: #006400;
+}
+
+.gen-form > label {
+    color: #006400;
+}
