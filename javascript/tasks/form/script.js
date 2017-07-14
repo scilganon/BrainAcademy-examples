@@ -11,7 +11,7 @@ define([
       var currentStep = 0;
 
       function renderStep(step){
-        document.querySelector('#step').src = steps[step];
+        document.querySelector('#step').src = steps[step].tpl;
         document.querySelector('button').innerText = getBtnText(step);
       }
 
@@ -44,9 +44,15 @@ define([
     }
 
   var steps = [
-    "./steps/step_1/index.html",
-    "./steps/step_2/index.html"
+    {
+      tpl: "./steps/step_1/index.html"
+    },
+    {
+      tpl: "./steps/step_2/index.html"
+    }
   ];
+
+
   var progressEl = document.querySelector('.progress');
 
   var form = form_init(steps);
