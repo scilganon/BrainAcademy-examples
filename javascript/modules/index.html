@@ -1,0 +1,32 @@
+
+<script>
+  function loadJS(path){
+    var script = document.createElement('script');
+    script.src = path;
+
+    var head = document.querySelector('head');
+
+    window.onload = function(){
+      head.appendChild(script)
+    }
+  }
+
+  loadJS('./test.js');
+</script>
+
+<!--<script src="require.js"></script>-->
+
+<!--<script>-->
+    <!--require([-->
+      <!--'./modules/hello_world',-->
+      <!--'./modules/lodash_usage',-->
+      <!--'./modules/welcome',-->
+      <!--'./modules/pi_value'-->
+    <!--], function(a,b,c,PI){-->
+        <!--console.log('Run application')-->
+
+        <!--c.welcome('max');-->
+
+        <!--console.log(PI);-->
+    <!--});-->
+<!--</script>-->
