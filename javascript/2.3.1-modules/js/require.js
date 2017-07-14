@@ -773,9 +773,9 @@ var requirejs, require, define;
 
                 this.ignore = options.ignore;
 
-                //Could have option to render this module in enabled mode,
+                //Could have option to init this module in enabled mode,
                 //or could have been previously marked as enabled. However,
-                //the dependencies are not known until render is called. So
+                //the dependencies are not known until init is called. So
                 //if enabled previously, now trigger dependencies as enabled.
                 if (options.enabled || this.enabled) {
                     //Enable this module and dependencies.
@@ -1365,7 +1365,7 @@ var requirejs, require, define;
                 //update the maps for them, since their info, like URLs to load,
                 //may have changed.
                 eachProp(registry, function (mod, id) {
-                    //If module already has render called, since it is too
+                    //If module already has init called, since it is too
                     //late to modify them, and ignore unnormalized ones
                     //since they are transient.
                     if (!mod.inited && !mod.map.unnormalized) {
@@ -1585,7 +1585,7 @@ var requirejs, require, define;
                 context.defQueueMap = {};
 
                 //Do this after the cycle of callGetModule in case the result
-                //of those calls/render calls changes the registry.
+                //of those calls/init calls changes the registry.
                 mod = getOwn(registry, moduleName);
 
                 if (!found && !hasProp(defined, moduleName) && mod && !mod.inited) {
