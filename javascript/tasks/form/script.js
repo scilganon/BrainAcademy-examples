@@ -48,9 +48,6 @@ define([
       tpl: "./steps/step_1/index.html"
     },
     {
-      tpl: "./steps/step_2/index.html"
-    },
-    {
       tpl: './steps/step_3/index.html',
       // js: './steps/step_3/script.js'
     },
