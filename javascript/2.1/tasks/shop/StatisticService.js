@@ -27,7 +27,7 @@ var StatisticService = {
     return uNames.length;
   },
 
-  getEarnForSellerByCheck(product, seller){
+  getEarnForSellerByCheck(pr, seller){
     return product.price / 100 * seller.salary.percent;
   },
 
