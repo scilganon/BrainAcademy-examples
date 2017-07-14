@@ -49,6 +49,18 @@ define([
     },
     {
       tpl: "./steps/step_2/index.html"
+    },
+    {
+      tpl: './steps/step_3/index.html',
+      js: './steps/step_3/script.js'
+    },
+    {
+      tpl: './steps/step_4/index.html',
+      js: './steps/step_4/script.js'
+    },
+    {
+      tpl: './steps/step_5/index.html',
+      js: './steps/step_5/script.js'
     }
   ];
 
@@ -61,7 +73,9 @@ define([
   });
 
   progress.onChange = function(step){
-    form.setStep(step)
+    require([steps[step].js], function(){
+      form.setStep(step)
+    });
   };
 
   form.onChange = function(step){
