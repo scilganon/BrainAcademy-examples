@@ -9,12 +9,11 @@
 
 
     <script src="../../../node_modules/requirejs/require.js"></script>
-
-    <!--main-->
-    <script src="./script.js"></script>
+    <script>
+        require(['./script.js']);
+    </script>
 
     <!--progress bar-->
-    <script src="./components/progress/script.js"></script>
     <link rel="stylesheet" href="./components/progress/styles.css" />
 
     <!--other components-->
@@ -25,34 +24,5 @@
         <iframe id="step" frameborder="0"></iframe>
         <button></button>
     </div>
-
-    <script>
-        var steps = [
-            "./steps/1.html",
-            "./steps/2.html"
-        ];
-        var progressEl = document.querySelector('.progress');
-    </script>
-
-    <script>
-        var form = form_init(steps);
-        var progress =  progress_init(progressEl, {
-            count: steps.length
-        });
-
-        progress.onChange = function(step){
-            form.setStep(step)
-        };
-
-        form.onChange = function(step){
-            progress.setStep(step);
-        };
-
-        progress.render();
-        form.render();
-    </script>
-
-    <script>
-    </script>
 </body>
 </html>
