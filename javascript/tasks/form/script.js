@@ -44,8 +44,8 @@ define([
     }
 
   var steps = [
-    "./steps/1.html",
-    "./steps/2.html"
+    "./steps/step_1/index.html",
+    "./steps/step_2/index.html"
   ];
   var progressEl = document.querySelector('.progress');
 
