@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>table page</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="table-block">
+		<h2>Информация о достижениях</h2>
+			<table align="center" border="2" bordercolor="#000" id="table">
+				<tr>
+					<td>Название соревнования</td>
+					<td>Место проведения</td>
+					<td>Призовое место</td>
+				</tr>
+				<tr>
+					<td><input type='text'></td>
+					<td><input type='text'></td>
+					<td><input type='number'></td>
+				</tr>
+			</table>
+			<button>Добавить еще одну строку</button>
+		</div>
+		<hr>
+		<div class="info-block">
+			<h2>Опрос</h2>
+			<form action="#">
+				<h4>Ваше спортивное звание</h4>
+				<select name="rank" id="rank">
+					<option value="#">IIІ разряд</option>
+					<option value="#">IІ разряд</option>
+					<option value="#">I разряд</option>
+					<option value="#">Кандидат в мастера спорта Украины (КМСУ)</option>
+					<option value="#">Мастер Спорта Украины (МСУ)</option>
+					<option value="#">Мастер спорта Украины международного класса (МСУМК)</option>
+					<option value="#">Заслуженный мастер спорта (ЗМСУ)</option>
+					<option value="own" id="own">Свой вариант</option>
+				</select>
+				<div class="hidden">
+					<p>Введите свой вариант</p>
+					<input type="text">
+				</div>
+				<h4>Сколько лет вы занимаетесь плаванием профессионально?</h4>
+				<input type="number">
+				<hr>
+				<button type="submit">Подтвердить</button>
+			</form>
+		</div>
+	</div>
+<script src="script.js"></script>
+</body>
+</html>
