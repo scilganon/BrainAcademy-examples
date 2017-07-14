@@ -1,6 +1,6 @@
 define([
   './components/progress/script.js'
-], function(){
+], function(Progress){
   function getBtnText(step){
     return step === (steps.length -1)
       ? 'finish'
@@ -50,7 +50,7 @@ define([
   var progressEl = document.querySelector('.progress');
 
   var form = form_init(steps);
-  var progress =  progress_init(progressEl, {
+  var progress =  Progress.init(progressEl, {
     count: steps.length
   });
 
