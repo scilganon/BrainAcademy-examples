@@ -1,0 +1,88 @@
+<form action="#">
+    <textarea name="name" id="" cols="30" rows="10"></textarea>
+    <br>
+    <button>ADD     +</button>
+</form>
+
+<h2>Notes</h2>
+<ul></ul>
+
+<script>
+    var form = document.querySelector('form');
+    var list = document.querySelector('ul');
+
+    function createStore(){
+        return {
+            items: [],
+            add: function(note){
+                this.items.push(note);
+
+                this.save();
+            },
+            remove: function(index){
+                this.items.splice(index, 1);
+
+                this.save();
+            },
+            save: function(){
+                var data = JSON.stringify(this.items);
+
+                localStorage.setItem('notes', data);
+            },
+            load: function(){
+                var stored = localStorage.getItem('notes');
+                var data = JSON.parse(stored);
+
+                if(data === null){
+                    data = [];
+                }
+
+                this.items = data;
+            }
+        };
+
+    }
+
+    var store = createStore();
+//    var store_2 = createStore();
+        
+
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+
+        var form = event.target;
+        var area = form.elements.name;
+        var note = area.value;
+
+        store.add(note);
+        form.reset();
+    });
+
+    form.addEventListener('submit', function(){
+        renderNotes(store.items);
+    });
+
+    list.addEventListener('click', function(event){
+        var el = event.target;
+
+        if(el.tagName === 'BUTTON'){
+            var order = +el.getAttribute('order');
+
+            store.remove(order);
+            renderNotes(store.items);
+        }
+    });
+
+    function renderNotes(data){
+        list.innerHTML = '';
+
+        data.forEach(function(note, i){
+            list.innerHTML += `<li>${note}<button order="${i}">X</button></li>`
+        });
+    }
+</script>
+
+<script>
+    store.load();
+    renderNotes(store.items);
+</script>
