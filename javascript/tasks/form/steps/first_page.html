@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+    <link rel="stylesheet" href="frst_page.css">
+ </head>
+ <body>
+<form name=form1 action="#">
+    <div>
+        <label>
+            Имя: <input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+            Фамилия: <input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+            Ваша страна:
+            <select>
+                <option value="German">Германия</option>
+                <option value="Italy">Италия</option>
+                <option value="Poland">Польша</option>
+                <option value="Ukrain">Украина</option>
+                <option value="France">Франция</option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <label>
+            Ваш город:<input type="text" min="3" max="50">
+        </label>
+    </div>
+    <div>
+        <label>
+
+            Дата рождения: <input id="birthDate" type="date" min="1960-01-01" max="2000-01-01"> 
+            <input id="age" type="text" name="age" readonly>
+        </label>
+    </div>
+    <div>
+        <label>
+           Предпочтительные стили плаванья<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="rab_down" />Кроль на груди<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="rab_up" />Кроль на спине<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="bruss" />Брасс<br /> 
+ 			<input type="checkbox" name="sweemstyle" value="butterfly" />Баттерфляй<br /> 
+        </label>
+    </div>
+    <div>
+        <label>
+           Предпочтительные дистанции<br /> 
+ 			<input type="checkbox" name="length" value="50м" />50 метров<br /> 
+ 			<input type="checkbox" name="length" value="100м" />100 метров<br /> 
+ 			<input type="checkbox" name="length" value="200м" />200 метров<br /> 
+ 			<input type="checkbox" name="length" value="400м" />400 метров<br /> 
+        </label>
+    </div>
+    <div>
+        <label>
+             Ваш пол?<br /> 
+  	<input name="sex" type="radio"  value="male">Мужской<br>
+  	<input name="sex" type="radio"  value="female">Женский<br>
+
+            
+        </label>
+    </div>
+</form>
+</body>
+</html>
