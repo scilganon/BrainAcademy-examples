@@ -32,15 +32,19 @@ function fillField(field, count, size){
 
     field[y][x] = true;
   }
+
+  return field;
 }
 
 var user = {
   field: createField(10)
 };
 
+var bot = {
+  field: fillField(createField(10), 7, 9)
+};
+
+
 var container = document.getElementById('container');
-
-fillField(user.field, 7, 9);
-
-
 container.innerHTML = renderTable(user.field);
+container.innerHTML += renderTable(bot.field);
