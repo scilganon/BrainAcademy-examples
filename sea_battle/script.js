@@ -29,4 +29,6 @@ var user = {
   field: createField(10)
 };
 
-renderTable(user.field);
+var container = document.getElementById('container');
+
+container.innerHTML = renderTable(user.field);
