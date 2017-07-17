@@ -82,6 +82,15 @@ function render(){
       state.isStarted = true;
       event.target.remove();
     });
+
+  document
+    .getElementById('bot')
+    .addEventListener('click', function(){
+      if(!state.isStarted){
+        console.warn('too early, 1st fill own field');
+        return;
+      }
+    })
 }
 
 render();
