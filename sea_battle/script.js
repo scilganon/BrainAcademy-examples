@@ -13,7 +13,7 @@ function createField(size){
 }
 
 
-function renderTable(field){
+function renderTable(field, id){
   var result  = field.map(function(row){
     var list = row.map(function(state){
       return `<td class="${state ? 'black' : 'white'}"></td>`;
@@ -22,7 +22,7 @@ function renderTable(field){
     return `<tr>${list.join('')}</tr>`
   }).join('');
 
-  return `<table>${result}</table>`;
+  return `<table id="${id}">${result}</table>`;
 }
 
 function fillField(field, count, size){
@@ -46,5 +46,19 @@ var bot = {
 
 
 var container = document.getElementById('container');
-container.innerHTML = renderTable(user.field);
-container.innerHTML += renderTable(bot.field);
+container.innerHTML = renderTable(user.field, 'user');
+container.innerHTML += renderTable(bot.field, 'bot');
+
+document
+  .getElementById('user')
+  .addEventListener('click', function(event){
+    if(event.target.tagName !== 'TD'){
+      console.warn('misclick');
+      return;
+    }
+
+    var x = event.target.cellIndex;
+    var y = event.target.parentElement.rowIndex;
+
+    console.log(x, y)
+  });
