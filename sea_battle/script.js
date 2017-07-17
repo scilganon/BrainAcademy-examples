@@ -45,20 +45,26 @@ var bot = {
 };
 
 
-var container = document.getElementById('container');
-container.innerHTML = renderTable(user.field, 'user');
-container.innerHTML += renderTable(bot.field, 'bot');
+function render(){
+  var container = document.getElementById('container');
+  container.innerHTML = renderTable(user.field, 'user');
+  container.innerHTML += renderTable(bot.field, 'bot');
 
-document
-  .getElementById('user')
-  .addEventListener('click', function(event){
-    if(event.target.tagName !== 'TD'){
-      console.warn('misclick');
-      return;
-    }
+  document
+    .getElementById('user')
+    .addEventListener('click', function(event){
+      if(event.target.tagName !== 'TD'){
+        console.warn('misclick');
+        return;
+      }
 
-    var x = event.target.cellIndex;
-    var y = event.target.parentElement.rowIndex;
+      var x = event.target.cellIndex;
+      var y = event.target.parentElement.rowIndex;
 
-    console.log(x, y)
-  });
+
+      user.field[y][x] = !user.field[y][x];
+      render();
+    });
+}
+
+render();
