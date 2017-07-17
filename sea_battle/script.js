@@ -48,6 +48,7 @@ var bot = {
 function render(){
   var container = document.getElementById('container');
   container.innerHTML = renderTable(user.field, 'user');
+  container.innerHTML += '<button type="button">Play</button>';
   container.innerHTML += renderTable(bot.field, 'bot');
 
   document
@@ -64,6 +65,12 @@ function render(){
 
       user.field[y][x] = !user.field[y][x];
       render();
+    });
+
+  document
+    .querySelector('#container button')
+    .addEventListener('click', function(){
+      console.log('clicked')
     });
 }
 
