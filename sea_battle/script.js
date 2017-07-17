@@ -5,7 +5,19 @@ function createField(size){
     result.push([]);
 
     for(var j=0; j< size; j++){
-      result[i][j] = false;
+      result[i][j] = {
+        isShot: false,
+        isFilled: false,
+        getCls: function(){
+          if (!this.isFilled){
+            return 'white';
+          }
+
+          return this.isShot
+            ? 'red'
+            : 'black';
+        }
+      };
     }
   }
 
@@ -15,8 +27,8 @@ function createField(size){
 
 function renderTable(field, id){
   var result  = field.map(function(row){
-    var list = row.map(function(state){
-      return `<td class="${state ? 'black' : 'white'}"></td>`;
+    var list = row.map(function(cell){
+      return `<td class="${cell.getCls()}"></td>`;
     });
 
     return `<tr>${list.join('')}</tr>`
@@ -30,7 +42,7 @@ function fillField(field, count, size){
     var x = _.random(size);
     var y = _.random(size);
 
-    field[y][x] = true;
+    field[y][x].isFilled = true;
   }
 
   return field;
@@ -72,7 +84,9 @@ function render(){
       var y = event.target.parentElement.rowIndex;
 
 
-      user.field[y][x] = !user.field[y][x];
+      var cell = user.field[y][x];
+      cell.isFilled = !cell.isFilled;
+
       render();
     });
 
@@ -90,6 +104,8 @@ function render(){
         console.warn('too early, 1st fill own field');
         return;
       }
+
+
     })
 }
 
