@@ -44,6 +44,10 @@ var bot = {
   field: fillField(createField(10), 7, 9)
 };
 
+var state = {
+  isStarted: false,
+  order: 1
+};
 
 function render(){
   var container = document.getElementById('container');
@@ -54,6 +58,11 @@ function render(){
   document
     .getElementById('user')
     .addEventListener('click', function(event){
+      if(state.isStarted){
+        console.warn('game is already started');
+        return;
+      }
+
       if(event.target.tagName !== 'TD'){
         console.warn('misclick');
         return;
@@ -69,8 +78,9 @@ function render(){
 
   document
     .querySelector('#container button')
-    .addEventListener('click', function(){
-      console.log('clicked')
+    .addEventListener('click', function(event){
+      state.isStarted = true;
+      event.target.remove();
     });
 }
 
