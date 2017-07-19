@@ -58,7 +58,11 @@ var bot = {
 
 var state = {
   isStarted: false,
-  order: 1
+  _order: 1,
+  getOrder(){
+    this._order = +!this._order;
+    return this._order;
+  }
 };
 
 function render(){
@@ -71,35 +75,36 @@ function render(){
 
   container.innerHTML += renderTable(bot.field, 'bot');
 
-  document
-    .getElementById('user')
-    .addEventListener('click', function(event){
-      if(state.isStarted){
-        console.warn('game is already started');
-        return;
-      }
-
-      if(event.target.tagName !== 'TD'){
-        console.warn('misclick');
-        return;
-      }
-
-      var x = event.target.cellIndex;
-      var y = event.target.parentElement.rowIndex;
-
-
-      var cell = user.field[y][x];
-      cell.isFilled = !cell.isFilled;
-
-      render();
-    });
-
   if(!state.isStarted){
+    document
+      .getElementById('user')
+      .addEventListener('click', function(event){
+        if(state.isStarted){
+          console.warn('game is already started');
+          return;
+        }
+
+        if(event.target.tagName !== 'TD'){
+          console.warn('misclick');
+          return;
+        }
+
+        var x = event.target.cellIndex;
+        var y = event.target.parentElement.rowIndex;
+
+
+        var cell = user.field[y][x];
+        cell.isFilled = !cell.isFilled;
+
+        render();
+      });
+
     document
       .querySelector('#container button')
       .addEventListener('click', function(event){
         state.isStarted = true;
         event.target.remove();
+        render();
       });
 
   }
@@ -126,7 +131,21 @@ function render(){
       cell.isShot = true;
 
       render();
-    })
+    });
+
+  if(state.isStarted){
+    document
+      .getElementById('user')
+      .addEventListener('click', function(event){
+        console.log(1)
+      });
+
+    document
+      .getElementById('bot')
+      .addEventListener('click', function(event){
+        console.log(1)
+      });
+  }
 }
 
 render();
