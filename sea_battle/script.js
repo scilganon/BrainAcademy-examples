@@ -147,6 +147,11 @@ function getShipCells(el, count, orientation){
       for(var i=0; i<count-1; i++){
         current = current.nextSibling;
 
+        if(!current){
+          cells = [];
+          break;
+        }
+
         if(current){
           cells.push(current);
         }
