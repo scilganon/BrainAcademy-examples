@@ -113,6 +113,43 @@ function shot(elCell, field){
 
 var list_ships = [4,3,2,1];
 
+function renderHover(list){
+  var canBeRendered = true;
+
+  list.forEach(function(el){
+    if(!el.classList.contains('black')){
+      el.classList.add('hover');
+    } else {
+      canBeRendered = false;
+    }
+  });
+
+
+  if(!canBeRendered){
+    list.forEach(function(el){
+      el.classList.remove('hover');
+    })
+  }
+
+  return canBeRendered;
+}
+
+
+function getShipCells(el, count, orientation){
+  var cells = [el];
+
+  switch(orientation){
+    case 'v':
+      break;
+    case 'h':
+      break;
+    default:
+      console.warn('orientation was not checked');
+  }
+
+  return cells;
+}
+
 function renderForm(list){
   var inputs = list.map(function(count){
     return `
@@ -171,9 +208,13 @@ function render(){
           return;
         }
 
-        event.target.classList.add('hover');
+        var cells = getShipCells(
+          event.target,
+          state.ship.count,
+          state.ship.orientation
+        );
 
-        console.log(1);
+        renderHover(cells);
       });
 
 
@@ -185,8 +226,6 @@ function render(){
         }
 
         event.target.classList.remove('hover');
-
-        console.log(2);
       });
 
     document
