@@ -97,7 +97,7 @@ var state = {
   },
 
   ship: {
-    count: 0,
+    count: 1,
     orientation: 'v'
   }
 };
@@ -162,6 +162,31 @@ function render(){
         state.ship.count = +form.elements.size.value;
 
         console.log(state.ship);
+      });
+
+    document
+      .getElementById('user')
+      .addEventListener('mouseover', function(event){
+        if(event.target.tagName !== 'TD'){
+          return;
+        }
+
+        event.target.classList.add('hover');
+
+        console.log(1);
+      });
+
+
+    document
+      .getElementById('user')
+      .addEventListener('mouseout', function(event){
+        if(event.target.tagName !== 'TD'){
+          return;
+        }
+
+        event.target.classList.remove('hover');
+
+        console.log(2);
       });
 
     document
