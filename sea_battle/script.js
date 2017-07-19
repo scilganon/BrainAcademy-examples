@@ -64,6 +64,15 @@ var state = {
   }
 };
 
+function shot(elCell, field){
+  var x = elCell.cellIndex;
+  var y = elCell.parentElement.rowIndex;
+
+
+  var cell = field[y][x];
+  cell.isShot = true;
+}
+
 function render(){
   var container = document.getElementById('container');
   container.innerHTML = renderTable(user.field, 'user');
@@ -151,6 +160,15 @@ function render(){
         if(state._order === 1){
           return console.warn('user\'s turn');
         }
+
+        if(event.target.tagName !== 'TD'){
+          console.warn('misclick');
+          return;
+        }
+
+        shot(event.target, bot);
+
+        render();
 
         state.switchOrder();
       });
