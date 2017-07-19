@@ -94,6 +94,11 @@ var state = {
   _order: 1,
   switchOrder(){
     this._order = +!this._order;
+  },
+
+  ship: {
+    count: 0,
+    orientation: 'v'
   }
 };
 
@@ -118,7 +123,7 @@ function renderForm(list){
     `;
   });
 
-  var orientation = ['vertical', 'horizontal'].map(function(o){
+  var orientation = ['v', 'h'].map(function(o){
     return `
      <label>
         <input type="radio" value="${o}" name="orientation">
@@ -147,6 +152,17 @@ function render(){
 
   if(!state.isStarted){
     container.innerHTML += renderForm(list_ships);
+
+    document
+      .querySelector('form')
+      .addEventListener('change', function(event){
+        var form = document.querySelector('form');
+
+        state.ship.orientation = form.elements.orientation.value;
+        state.ship.count = +form.elements.size.value;
+
+        console.log(state.ship);
+      });
 
     document
       .getElementById('user')
