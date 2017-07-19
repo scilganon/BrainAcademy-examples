@@ -106,6 +106,35 @@ function shot(elCell, field){
   cell.isShot = true;
 }
 
+var list_ships = [4,3,2,1];
+
+function renderForm(list){
+  var inputs = list.map(function(count){
+    return `
+      <label>
+        <input type="radio" value="${count}" name="size">
+        ${count}
+      </label>
+    `;
+  });
+
+  var orientation = ['vertical', 'horizontal'].map(function(o){
+    return `
+     <label>
+        <input type="radio" value="${o}" name="orientation">
+        ${o}
+      </label>
+    `;
+  });
+
+  return `
+    <form action="#">
+        <div>${inputs.join('')}</div>
+        <div>${orientation.join('')}</div>
+    </form>
+  `;
+}
+
 function render(){
   var container = document.getElementById('container');
   container.innerHTML = renderTable(user.field, 'user');
@@ -117,6 +146,8 @@ function render(){
   container.innerHTML += renderTable(bot.field, 'bot');
 
   if(!state.isStarted){
+    container.innerHTML += renderForm(list_ships);
+
     document
       .getElementById('user')
       .addEventListener('click', function(event){
