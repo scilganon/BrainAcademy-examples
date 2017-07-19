@@ -140,6 +140,21 @@ function getShipCells(el, count, orientation){
 
   switch(orientation){
     case 'v':
+      var current = el;
+
+      for(var i=0; i<count-1; i++){
+        var row = current.parentElement.nextSibling;
+
+        if(!row){
+          cells = [];
+          break;
+        }
+
+        current = row.cells[el.cellIndex];
+
+        cells.push(current);
+      }
+
       break;
     case 'h':
       var current = el;
