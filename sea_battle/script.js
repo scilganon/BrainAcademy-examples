@@ -64,7 +64,11 @@ var state = {
 function render(){
   var container = document.getElementById('container');
   container.innerHTML = renderTable(user.field, 'user');
-  container.innerHTML += '<button type="button">Play</button>';
+
+  if(!state.isStarted){
+    container.innerHTML += '<button type="button">Play</button>';
+  }
+
   container.innerHTML += renderTable(bot.field, 'bot');
 
   document
@@ -90,12 +94,15 @@ function render(){
       render();
     });
 
-  document
-    .querySelector('#container button')
-    .addEventListener('click', function(event){
-      state.isStarted = true;
-      event.target.remove();
-    });
+  if(!state.isStarted){
+    document
+      .querySelector('#container button')
+      .addEventListener('click', function(event){
+        state.isStarted = true;
+        event.target.remove();
+      });
+
+  }
 
   document
     .getElementById('bot')
