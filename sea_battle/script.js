@@ -59,9 +59,8 @@ var bot = {
 var state = {
   isStarted: false,
   _order: 1,
-  getOrder(){
+  switchOrder(){
     this._order = +!this._order;
-    return this._order;
   }
 };
 
@@ -137,13 +136,23 @@ function render(){
     document
       .getElementById('user')
       .addEventListener('click', function(event){
-        console.log(1)
+        if(state._order === 0){
+          return console.warn('bot\'s turn');
+        }
+
+
+
+        state.switchOrder();
       });
 
     document
       .getElementById('bot')
       .addEventListener('click', function(event){
-        console.log(1)
+        if(state._order === 1){
+          return console.warn('user\'s turn');
+        }
+
+        state.switchOrder();
       });
   }
 }
