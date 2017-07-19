@@ -112,6 +112,11 @@ function render(){
         return;
       }
 
+      if(event.target.tagName !== 'TD'){
+        console.warn('misclick');
+        return;
+      }
+
 
       var x = event.target.cellIndex;
       var y = event.target.parentElement.rowIndex;
