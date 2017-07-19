@@ -49,12 +49,43 @@ function fillField(field, count, size){
 }
 
 var user = {
+  name: 'max',
   field: createField(10)
 };
 
 var bot = {
-  field: fillField(createField(10), 7, 9)
+  name: 'bot',
+  field: fillField(createField(10), 3, 9)
 };
+
+function getLooser(list){
+  var looser;
+
+  for(var i=0; i<list.length; i++){
+    var rows = list[i].field;
+
+    var shoted = 0;
+    var filled = 0;
+
+    rows.forEach(function(row){
+      row.forEach(function(cell){
+        if(cell.isFilled){
+          filled++;
+
+          if(cell.isShot){
+            shoted++;
+          }
+        }
+      });
+    });
+
+    if(shoted === filled){
+      looser = list[i];
+    }
+  }
+
+  return looser;
+}
 
 var state = {
   isStarted: false,
@@ -118,6 +149,14 @@ function render(){
   }
 
   if(state.isStarted){
+    var looser = getLooser([bot, user]);
+    if(looser){
+      state.isStarted = false;
+      render();
+
+      return console.info(looser.name + ' loosed a game.');
+    }
+
     document
       .getElementById('user')
       .addEventListener('click', function(event){
