@@ -97,8 +97,8 @@ var state = {
   },
 
   ship: {
-    count: 1,
-    orientation: 'v'
+    count: 3,
+    orientation: 'h'
   }
 };
 
@@ -142,6 +142,16 @@ function getShipCells(el, count, orientation){
     case 'v':
       break;
     case 'h':
+      var current = el;
+
+      for(var i=0; i<count; i++){
+        current = el.nextSibling;
+
+        if(current){
+          cells.push(current);
+        }
+      }
+
       break;
     default:
       console.warn('orientation was not checked');
@@ -225,7 +235,11 @@ function render(){
           return;
         }
 
-        event.target.classList.remove('hover');
+        var hovered = document.querySelectorAll('table td.hover');
+
+        for(var i=0; i<hovered.length; i++){
+          hovered[i].classList.remove('hover')
+        }
       });
 
     document
