@@ -125,7 +125,14 @@ function render(){
           return console.warn('bot\'s turn');
         }
 
+        if(event.target.tagName !== 'TD'){
+          console.warn('misclick');
+          return;
+        }
 
+        shot(event.target, user.field);
+
+        render();
 
         state.switchOrder();
       });
@@ -142,7 +149,7 @@ function render(){
           return;
         }
 
-        shot(event.target, bot);
+        shot(event.target, bot.field);
 
         render();
 
