@@ -10,7 +10,9 @@ function createField(size){
         isFilled: false,
         getCls: function(){
           if (!this.isFilled){
-            return 'white';
+            return !this.isShot
+              ? 'white'
+              : 'grey';
           }
 
           return this.isShot
