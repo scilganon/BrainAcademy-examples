@@ -117,30 +117,6 @@ function render(){
 
   }
 
-  document
-    .getElementById('bot')
-    .addEventListener('click', function(event){
-      if(!state.isStarted){
-        console.warn('too early, 1st fill own field');
-        return;
-      }
-
-      if(event.target.tagName !== 'TD'){
-        console.warn('misclick');
-        return;
-      }
-
-
-      var x = event.target.cellIndex;
-      var y = event.target.parentElement.rowIndex;
-
-
-      var cell = bot.field[y][x];
-      cell.isShot = true;
-
-      render();
-    });
-
   if(state.isStarted){
     document
       .getElementById('user')
