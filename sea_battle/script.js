@@ -97,8 +97,8 @@ var state = {
   },
 
   ship: {
-    count: 3,
-    orientation: 'h',
+    count: 0,
+    orientation: '',
     cells: []
   }
 };
@@ -132,6 +132,10 @@ function renderHover(list){
 
 
 function getShipCells(el, count, orientation){
+  if(!count){
+    return [];
+  }
+
   var cells = [el];
 
   switch(orientation){
@@ -171,6 +175,7 @@ function getShipCells(el, count, orientation){
       break;
     default:
       console.warn('orientation was not checked');
+      return [];
   }
 
   return cells;
@@ -277,6 +282,10 @@ function render(){
           return console.warn('some cells already used');
         }
 
+        if(state.ship.cells.length === 0){
+          return console.log('check right config for ship');
+        }
+
         state.ship.cells.forEach(function(el){
           var x = el.cellIndex;
           var y = el.parentElement.rowIndex;
@@ -285,6 +294,17 @@ function render(){
           var cell = user.field[y][x];
           cell.isFilled = !cell.isFilled;
         });
+
+        var foundShip = list_ships.indexOf(state.ship.count);
+        if(foundShip !== -1){
+          list_ships.splice(foundShip, 1);
+        }
+
+        state.ship = {
+          count: 0,
+          orientation: '',
+          cells: []
+        };
 
         render();
       });
