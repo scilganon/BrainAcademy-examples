@@ -101,10 +101,17 @@ var state = {
     this._order = +!this._order;
   },
 
+  list_ships: [4,3,3,2,2,2,1,1,1,1],
+
   ship: {
-    count: 0,
-    orientation: '',
-    cells: []
+    count: 1,
+    orientation: 'v',
+    cells: [],
+    reset(){
+        this.count = state.list_ships[0];
+        this.orientation = 'v';
+        this.cells = [];
+    }
   }
 };
 
@@ -118,8 +125,6 @@ function shot(elCell, field){
 
   return cell.isHit();
 }
-
-var list_ships = [4,3,3,2,2,2,1,1,1,1];
 
 function checkIfRenderNotAvailable(list){
   return list.find(function(el){
@@ -192,7 +197,7 @@ function renderForm(list){
   var inputs = list.map(function(count){
     return `
       <label>
-        <input type="radio" value="${count}" name="size">
+        <input type="radio" value="${count}" name="size" ${count === state.ship.count ? 'checked' : ''}>
         ${count}
       </label>
     `;
@@ -201,7 +206,7 @@ function renderForm(list){
   var orientation = ['v', 'h'].map(function(o){
     return `
      <label>
-        <input type="radio" value="${o}" name="orientation">
+        <input type="radio" value="${o}" name="orientation" ${o === state.ship.orientation ? 'checked' : ''}>
         ${o}
       </label>
     `;
@@ -226,7 +231,7 @@ function render(){
   container.innerHTML += renderTable(bot.field, 'bot');
 
   if(!state.isStarted){
-    container.innerHTML += renderForm(list_ships);
+    container.innerHTML += renderForm(state.list_ships);
 
     document
       .querySelector('form')
@@ -302,18 +307,14 @@ function render(){
           cell.isFilled = !cell.isFilled;
         });
 
-        var foundShip = list_ships.indexOf(state.ship.count);
+        var foundShip = state.list_ships.indexOf(state.ship.count);
         if(foundShip !== -1){
-          list_ships.splice(foundShip, 1);
+          state.list_ships.splice(foundShip, 1);
         }
 
-        state.ship = {
-          count: 0,
-          orientation: '',
-          cells: []
-        };
+        state.ship.reset();
 
-        if(!list_ships.length){
+        if(!state.list_ships.length){
           state.isStarted = true;
         }
 
