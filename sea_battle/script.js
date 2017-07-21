@@ -6,14 +6,22 @@ function createField(size){
 
     for(var j=0; j< size; j++){
       result[i][j] = {
+        x: j,
+        y: i,
+
         isShot: false,
         isFilled: false,
+        isReserved: false,
 
         isHit(){
           return this.isFilled && this.isShot;
         },
 
         getCls: function(){
+          if(!this.isFilled && !this.isShot && this.isReserved){
+            return 'blue';
+          }
+
           if (!this.isFilled){
             return !this.isShot
               ? 'white'
@@ -29,6 +37,23 @@ function createField(size){
   }
 
   return result;
+}
+
+function markNearReserved(markedList, field){
+  markedList.forEach(function(cell){
+    for(var i=-1; i<2; i++){
+      for(var j=-1; j<2; j++){
+        var foundRow = field[cell.y + i];
+        if(foundRow){
+          var foundCell = foundRow[cell.x + j];
+
+          if(foundCell && !foundCell.isFilled){
+            foundCell.isReserved = true;
+          }
+        }
+      }
+    }
+  });
 }
 
 
@@ -306,6 +331,16 @@ function render(){
           var cell = user.field[y][x];
           cell.isFilled = !cell.isFilled;
         });
+
+        var list = state.ship.cells.map(function(el){
+          var x = el.cellIndex;
+          var y = el.parentElement.rowIndex;
+
+
+          return user.field[y][x];
+        });
+
+        markNearReserved(list, user.field);
 
         var foundShip = state.list_ships.indexOf(state.ship.count);
         if(foundShip !== -1){
