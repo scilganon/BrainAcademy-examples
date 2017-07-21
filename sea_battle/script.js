@@ -98,7 +98,8 @@ var state = {
 
   ship: {
     count: 3,
-    orientation: 'h'
+    orientation: 'h',
+    cells: []
   }
 };
 
@@ -113,25 +114,20 @@ function shot(elCell, field){
 
 var list_ships = [4,3,2,1];
 
-function renderHover(list){
-  var canBeRendered = true;
-
-  list.forEach(function(el){
-    if(!el.classList.contains('black')){
-      el.classList.add('hover');
-    } else {
-      canBeRendered = false;
-    }
+function checkIfRenderNotAvailable(list){
+  return list.find(function(el){
+    return el.classList.contains('black');
   });
+}
 
-
-  if(!canBeRendered){
-    list.forEach(function(el){
-      el.classList.remove('hover');
-    })
+function renderHover(list){
+  if(checkIfRenderNotAvailable(list)){
+    return false
   }
 
-  return canBeRendered;
+  list.forEach(function(el){
+    el.classList.add('hover');
+  });
 }
 
 
@@ -244,6 +240,8 @@ function render(){
           state.ship.orientation
         );
 
+        state.ship.cells = cells;
+
         renderHover(cells);
       });
 
@@ -275,12 +273,18 @@ function render(){
           return;
         }
 
-        var x = event.target.cellIndex;
-        var y = event.target.parentElement.rowIndex;
+        if(checkIfRenderNotAvailable(state.ship.cells)){
+          return console.warn('some cells already used');
+        }
+
+        state.ship.cells.forEach(function(el){
+          var x = el.cellIndex;
+          var y = el.parentElement.rowIndex;
 
 
-        var cell = user.field[y][x];
-        cell.isFilled = !cell.isFilled;
+          var cell = user.field[y][x];
+          cell.isFilled = !cell.isFilled;
+        });
 
         render();
       });
