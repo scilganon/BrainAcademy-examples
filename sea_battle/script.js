@@ -282,6 +282,21 @@ function render(){
           state.ship.orientation
         );
 
+        var list = cells.map(function(el){
+          var x = el.cellIndex;
+          var y = el.parentElement.rowIndex;
+
+          return user.field[y][x];
+        });
+
+        var isAnyReserved = list.find(function(cell){
+          return cell.isReserved;
+        });
+
+        if(isAnyReserved){
+          return;
+        }
+
         state.ship.cells = cells;
 
         renderHover(cells);
