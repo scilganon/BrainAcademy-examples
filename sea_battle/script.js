@@ -306,6 +306,10 @@ function render(){
           cells: []
         };
 
+        if(!list_ships.length){
+          state.isStarted = true;
+        }
+
         render();
       });
 
