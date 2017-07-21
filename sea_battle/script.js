@@ -112,7 +112,7 @@ function shot(elCell, field){
   cell.isShot = true;
 }
 
-var list_ships = [4,3,2,1];
+var list_ships = [4,3,3,2,2,2,1,1,1,1];
 
 function checkIfRenderNotAvailable(list){
   return list.find(function(el){
