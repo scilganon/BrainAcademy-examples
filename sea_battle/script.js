@@ -8,6 +8,11 @@ function createField(size){
       result[i][j] = {
         isShot: false,
         isFilled: false,
+
+        isHit(){
+          return this.isFilled && this.isShot;
+        },
+
         getCls: function(){
           if (!this.isFilled){
             return !this.isShot
@@ -110,6 +115,8 @@ function shot(elCell, field){
 
   var cell = field[y][x];
   cell.isShot = true;
+
+  return cell.isHit();
 }
 
 var list_ships = [4,3,3,2,2,2,1,1,1,1];
@@ -344,11 +351,11 @@ function render(){
           return;
         }
 
-        shot(event.target, user.field);
+        if(!shot(event.target, user.field)){
+          state.switchOrder();
+        }
 
         render();
-
-        state.switchOrder();
       });
 
     document
@@ -363,11 +370,11 @@ function render(){
           return;
         }
 
-        shot(event.target, bot.field);
+        if(!shot(event.target, bot.field)){
+          state.switchOrder();
+        }
 
         render();
-
-        state.switchOrder();
       });
   }
 }
