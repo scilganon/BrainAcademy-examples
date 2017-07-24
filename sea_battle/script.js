@@ -1,7 +1,7 @@
 define([
-  '../node_modules/lodash/lodash.js',
-  './Field'
-], function(_, Field){
+  './Player',
+  './Bot'
+], function(Player, Bot){
 
   function renderTable(field, id){
     var result  = field.result.map(function(row){
@@ -15,27 +15,10 @@ define([
     return `<table id="${id}">${result}</table>`;
   }
 
-  function fillField(field, count, size){
-    for(var i=0; i<count; i++){
-      var x = _.random(size);
-      var y = _.random(size);
-
-      field.result[y][x].isFilled = true;
-    }
-
-    return field;
-  }
-
   var state = window.state = {
     players: {
-      real: {
-        name: 'max',
-        field: new Field(10)
-      },
-      bot: {
-        name: 'bot',
-        field: fillField(new Field(10), 3, 9)
-      }
+      real: new Player('max'),
+      bot: new Bot()
     },
 
     isStarted: false,
