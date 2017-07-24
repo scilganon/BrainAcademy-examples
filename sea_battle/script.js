@@ -1,52 +1,12 @@
 define([
-  '../node_modules/lodash/lodash.js'
-], function(_){
-  function createField(size){
-    var result = [];
-
-    for(var i=0; i< size; i++){
-      result.push([]);
-
-      for(var j=0; j< size; j++){
-        result[i][j] = {
-          x: j,
-          y: i,
-
-          isShot: false,
-          isFilled: false,
-          isReserved: false,
-
-          isHit(){
-            return this.isFilled && this.isShot;
-          },
-
-          getCls: function(){
-            if(!this.isFilled && !this.isShot && this.isReserved){
-              return 'blue';
-            }
-
-            if (!this.isFilled){
-              return !this.isShot
-                ? 'white'
-                : 'grey';
-            }
-
-            return this.isShot
-              ? 'red'
-              : 'black';
-          }
-        };
-      }
-    }
-
-    return result;
-  }
-
+  '../node_modules/lodash/lodash.js',
+  './Field'
+], function(_, Field){
   function markNearReserved(markedList, field){
     markedList.forEach(function(cell){
       for(var i=-1; i<2; i++){
         for(var j=-1; j<2; j++){
-          var foundRow = field[cell.y + i];
+          var foundRow = field.result[cell.y + i];
           if(foundRow){
             var foundCell = foundRow[cell.x + j];
 
@@ -61,7 +21,7 @@ define([
 
 
   function renderTable(field, id){
-    var result  = field.map(function(row){
+    var result  = field.result.map(function(row){
       var list = row.map(function(cell){
         return `<td class="${cell.getCls()}"></td>`;
       });
@@ -77,7 +37,7 @@ define([
       var x = _.random(size);
       var y = _.random(size);
 
-      field[y][x].isFilled = true;
+      field.result[y][x].isFilled = true;
     }
 
     return field;
@@ -85,19 +45,19 @@ define([
 
   var user = {
     name: 'max',
-    field: createField(10)
+    field: new Field(10)
   };
 
   var bot = {
     name: 'bot',
-    field: fillField(createField(10), 3, 9)
+    field: fillField(new Field(10), 3, 9)
   };
 
-  function getLooser(list){
+  function getLooser(listOfPlayers){
     var looser;
 
-    for(var i=0; i<list.length; i++){
-      var rows = list[i].field;
+    for(var i=0; i<listOfPlayers.length; i++){
+      var rows = listOfPlayers[i].field.result;
 
       var shoted = 0;
       var filled = 0;
@@ -115,14 +75,14 @@ define([
       });
 
       if(shoted === filled){
-        looser = list[i];
+        looser = listOfPlayers[i];
       }
     }
 
     return looser;
   }
 
-  var state = {
+  var state = window.state = {
     isStarted: false,
     _order: 1,
     switchOrder(){
@@ -148,7 +108,7 @@ define([
     var y = elCell.parentElement.rowIndex;
 
 
-    var cell = field[y][x];
+    var cell = field.result[y][x];
     cell.isShot = true;
 
     return cell.isHit();
@@ -289,7 +249,7 @@ define([
             var x = el.cellIndex;
             var y = el.parentElement.rowIndex;
 
-            return user.field[y][x];
+            return user.field.result[y][x];
           });
 
           var isAnyReserved = list.find(function(cell){
@@ -350,7 +310,7 @@ define([
             var y = el.parentElement.rowIndex;
 
 
-            var cell = user.field[y][x];
+            var cell = user.field.result[y][x];
             cell.isFilled = !cell.isFilled;
           });
 
@@ -359,7 +319,7 @@ define([
             var y = el.parentElement.rowIndex;
 
 
-            return user.field[y][x];
+            return user.field.result[y][x];
           });
 
           markNearReserved(list, user.field);
