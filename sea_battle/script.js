@@ -2,23 +2,6 @@ define([
   '../node_modules/lodash/lodash.js',
   './Field'
 ], function(_, Field){
-  function markNearReserved(markedList, field){
-    markedList.forEach(function(cell){
-      for(var i=-1; i<2; i++){
-        for(var j=-1; j<2; j++){
-          var foundRow = field.result[cell.y + i];
-          if(foundRow){
-            var foundCell = foundRow[cell.x + j];
-
-            if(foundCell && !foundCell.isFilled){
-              foundCell.isReserved = true;
-            }
-          }
-        }
-      }
-    });
-  }
-
 
   function renderTable(field, id){
     var result  = field.result.map(function(row){
@@ -305,24 +288,11 @@ define([
             return console.log('its should be empty cell between the ships');
           }
 
-          state.ship.cells.forEach(function(el){
-            var x = el.cellIndex;
-            var y = el.parentElement.rowIndex;
-
-
-            var cell = user.field.result[y][x];
-            cell.isFilled = !cell.isFilled;
-          });
-
-          var list = state.ship.cells.map(function(el){
-            var x = el.cellIndex;
-            var y = el.parentElement.rowIndex;
-
-
-            return user.field.result[y][x];
-          });
-
-          markNearReserved(list, user.field);
+          user.field.addShip(
+            event.target,
+            state.ship.orientation,
+            state.ship.count
+          );
 
           var foundShip = state.list_ships.indexOf(state.ship.count);
           if(foundShip !== -1){
