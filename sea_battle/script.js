@@ -337,6 +337,10 @@ function render(){
         if(state.ship.cells.length === 0){
           return console.log('check right config for ship');
         }
+      
+        if(event.target.classList.contains('blue')) {
+            return console.log('its should be empty cell between the ships');
+        }
 
         state.ship.cells.forEach(function(el){
           var x = el.cellIndex;
