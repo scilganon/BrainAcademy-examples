@@ -326,7 +326,7 @@ define([
             return;
           }
 
-          if(!shot(event.target, state.players.real.field)){
+          if(!state.players.real.field.shot(event.target)){
             state.switchOrder();
           }
 
@@ -345,7 +345,7 @@ define([
             return;
           }
 
-          if(!shot(event.target, state.players.bot.field)){
+          if(!state.players.bot.field.shot(event.target)){
             state.switchOrder();
           }
 
