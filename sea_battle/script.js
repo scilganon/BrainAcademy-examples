@@ -26,16 +26,6 @@ define([
     return field;
   }
 
-  var user = {
-    name: 'max',
-    field: new Field(10)
-  };
-
-  var bot = {
-    name: 'bot',
-    field: fillField(new Field(10), 3, 9)
-  };
-
   function getLooser(listOfPlayers){
     var looser;
 
@@ -66,6 +56,17 @@ define([
   }
 
   var state = window.state = {
+    players: {
+      real: {
+        name: 'max',
+        field: new Field(10)
+      },
+      bot: {
+        name: 'bot',
+        field: fillField(new Field(10), 3, 9)
+      }
+    },
+
     isStarted: false,
     _order: 1,
     switchOrder(){
@@ -193,13 +194,13 @@ define([
 
   function render(){
     var container = document.getElementById('container');
-    container.innerHTML = renderTable(user.field, 'user');
+    container.innerHTML = renderTable(state.players.real.field, 'user');
 
     if(!state.isStarted){
       container.innerHTML += '<button type="button">Play</button>';
     }
 
-    container.innerHTML += renderTable(bot.field, 'bot');
+    container.innerHTML += renderTable(state.players.bot.field, 'bot');
 
     if(!state.isStarted){
       container.innerHTML += renderForm(state.list_ships);
@@ -232,7 +233,7 @@ define([
             var x = el.cellIndex;
             var y = el.parentElement.rowIndex;
 
-            return user.field.result[y][x];
+            return state.players.real.field.result[y][x];
           });
 
           var isAnyReserved = list.find(function(cell){
@@ -288,7 +289,7 @@ define([
             return console.log('its should be empty cell between the ships');
           }
 
-          user.field.addShip(
+          state.players.real.field.addShip(
             event.target,
             state.ship.orientation,
             state.ship.count
@@ -319,7 +320,7 @@ define([
     }
 
     if(state.isStarted){
-      var looser = getLooser([bot, user]);
+      var looser = getLooser([state.players.bot, state.players.real]);
       if(looser){
         state.isStarted = false;
         render();
@@ -339,7 +340,7 @@ define([
             return;
           }
 
-          if(!shot(event.target, user.field)){
+          if(!shot(event.target, state.players.real.field)){
             state.switchOrder();
           }
 
@@ -358,7 +359,7 @@ define([
             return;
           }
 
-          if(!shot(event.target, bot.field)){
+          if(!shot(event.target, state.players.bot.field)){
             state.switchOrder();
           }
 
