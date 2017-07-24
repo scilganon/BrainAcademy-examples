@@ -26,35 +26,6 @@ define([
     return field;
   }
 
-  function getLooser(listOfPlayers){
-    var looser;
-
-    for(var i=0; i<listOfPlayers.length; i++){
-      var rows = listOfPlayers[i].field.result;
-
-      var shoted = 0;
-      var filled = 0;
-
-      rows.forEach(function(row){
-        row.forEach(function(cell){
-          if(cell.isFilled){
-            filled++;
-
-            if(cell.isShot){
-              shoted++;
-            }
-          }
-        });
-      });
-
-      if(shoted === filled){
-        looser = listOfPlayers[i];
-      }
-    }
-
-    return looser;
-  }
-
   var state = window.state = {
     players: {
       real: {
@@ -84,6 +55,38 @@ define([
         this.orientation = 'v';
         this.cells = [];
       }
+    },
+
+    getLooser: function getLooser(){
+      // var listOfPlayers = [this.players.real, this.players.bot];
+      var listOfPlayers = Object.values(state.players);
+
+      var looser;
+
+      for(var i=0; i<listOfPlayers.length; i++){
+        var rows = listOfPlayers[i].field.result;
+
+        var shoted = 0;
+        var filled = 0;
+
+        rows.forEach(function(row){
+          row.forEach(function(cell){
+            if(cell.isFilled){
+              filled++;
+
+              if(cell.isShot){
+                shoted++;
+              }
+            }
+          });
+        });
+
+        if(shoted === filled){
+          looser = listOfPlayers[i];
+        }
+      }
+
+      return looser;
     }
   };
 
@@ -320,7 +323,7 @@ define([
     }
 
     if(state.isStarted){
-      var looser = getLooser([state.players.bot, state.players.real]);
+      var looser = state.getLooser();
       if(looser){
         state.isStarted = false;
         render();
