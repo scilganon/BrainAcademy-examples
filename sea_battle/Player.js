@@ -1,12 +1,9 @@
 define([
-  './Field'
-],function (Field) {
-  return function Player(name, generator){
-    if(!generator){
-      generator = function(field){return field}
-    }
-
+  './Field',
+  'json!./config.json'
+],function (Field, Config) {
+  return function Player(name){
     this.name = name;
-    this.field = generator(new Field(10));
+    this.field = new Field(Config.field.size);
   };
 });

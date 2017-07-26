@@ -1,8 +1,11 @@
 define([
   './Field',
   '../node_modules/lodash/lodash.js',
-], function (Field, _) {
-  function fillField(field, count, sizeOfField){
+  'json!./config.json'
+], function (Field, _, Config) {
+  function fillField(field, count){
+    var sizeOfField = field.result.length;
+
     for(var i=0; i<count; i++){
       var x = _.random(sizeOfField);
       var y = _.random(sizeOfField);
@@ -15,14 +18,17 @@ define([
 
   return function Bot(){
     this.name = 'bot';
-    this.field = fillField(new Field(10), 10, 9);
+    this.field = fillField(
+      new Field(Config.field.size),
+      Config.init.ships.length
+    );
 
     this._history = [];
 
     this.getXY = function(){
       do{
-        var x = _.random(9);
-        var y = _.random(9);
+        var x = _.random(Config.field.size -1);
+        var y = _.random(Config.field.size -1);
 
         var history_row = `${x},${y}`;
 

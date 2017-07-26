@@ -1,5 +1,5 @@
 define([
-  './Cell'
+  './Cell',
 ], function (Cell) {
   function getShipCells(el, count, orientation){
     if(!count){
