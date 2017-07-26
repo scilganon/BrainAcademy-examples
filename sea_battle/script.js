@@ -1,7 +1,6 @@
 define([
   './Player',
   './Bot',
-  '../node_modules/lodash/lodash.js',
 ], function(Player, Bot){
 
   function renderTable(field, id){
@@ -338,10 +337,10 @@ define([
         });
 
       if(state._order === 0){
-        var x = _.random(9);
-        var y = _.random(9);
 
-        if(!state.players.real.field.shot(x, y)){
+        var coordinates = state.players.bot.getXY();
+
+        if(!state.players.real.field.shot(coordinates.x, coordinates.y)){
           state.switchOrder();
         }
 
