@@ -1,6 +1,7 @@
 define([
   './Player',
-  './Bot'
+  './Bot',
+  '../node_modules/lodash/lodash.js',
 ], function(Player, Bot){
 
   function renderTable(field, id){
@@ -27,7 +28,7 @@ define([
       this._order = +!this._order;
     },
 
-    list_ships: [4,3,3,2,2,2,1,1,1,1],
+    list_ships: [1,1],
 
     ship: {
       count: 1,
@@ -315,32 +316,10 @@ define([
       }
 
       document
-        .getElementById('user')
+        .getElementById('bot')
         .addEventListener('click', function(event){
           if(state._order === 0){
             return console.warn('bot\'s turn');
-          }
-
-          if(event.target.tagName !== 'TD'){
-            console.warn('misclick');
-            return;
-          }
-
-          var x = event.target.cellIndex;
-          var y = event.target.parentElement.rowIndex;
-
-          if(!state.players.real.field.shot(x, y)){
-            state.switchOrder();
-          }
-
-          render();
-        });
-
-      document
-        .getElementById('bot')
-        .addEventListener('click', function(event){
-          if(state._order === 1){
-            return console.warn('user\'s turn');
           }
 
           if(event.target.tagName !== 'TD'){
@@ -357,6 +336,18 @@ define([
 
           render();
         });
+
+      if(state._order === 0){
+        var x = _.random(9);
+        var y = _.random(9);
+
+        if(!state.players.real.field.shot(x, y)){
+          state.switchOrder();
+        }
+
+        render();
+      }
+
     }
   }
 
