@@ -326,7 +326,10 @@ define([
             return;
           }
 
-          if(!state.players.real.field.shot(event.target)){
+          var x = event.target.cellIndex;
+          var y = event.target.parentElement.rowIndex;
+
+          if(!state.players.real.field.shot(x, y)){
             state.switchOrder();
           }
 
@@ -345,7 +348,10 @@ define([
             return;
           }
 
-          if(!state.players.bot.field.shot(event.target)){
+          var x = event.target.cellIndex;
+          var y = event.target.parentElement.rowIndex;
+
+          if(!state.players.bot.field.shot(x, y)){
             state.switchOrder();
           }
 

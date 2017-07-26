@@ -102,11 +102,7 @@ define([
       markNearReserved(list, this);
     }
 
-    this.shot =  function shot(elCell){
-      var x = elCell.cellIndex;
-      var y = elCell.parentElement.rowIndex;
-
-
+    this.shot =  function shot(x, y){
       var cell = this.result[y][x];
       cell.isShot = true;
 
