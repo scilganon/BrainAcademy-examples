@@ -1,0 +1,50 @@
+<div class="track"></div>
+
+<script>
+    function Car(model){
+      this.model = model;
+      this.a = 123;
+      this.b = 123123;
+
+      this.gSpeedConst = function(){
+        return 10;
+      }
+
+      this.gEl = function(order){
+        this._el = document.createElement('img');
+        this._el.style.position = 'absolute';
+        this._el.style.left = '0px';
+        this._el.style.top = `${order * 10}px`;
+        this._el.src = '';
+        return this._el;
+      }
+
+      this.start = function(){
+        var that = this;
+
+        setInterval(function(){
+          that._el.style.paddingLeft = that.gSpeedConst() + 'px';
+        }, 500);
+      }
+    }
+
+    function Ferrari(model){
+      Car.call(this, model);
+
+      this.gSpeedConst = function(){
+        return 100;
+      }
+    }
+
+    Ferrari.prototype = new Car();
+
+    function LAZ(model){
+      Car.call(this, model);
+
+      this.gSpeedConst = function(){
+        return 2;
+      }
+    }
+
+    LAZ.prototype = new Car();
+</script>
