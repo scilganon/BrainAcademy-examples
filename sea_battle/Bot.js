@@ -1,7 +1,7 @@
 define([
   './Field',
   '../node_modules/lodash/lodash.js',
-  'json!./config.json'
+  './config.json'
 ], function (Field, _, Config) {
   function fillField(field, count){
     var sizeOfField = field.result.length;
