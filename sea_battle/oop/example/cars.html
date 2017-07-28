@@ -10,21 +10,23 @@
         return 10;
       }
 
-      this.gEl = function(order){
-        this._el = document.createElement('img');
-        this._el.style.position = 'absolute';
-        this._el.style.left = '0px';
-        this._el.style.top = `${order * 10}px`;
-        this._el.src = '';
-        return this._el;
-      }
-
       this.start = function(){
         var that = this;
 
         setInterval(function(){
-          that._el.style.paddingLeft = that.gSpeedConst() + 'px';
+          that._el.style.left = parseInt(that._el.style.left) + that.gSpeedConst() + 'px';
         }, 500);
+      }
+
+      this.gEl = function(order){
+        this._el = document.createElement('img');
+        this._el.style.position = 'absolute';
+        this._el.style.left = '0px';
+        this._el.style.top = `${order * 100}px`;
+        this._el.style.width = '100px';
+        this._el.style.height = '100px';
+        this._el.src = '';
+        return this._el;
       }
     }
 
@@ -33,6 +35,14 @@
 
       this.gSpeedConst = function(){
         return 100;
+      }
+
+      this.gEl = function(order){
+        var tmp = new Car(this.model);
+        var img = tmp.gEl.call(this, order);
+
+        img.src = 'http://buyersguide.caranddriver.com/media/assets/submodel/6873.jpg';
+        return img;
       }
     }
 
@@ -44,7 +54,29 @@
       this.gSpeedConst = function(){
         return 2;
       }
+
+      this.gEl = function(order){
+        var tmp = new Car(this.model);
+        var img = tmp.gEl.call(this, order);
+
+        img.src = 'http://static.carmodel.com/photos/53219_1.jpg?1';
+        return img;
+      }
     }
 
     LAZ.prototype = new Car();
+</script>
+
+<script>
+    var my_car = new LAZ('01-23');
+    var my_friend = new Ferrari('spyder');
+
+
+    [my_car, my_friend].forEach(function(car, index){
+      var el = car.gEl(index);
+
+      document.querySelector('.track').appendChild(el);
+
+      car.start();
+    })
 </script>
